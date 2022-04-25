@@ -3209,71 +3209,38 @@ Jacob_App.controller("contenido_curso", function ($scope, $state, $timeout, $roo
         $scope.esconder = "true";
       }
       $scope.CalificacionE = $sessionStorage.CalificacionE;
-      $scope.MensajeDesp = $sessionStorage.CalificacionE[0];
-      $scope.Evaluacion = $sessionStorage.Evaluacion;
-      $scope.Preguntas = [];
-      var populate = 0;
-      var length = 0;
-      for (var i = 1; i < $scope.Evaluacion.length; i++) {
-        populate = populate + 1;
-        if (populate == 5) {
-          populate = 0;
-          $scope.Preguntas[length] = [];
-          length = length + 1;
-        }
+      $scope.MensajeDesp = "Felicitaciones culminaste esta unidad";
+      $scope.Evaluacion = $sessionStorage.preguntasEvalTemp;
+      $scope.Preguntas = $sessionStorage.preguntasEvalTemp;
+      $scope.Opciones = [];
+
+      for (let i = 0; i < $sessionStorage.preguntasEvalTemp.length; i++) {
+        $scope.Opciones[i] = $sessionStorage.preguntasEvalTemp[i].opciones.split("</p>");
       }
-      var cont = 0;
-      var cont2 = 0;
-      var cont3 = 0;
-      var j = 4;
-      for (var i = 1; i < $scope.Evaluacion.length; i++) {
-        cont2 = cont2 + 1;
-        if (cont2 == 5) {
-          var start = i - j;
-          cont2 = 0;
-          for (j = start; j <= i; j++) {
-            $scope.Preguntas[cont][cont3] = $sessionStorage.Evaluacion[j];
-            cont3 = cont3 + 1;
-          }
-          cont = cont + 1;
-          j = 4;
-          cont3 = 0;
-        }
-      }
-      $scope.dividir = [];
+
       $scope.OpcCorrectas = [];
       $scope.Explicacion = [];
       var cont = 0;
-      for (var i = 1; i < $scope.CalificacionE.length; i++) {
-        $scope.dividir[cont] = $scope.CalificacionE[i].split(":");
-        $scope.OpcCorrectas[cont] = $scope.dividir[cont][0];
-        $scope.Explicacion[cont] = $scope.dividir[cont][1];
-        cont = cont + 1;
+      for (var i = 0; i < $scope.Evaluacion.length; i++) {
+        $scope.OpcCorrectas[i] = $scope.Evaluacion[i].respuesta;
+        $scope.Explicacion[i] = $scope.Evaluacion[i].explicacion;
       }
       $scope.calificacion = $sessionStorage.Calificacion;
       $scope.nota = $sessionStorage.Nota.toFixed(1);
 
       //Checked-disabled//
       $scope.checked = [];
-      for (var i = 0; i < $scope.OpcCorrectas.length; i++) {
+      for (var i = 0; i < $scope.Preguntas.length; i++) {
         $scope.checked[i] = [];
-      }
-      for (var i = 0; i < $scope.OpcCorrectas.length; i++) {
-        switch ($scope.OpcCorrectas[i]) {
-          case "A":
-            $scope.checked[i][0] = "true";
-            break;
-          case "B":
-            $scope.checked[i][1] = "true";
-            break;
-          case "C":
-            $scope.checked[i][2] = "true";
-            break;
-          case "D":
-            $scope.checked[i][3] = "true";
+        for (var j = 0; j < $scope.Opciones[i].length; j++) {
+          if ($scope.Opciones[i][j] == $scope.OpcCorrectas[i]) {
+            $scope.checked[i][j] = "true";
+          } else {
+            $scope.checked[i][j] = "";
+          }
         }
       }
-      console.log($scope.Preguntas);
+      console.log($scope.OpcCorrectas);
       console.log($scope.checked);
 
       break;
@@ -3294,15 +3261,9 @@ Jacob_App.controller("contenido_curso", function ($scope, $state, $timeout, $roo
           $scope.mostrar = "";
 
           //Opciones Correctas en base de datos//
-          $scope.CalificacionE = $sessionStorage.CalificacionE;
-          $scope.dividir = [];
           $scope.OpcCorrectas = [];
-
-          var cont = 0;
-          for (var i = 1; i < $scope.CalificacionE.length; i++) {
-            $scope.dividir[cont] = $scope.CalificacionE[i].split(":");
-            $scope.OpcCorrectas[cont] = $scope.dividir[cont][0];
-            cont = cont + 1;
+          for (var i = 0; i < $scope.Evaluacion.length; i++) {
+            $scope.OpcCorrectas[i] = $scope.Evaluacion[i].respuesta;
           }
 
           //Calculo de Nota//
