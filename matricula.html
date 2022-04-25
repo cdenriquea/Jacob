@@ -1,0 +1,189 @@
+<!-- -------------------Modal Solicitud Validación-------------------- -->
+<div class="container">
+    <div class="modal" tabindex="1" role="dialog" id="modalvalidacion">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title"><img class="pb-1" src="./imagenes/simbolo y escudo.png" width="25%">
+                        Solicitud de Validación</h3>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span arial-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body text-center">
+                    <p>
+                        Tu Solicitud se ha realizado con exito.
+                    </p>
+                    <p>
+                        Pronto recibiras respuesta.
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="my-auto px-4 py-2 boton-azul-borde-pequeño"
+                        data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md-10 mx-auto">
+        </div>
+    </div>
+</div>
+<!-- -------------------Fin Modal Solicitud Validación-------------------- -->
+
+<!-- -------------------Modal Matricula-------------------- -->
+<div class="container">
+    <div class="modal" tabindex="1" role="dialog" id="modalmatricula">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title"><img class="pb-1" src="./imagenes/simbolo y escudo.png" width="25%">
+                        Matricula</h3>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span arial-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body text-center">
+                    <p>
+                        Falta poco para terminar tu proceso de matricula.
+                    </p>
+                    <p>
+                        En el siguiente enlace podras cargar el comprobante de pago para la validación final.
+                    </p>
+                    <a class="nav-link pt-3" ui-sref="cargar-comprobante"><button type="button" data-dismiss="modal"
+                            class="my-auto px-4 py-2 boton-azul-mediano">Cargar Comprobante</button></a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="my-auto px-4 py-2 boton-azul-borde-pequeño"
+                        data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md-10 mx-auto">
+        </div>
+    </div>
+</div>
+<!-- -------------------Fin Modal Matricula-------------------- -->
+
+<div class="container-fluid">
+    <div class="row px-5">
+        <div class="col-8">
+            <h2 class="p-3" id="titulo-carrera">Matrícula - {{programa}} - {{semestre}} Semestre</h2>
+        </div>
+        <div class="col-4 my-auto">
+            <h4 class="text-right p-3" id="titulo-creditos">{{creditosDisp}} Créditos disponibles</h4>
+        </div>
+    </div>
+</div>
+<div class="container-fluid px-5">
+    <div class="scrollme-2 mx-2">
+        <div class="row contenedor-scroll">
+            <div ng-repeat="Semestre in SemestresObj |orderBy:'Numero'" class="semestre-scroll">
+                <div class="col border text-center">
+                    <h2 class="py-2" id="titulo-semestre">{{SemestresR[$index]}} Semestre</h2>
+                </div>
+                <div ng-repeat="Materia in materias" ng-if="Materia.Semestre == Semestre.Numero" class="col border">
+                    <div class="row">
+                        <div class="{{estadoMat[$index]}}">
+                            <div class="col">
+                                <p class="text-center ">{{Materia.Creditos}} CR</p>
+                            </div>
+                            <div ng-if="estadoMat[$index] != 'col-3 materia-aprobada' && estadoMat[$index] != 'col-3 materia-matriculada' && estadoMat[$index] != 'col-3 materia-pendiente'"
+                                class="col text-center ">
+                                <div class="form-check">
+                                    <input ng-model='matriculadas[$index]' class="form-check-input my-auto" type="radio"
+                                        name="{{Materia.Nombre}}" id="{{Materia.Nombre}}" value="{{Materia.Codigo}}">
+                                    <label class="form-check-label" for="matricula"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <h3 class="text-right" id="materia">{{Materia.Nombre}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container-fluid px-5">
+    <div class="row">
+        <div class="col-6">
+            <div class="col">
+                <div class="row">
+                    <div class="cuadro-materia-aprobada">
+
+                    </div>
+                    <div class="col my-auto" id="titulos">
+                        <h4>Aprobada</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="row">
+                    <div class="cuadro-materia-reprobada">
+
+                    </div>
+                    <div class="col my-auto" id="titulos">
+                        <h4>Perdida</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="row">
+                    <div class="cuadro-materia-matriculable">
+
+                    </div>
+                    <div class="col my-auto" id="titulos">
+                        <h4>Pendiente Matriculable y Validable</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="cuadro-materia-matriculada">
+
+                    </div>
+                    <div class="col my-auto" id="titulos">
+                        <h4>Matriculada</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="cuadro-materia-validable">
+
+                    </div>
+                    <div class="col my-auto" id="titulos">
+                        <h4>Pendiente Validable</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 my-auto">
+            <div class="row">
+                <div class="ml-auto text-right px-3">
+                    <a class="nav-link p-0"><button type="button" class="my-auto px-4 py-2 boton-azul-borde"
+                            data-toggle="modal" data-target="#modalvalidacion">Solicitud de Validación</button></a>
+                </div>
+                <div class="text-right px-3">
+                    <a class="nav-link p-0"><button type="button" class="my-auto px-4 py-2 boton-amarillo"
+                            data-toggle="modal" ng-click="confirmarMatricula(matriculadas)"
+                            data-target="#modalmatricula">Matricular</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<br>
+

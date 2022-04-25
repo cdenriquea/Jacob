@@ -1,0 +1,617 @@
+        <br>
+        <div class="col-12 col-md-10 col-lg-8 mx-auto p-5 text-center" id="formularioMateria">
+            <div class="col-12 col-md-5 mx-auto px-5">
+                <img src="./imagenes/Logo vertical.png" class="img-fluid px-5">
+            </div>
+            <hr>
+            <div class="col-12">
+                <h1 id="titulo-carrera">Formulario de Creación de Materias</h2>
+            </div>
+            <div class="col-8 mx-auto">
+                <form name= "myform" class="px-0 px-md-5">
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="text"
+                        class="form-control"
+                        id="Nombre"
+                        ng-model="Nombre"
+                        placeholder="Nombres de la Materia"
+                        required="true"
+                        >
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" id="Programa" ng-model ="Programa" ng-change="cargarMaterias();" required>
+                            <option value="">Programa</option>
+                            <option ng-repeat="dato in programas"  value="{{dato.Nombre}}" >
+                                {{dato.Nombre}}
+                              </option>  
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario" required>
+                        <select class="custom-select" ng-model="Semestre" id="Semestre">
+                            <option value="">Semestre</option>
+                            <option value="1">Semestre I</option>
+                            <option value="2">Semestre II</option>
+                            <option value="3">Semestre III</option>
+                            <option value="4">Semestre IV</option>
+                            <option value="5">Semestre V</option>
+                            <option value="6">Semestre VI</option>
+                            <option value="7">Semestre VII</option>
+                            <option value="8">Semestre VIII</option>
+                            <option value="9">Semestre IX</option>
+                            <option value="10">Semestre X</option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario" required>
+                        <select class="custom-select" ng-model="Categoria" id="Categoria">
+                            <option value="">Categoría de la Materia</option>
+                            <option value="Teórica">Teórica</option>
+                            <option value="Mixta">Mixta</option>
+                            <option value="Práctica">Práctica</option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="number"
+                        class="form-control"
+                        id="Creditos"
+                        ng-model = "Creditos"
+                        name="creditos"
+                        placeholder="Creditos"
+                        required="true"
+                        >
+                      </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model ="Prerequisito1" id="Prerequisito1" >
+                            <option value="">Materia Prerequisito (opcional)</option>
+                            <option ng-repeat="dato in materias" ng-if="dato.Nombre != Prerequisito2 && dato.Nombre !=Prerequisito3 && dato.Nombre !=Prerequisito4"  value="{{dato.Nombre}}" >
+                                {{dato.Nombre}}
+                              </option>  
+     
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Prerequisito2" id="Prerequisito2">
+                            <option value="">Materia Prerequisito (opcional)</option>
+                            <option ng-repeat="dato in materias" ng-if="dato.Nombre != Prerequisito1 && dato.Nombre !=Prerequisito3 && dato.Nombre !=Prerequisito4" value="{{dato.Nombre}}" >
+                                {{dato.Nombre}}
+                              </option>  
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Prerequisito3" id="Prerequisito3">
+                            <option value="">Materia Prerequisito (opcional)</option>
+                            <option ng-repeat="dato in materias" ng-if="dato.Nombre != Prerequisito1 && dato.Nombre !=Prerequisito2 && dato.Nombre !=Prerequisito4" value="{{dato.Nombre}}" >
+                                {{dato.Nombre}}
+                              </option>  
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Prerequisito4" id="Prerequisito4">
+                            <option value="">Materia Prerequisito (opcional)</option>
+                            <option ng-repeat="dato in materias" ng-if="dato.Nombre != Prerequisito1 && dato.Nombre !=Prerequisito2 && dato.Nombre !=Prerequisito3" value="{{dato.Nombre}}" >
+                                {{dato.Nombre}}
+                              </option>  
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <textarea class="form-control" ng-model="Acercade" id="Acercade" rows="3" placeholder="Acerca de" required></textarea>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="MateriaPrevia1" id="MateriaPrevia1" ng-change="cargarTemas1('MateriaPrevia1');">
+                            <option value="">Materia de Tema Previo (opcional)</option>
+                            <option ng-repeat="dato in materias" value="{{dato.Nombre}}" >
+                                {{dato.Nombre}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="TemaPrevio1" id="TemaPrevio1">
+                            <option value="">Tema Previo (opcional)</option>
+                            <option ng-repeat="dato in temas1 | unique: 'Modulo' | filter: { Modulo: '!INTRODUCCION'} | filter: { Modulo: '!Evaluacion Final' }"  
+                             ng-if="dato.Modulo != TemaPrevio2 && dato.Modulo !=TemaPrevio3 && dato.Modulo !=TemaPrevio4 && dato.Modulo !=TemaPrevio5 && dato.Modulo !=TemaPrevio6" value="{{dato.Modulo}}" >
+                                {{dato.Modulo}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="MateriaPrevia2" id="MateriaPrevia2" ng-change="cargarTemas2('MateriaPrevia2');">
+                            <option value="">Materia de Tema Previo (opcional)</option>
+                            <option ng-repeat="dato in materias"  value="{{dato.Nombre}}" >
+                                {{dato.Nombre}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="TemaPrevio2" id="TemaPrevio2">
+                            <option value="">Tema Previo (opcional)</option>
+                            <option ng-repeat="dato in temas2 | unique: 'Modulo' | filter: { Modulo: '!INTRODUCCION'} | filter: { Modulo: '!Evaluacion Final' }"  
+                             ng-if="dato.Modulo != TemaPrevio1 && dato.Modulo !=TemaPrevio3 && dato.Modulo !=TemaPrevio4 && dato.Modulo !=TemaPrevio5 && dato.Modulo !=TemaPrevio6" value="{{dato.Modulo}}" >
+                                {{dato.Modulo}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="MateriaPrevia3" id="MateriaPrevia3" ng-change="cargarTemas3('MateriaPrevia3');">
+                            <option value="">Materia de Tema Previo (opcional)</option>
+                            <option ng-repeat="dato in materias" value="{{dato.Nombre}}" >
+                                {{dato.Nombre}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select"  ng-model="TemaPrevio3" id="TemaPrevio3">
+                            <option value="">Tema Previo (opcional)</option>
+                            <option ng-repeat="dato in temas3 | unique: 'Modulo' | filter: { Modulo: '!INTRODUCCION'} | filter: { Modulo: '!Evaluacion Final' }"  
+                             ng-if="dato.Modulo != TemaPrevio1 && dato.Modulo !=TemaPrevio2 && dato.Modulo !=TemaPrevio4 && dato.Modulo !=TemaPrevio5 && dato.Modulo !=TemaPrevio6" value="{{dato.Modulo}}" >
+                                {{dato.Modulo}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="MateriaPrevia4" id="MateriaPrevia4" ng-change="cargarTemas4('MateriaPrevia4');">
+                            <option value="">Materia de Tema Previo (opcional)</option>
+                            <option ng-repeat="dato in materias" value="{{dato.Nombre}}" >
+                                {{dato.Nombre}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="TemaPrevio4" id="TemaPrevio4">
+                            <option value="">Tema Previo (opcional)</option>
+                            <option ng-repeat="dato in temas4 | unique: 'Modulo' | filter: { Modulo: '!INTRODUCCION'} | filter: { Modulo: '!Evaluacion Final' }"  
+                            ng-if="dato.Modulo != TemaPrevio1 && dato.Modulo !=TemaPrevio2 && dato.Modulo !=TemaPrevio3 && dato.Modulo !=TemaPrevio5 && dato.Modulo !=TemaPrevio6" value="{{dato.Modulo}}" >
+                                {{dato.Modulo}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="MateriaPrevia5" id="MateriaPrevia5" ng-change="cargarTemas5('MateriaPrevia5');">
+                            <option value="">Materia de Tema Previo (opcional)</option>
+                            <option ng-repeat="dato in materias" value="{{dato.Nombre}}" >
+                                {{dato.Nombre}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="TemaPrevio5" id="TemaPrevio5">
+                            <option value="">Tema Previo (opcional)</option>
+                            <option ng-repeat="dato in temas5 | unique: 'Modulo' | filter: { Modulo: '!INTRODUCCION'} | filter: { Modulo: '!Evaluacion Final' }"  
+                            ng-if="dato.Modulo != TemaPrevio1 && dato.Modulo !=TemaPrevio2 && dato.Modulo !=TemaPrevio3 && dato.Modulo !=TemaPrevio4 && dato.Modulo !=TemaPrevio6" value="{{dato.Modulo}}" >
+                                {{dato.Modulo}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="MateriaPrevia6" id="MateriaPrevia6" ng-change="cargarTemas6('MateriaPrevia6');">
+                            <option value="">Materia de Tema Previo (opcional)</option>
+                            <option ng-repeat="dato in materias"  value="{{dato.Nombre}}" >
+                                {{dato.Nombre}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="TemaPrevio6" id="TemaPrevio6">
+                            <option value="">Tema Previo (opcional)</option>
+                            <option ng-repeat="dato in temas6 | unique: 'Modulo' | filter: { Modulo: '!INTRODUCCION'} | filter: { Modulo: '!Evaluacion Final' }"  
+                            ng-if="dato.Modulo != TemaPrevio1 && dato.Modulo !=TemaPrevio2 && dato.Modulo !=TemaPrevio3 && dato.Modulo !=TemaPrevio4 && dato.Modulo !=TemaPrevio5" value="{{dato.Modulo}}" >
+                                {{dato.Modulo}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <textarea class="form-control" ng-model='Fundamentos' id="Fundamentos" placeholder="Fundamentos de la Materia" required rows="3"></textarea>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="text"
+                        class="form-control"
+                        id="Objetivo1"
+                        ng-model = "Objetivo1"
+                        placeholder="Objetivo de Aprendizaje"
+                        required="true"
+                        >
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="text"
+                        class="form-control"
+                        id="Objetivo2"
+                        ng-model = "Objetivo2"
+                        placeholder="Objetivo de Aprendizaje"
+                        required="true"
+                        >
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="text"
+                        class="form-control"
+                        id="Objetivo3"
+                        ng-model = "Objetivo3"
+                        placeholder="Objetivo de Aprendizaje"
+                        required="true"
+                        >
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="text"
+                        class="form-control"
+                        id="Objetivo4"
+                        ng-model = "Objetivo4"
+                        placeholder="Objetivo de Aprendizaje (opcional)"
+                        >
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="text"
+                        class="form-control"
+                        id="Objetivo5"
+                        ng-model = "Objetivo5"
+                        placeholder="Objetivo de Aprendizaje (opcional)"
+                        >
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="text"
+                        class="form-control"
+                        id="Objetivo6"
+                        ng-model = "Objetivo6"
+                        placeholder="Objetivo de Aprendizaje (opcional)"
+                        >
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="text"
+                        class="form-control"
+                        id="Objetivo7"
+                        ng-model = "Objetivo7"
+                        placeholder="Objetivo de Aprendizaje (opcional)"
+                        >
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="text"
+                        class="form-control"
+                        id="Objetivo8"
+                        ng-model = "Objetivo8"
+                        placeholder="Objetivo de Aprendizaje (opcional)"
+                        >
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="text"
+                        class="form-control"
+                        id="Objetivo9"
+                        ng-model = "Objetivo9"
+                        placeholder="Objetivo de Aprendizaje (opcional)"
+                        >
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="text"
+                        class="form-control"
+                        id="Objetivo10"
+                        ng-model = "Objetivo10"
+                        placeholder="Objetivo de Aprendizaje (opcional)"
+                        >
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="Contenido" ng-file='uploadfiles' accept=".pdf,.xls">
+                            <label class="custom-file-label text-justify" for="Contenido" data-browse="Elegir">Contenido de la Materia</label>
+                        </div>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="LibroGuia" ng-file='uploadfiles' accept=".pdf,.xls">
+                            <label class="custom-file-label text-justify" for="LibroGuia" data-browse="Elegir">Libro Guia (opcional)</label>
+                        </div>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="Archivo" ng-file='uploadfiles' accept=".pdf,.xls">
+                            <label class="custom-file-label text-justify" for="Archivo" data-browse="Elegir">Archivo Relevante (opcional)</label>
+                        </div>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model = "Docente1" id="Docente1" required>
+                            <option value="">Nombre Docente</option>
+                            <option ng-repeat="Docentes in listaDoc" ng-if="Docentes != Docente2 && Docentes != Docente3 && Docentes != Docente4 && Docentes != Docente5 && Docentes != Docente6 && Docentes != Docente7" value="{{Docentes}}" >
+                                {{Docentes}}
+                              </option>  
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <textarea class="form-control" ng-model="Bienvenida1" id="Bienvenida1" placeholder="Palabras de Bienvenida Docente" required rows="3"></textarea>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Sede1" id="Sede1" required>
+                            <option value="">Sede</option>
+                            <option value="Cali">Cali</option>
+                            <option value="Cartagena">Cartagena</option>
+                            <option value="Ipiales">Ipiales</option>
+                            <option value="Pasto">Pasto</option>
+                            <option value="Puerto Asis">Puerto Asis</option>
+                            <option value="Villavicencio">Villavicencio</option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Jornada1" id="Jornada1" required>
+                            <option value="">Jornada</option>
+                            <option value="Diurno">Diurno</option>
+                            <option value="Nocturno">Nocturno</option>
+                            <option value="Fin de Semana">Fin de Semana</option>
+                        </select>
+                    </div>
+                <div class="form-group borde-formulario">
+                    <select class="custom-select" ng-model="Dia[0]" id="Dia0"
+                        ng-options="Dias for Dias in Semana | filter: '!'+ Dia[1]: true | filter: '!'+ Dia[2]: true" ng-required="true">
+                        <option value="">Dia de Clase</option>
+                    </select>
+                </div>
+                <div class="form-group formulario text-justify">
+                    <label for="horaInicio">Hora de Inicio </label>
+                    <input class="borde-formulario" type="time" ng-model="HoraInicio[0]" id="HoraInicio[0]" name="horaInicio1"
+                        ng-required="Dia[0]">
+                    <label for="horaFin">// Hora de Finalización </label>
+                    <input class="borde-formulario" type="time" ng-model="HoraFin[0]" id="HoraFin[0]" name="horaFin1"
+                        ng-required="Dia[0]">
+                </div>
+                <div class="form-group borde-formulario">
+                    <select class="custom-select" ng-model="Dia[1]" id="Dia1"
+                        ng-options="Dias for Dias in Semana | filter: '!'+ Dia[0]: true | filter: '!'+ Dia[2]: true">
+                        <option value="">Segundo Dia de Clase(opcional)</option>
+                    </select>
+                </div>
+                <div class="form-group formulario text-justify">
+                    <label for="horaInicio">Hora de Inicio </label>
+                    <input class="borde-formulario" type="time" ng-model="HoraInicio[1]" id="HoraInicio[1]" name="horaInicio2"
+                        ng-required="Dia[1]">
+                    <label for="horaFin">// Hora de Finalización </label>
+                    <input class="borde-formulario" type="time" ng-model="HoraFin[1]" id="HoraFin[1]" name="horaFin2"
+                        ng-required="Dia[1]">
+                </div>
+                <div class="form-group borde-formulario">
+                    <select class="custom-select" ng-model="Dia[2]" id="Dia2"
+                        ng-options="Dias for Dias in Semana | filter: '!'+ Dia[0]: true | filter: '!'+ Dia[1]: true">
+                        <option value="">Tercer Dia de Clase(opcional)</option>
+                    </select>
+                </div>
+                <div class="form-group formulario text-justify">
+                    <label for="horaInicio">Hora de Inicio </label>
+                    <input class="borde-formulario" type="time" ng-model="HoraInicio[2]" id="HoraInicio[2]" name="horaInicio3"
+                        ng-required="Dia[2]" />
+                    <label for="horaFin">// Hora de Finalización </label>
+                    <input class="borde-formulario" type="time" ng-model="HoraFin[2]" id="HoraFin[2]" name="horaFin3"
+                        ng-required="Dia[2]">
+                </div>
+                <div ng-hide = 1>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Docente2" id="Docente2">
+                            <option value="">Nombre Segundo Docente (opcional)</option>
+                            <option ng-repeat="Docentes in listaDoc"  ng-if="Docentes != Docente1 && Docentes != Docente3 && Docentes != Docente4 && Docentes != Docente5 && Docentes != Docente6 && Docentes != Docente7" value="{{Docentes}}" >
+                                {{Docentes}}
+                              </option>  
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <textarea class="form-control" ng-model="Bienvenida2" id="Bienvenida2" placeholder="Palabras de Bienvenida Segundo Docente (opcional)" rows="3"></textarea>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Sede2" id="Sede2">
+                            <option value="">Segunda Sede (opcional)</option>
+                            <option value="1">Cali</option>
+                            <option value="1">Cartagena</option>
+                            <option value="1">Ipiales</option>
+                            <option value="1">Pasto</option>
+                            <option value="1">Puerto Asis</option>
+                            <option value="1">Villavicencio</option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Jornada2" id="Jornada2">
+                            <option value="">Segunda Jornada (opcional)</option>
+                            <option value="1">Diurno</option>
+                            <option value="1">Nocturno</option>
+                            <option value="1">Fin de Semana</option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <textarea class="form-control" ng-model="Horario2" id="Horario2" placeholder="Segundo Horario (opcional)" rows="3"></textarea>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Docente3" id="Docente3">
+                            <option value="">Nombre Tercer Docente (opcional)</option>
+                            <option ng-repeat="Docentes in listaDoc"  ng-if="Docentes != Docente1 && Docentes != Docente2 && Docentes != Docente4 && Docentes != Docente5 && Docentes != Docente6 && Docentes != Docente7" value="{{Docentes}}" >
+                                {{Docentes}}
+                              </option>  
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <textarea class="form-control" ng-model="Bienvenida3" id="Bienvenida3" placeholder="Palabras de Bienvenida Tercer Docente (opcional)" rows="3"></textarea>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Sede3" id="Sede3">
+                            <option value="">Tercera Sede (opcional)</option>
+                            <option value="1">Cali</option>
+                            <option value="1">Cartagena</option>
+                            <option value="1">Ipiales</option>
+                            <option value="1">Pasto</option>
+                            <option value="1">Puerto Asis</option>
+                            <option value="1">Villavicencio</option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Jornada3" id="Jornada3">
+                            <option value="">Tercera Jornada (opcional)</option>
+                            <option value="1">Diurno</option>
+                            <option value="1">Nocturno</option>
+                            <option value="1">Fin de Semana</option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <textarea class="form-control" ng-model="Horario3" id="Horario3" placeholder="Tercer Horario (opcional)" rows="3"></textarea>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Docente4" id="Docente4">
+                            <option value="">Nombre Cuarto Docente (opcional)</option>
+                            <option ng-repeat="Docentes in listaDoc"  ng-if="Docentes != Docente1 && Docentes != Docente2 && Docentes != Docente3 && Docentes != Docente5 && Docentes != Docente6 && Docentes != Docente7" value="{{Docentes}}" >
+                                {{Docentes}}
+                              </option>  
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <textarea class="form-control" ng-model="Bienvenida4" id="Bienvenida4" placeholder="Palabras de Bienvenida Cuarto Docente (opcional)" rows="3"></textarea>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Sede4" id="Sede4">
+                            <option value="">Cuarta Sede (opcional)</option>
+                            <option value="1">Cali</option>
+                            <option value="1">Cartagena</option>
+                            <option value="1">Ipiales</option>
+                            <option value="1">Pasto</option>
+                            <option value="1">Puerto Asis</option>
+                            <option value="1">Villavicencio</option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Jornada4" id="Jornada4">
+                            <option value="">Cuarta Jornada (opcional)</option>
+                            <option value="1">Diurno</option>
+                            <option value="1">Nocturno</option>
+                            <option value="1">Fin de Semana</option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <textarea class="form-control" id="Horario4" placeholder="Cuarto Horario (opcional)" rows="3"></textarea>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Docente5" id="Docente5">
+                            <option value="">Nombre Quinto Docente (opcional)</option>
+                            <option ng-repeat="Docentes in listaDoc"  ng-if="Docentes != Docente1 && Docentes != Docente2 && Docentes != Docente3 && Docentes != Docente4 && Docentes != Docente6 && Docentes != Docente7" value="{{Docentes}}" >
+                                {{Docentes}}
+                              </option>  
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <textarea class="form-control" ng-model="Bienvenida5" id="Docente1" placeholder="Palabras de Bienvenida Quinto Docente (opcional)" rows="3"></textarea>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Sede5" id="Sede5">
+                            <option value="">Quinta Sede (opcional)</option>
+                            <option value="1">Cali</option>
+                            <option value="1">Cartagena</option>
+                            <option value="1">Ipiales</option>
+                            <option value="1">Pasto</option>
+                            <option value="1">Puerto Asis</option>
+                            <option value="1">Villavicencio</option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Jornada5" id="Jornada5">
+                            <option value="">Quinta Jornada (opcional)</option>
+                            <option value="1">Diurno</option>
+                            <option value="1">Nocturno</option>
+                            <option value="1">Fin de Semana</option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <textarea class="form-control" ng-model="Horario5" id="Horario5" placeholder="Quinta Horario (opcional)" rows="3"></textarea>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Docente6" id="Docente6">
+                            <option value="">Nombre Sexto Docente (opcional)</option>
+                            <option ng-repeat="Docentes in listaDoc"  ng-if="Docentes != Docente1 && Docentes != Docente2 && Docentes != Docente3 && Docentes != Docente4 && Docentes != Docente5 && Docentes != Docente7" value="{{Docentes}}" >
+                                {{Docentes}}
+                              </option>  
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <textarea class="form-control" ng-model="Bienvenida6" id="Bienvenida6" placeholder="Palabras de Bienvenida Sexto Docente (opcional)" rows="3"></textarea>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Sede6" id="Sede6">
+                            <option value="">Sexta Sede (opcional)</option>
+                            <option value="1">Cali</option>
+                            <option value="1">Cartagena</option>
+                            <option value="1">Ipiales</option>
+                            <option value="1">Pasto</option>
+                            <option value="1">Puerto Asis</option>
+                            <option value="1">Villavicencio</option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Jornada6" id="Jornada6">
+                            <option value="">Sexta Jornada (opcional)</option>
+                            <option value="1">Diurno</option>
+                            <option value="1">Nocturno</option>
+                            <option value="1">Fin de Semana</option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <textarea class="form-control" ng-model="Horario6" id="Horario6" placeholder="Sexto Horario (opcional)" rows="3"></textarea>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Docente7" id="Docente7">
+                            <option value="">Nombre Septimo Docente (opcional)</option>
+                            <option ng-repeat="Docentes in listaDoc"  ng-if="Docentes != Docente1 && Docentes != Docente2 && Docentes != Docente3 && Docentes != Docente4 && Docentes != Docente5 && Docentes != Docente6" value="{{Docentes}}" >
+                                {{Docentes}}
+                              </option>  
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <textarea class="form-control" ng-model="Bienvenida7" id="Bienvenida7" placeholder="Palabras de Bienvenida Septimo Docente (opcional)" rows="3"></textarea>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Sede7" id="Sede7">
+                            <option value="">Septima Sede (opcional)</option>
+                            <option value="1">Cali</option>
+                            <option value="1">Cartagena</option>
+                            <option value="1">Ipiales</option>
+                            <option value="1">Pasto</option>
+                            <option value="1">Puerto Asis</option>
+                            <option value="1">Villavicencio</option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model="Jornada7" id="Jornada7">
+                            <option value="">Septima Jornada (opcional)</option>
+                            <option value="1">Diurno</option>
+                            <option value="1">Nocturno</option>
+                            <option value="1">Fin de Semana</option>
+                        </select>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <textarea class="form-control" ng-model="Horario7" id="Horario7" placeholder="Septimo Horario (opcional)" rows="3"></textarea>
+                    </div>
+                </div>
+                    <div class="form-group borde-formulario">
+                        <div class="custom-file">
+                            <input   type="file" class="custom-file-input" id="Calendario"  ng-file='uploadfiles'  accept=".pdf,.xls" >
+                            <label class="custom-file-label text-justify" for="Calendario" data-browse="Elegir">Calendario(.pdf)</label>
+                            
+                    
+                        </div>
+                    </div>
+                    <br>
+                    <button type="submit" class="my-auto px-4 py-2 boton-azul" value="materia" ng-click="myform.$valid && crear_materia(); myform.$valid && upload()">Crear Materia</button>
+                    
+                </form>
+                </div>
+            </div> 
+            </div>
+            <script>
+                ////////Mostrar nombre archivos seleccionados//////////
+
+                $("input[type=file]").change(function () {
+                    var fieldVal = $(this).val();
+            
+                    // Change the node's value by removing the fake path (Chrome)
+                    fieldVal = fieldVal.replace("C:\\fakepath\\", "");
+            
+                    if (fieldVal != undefined || fieldVal != "") {
+                        $(this).next(".custom-file-label").attr('data-content', fieldVal);
+                        $(this).next(".custom-file-label").text(fieldVal);
+                    }
+                });
+            </script>

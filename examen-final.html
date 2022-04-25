@@ -1,0 +1,114 @@
+<!-- -------------------Area Clase-------------------- -->
+<div ng-show="content" class="col p-3 area">
+    <div class="col-12 p-0 text-center"><img class="py-4 iconos" src="./imagenes/EVALUACIÓN.png"></div>
+    <div ng-if="usuario == 1" class="col">
+        <a class="nav-link p-0" ng-click="edicion()">
+            <button type="button" class="my-auto px-4 py-2 boton-editar" id="editarExamen">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                    class="bi bi-pencil-square" viewBox="0 0 16 16">
+                    <path
+                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                    <path fill-rule="evenodd"
+                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                </svg>
+            </button>
+        </a>
+    </div>
+    <div class="col-12 text-center">
+        <h1 class="titulos-clase">Examen final</h1>
+        <hr>
+        <h4 ng-if="Preguntas.length == 0" class="titulos text-justify">Para agregar las preguntas haz click en el boton de editar <b>(recuerda que debes crear un banco de preguntas antes de editar la evaluación)</b>.</h4>
+        <form id="examen">
+            <div class="row px-2 px-md-3 px-lg-5 py-0 py-md-2 py-lg-3">
+                <div ng-repeat="Pregunta in Preguntas" class="col-12 col-md-6 p-2" id="pregunta{{$index+1}}">
+                    <h4 class="titulos text-justify" id="enunciado{{$index+1}}">{{$index+1}}.{{Pregunta.enunciado}}</h4>
+                    <div class="form-check text-justify">
+                        <input class="form-check-input" type="radio" name="pregunta{{$index}}" ng-disabled="desactivar" ng-model='opcion[$index]' id="p-1-r-1" value="A">
+                        <label class="form-check-label" for="p-1-r1">
+                            {{Opciones[$index][0]}}
+                        </label>
+                        <br>
+                        <input class="form-check-input" type="radio" name="pregunta{{$index}}" ng-disabled="desactivar" ng-model='opcion[$index]' id="p-1-r-2" value="B">
+                        <label class="form-check-label" for="p-1-r2">
+                            {{Opciones[$index][1]}}
+                        </label>
+                        <br>
+                        <input class="form-check-input" type="radio" name="pregunta{{$index}}" ng-disabled="desactivar" ng-model='opcion[$index]' id="p-1-r-3" value="C">
+                        <label class="form-check-label" for="p-1-r3">
+                            {{Opciones[$index][2]}}
+                        </label>
+                        <br>
+                        <input class="form-check-input" type="radio" name="pregunta{{$index}}" ng-disabled="desactivar" ng-model='opcion[$index]' id="p-1-r-4" value="D">
+                        <label class="form-check-label" for="p-1-r4">
+                            {{Opciones[$index][3]}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <button ng-disabled="desactivar" class="btn btn-warning btn-lg" ng-click="respuestas(opcion)" id="enviar-examen" data-toggle="modal">Enviar</button>
+            <div ng-show="mostrar">¡Debes responder todas las preguntas antes de enviar el examen!</div>
+        </form>
+        <br>
+    </div>
+</div>
+</div>
+<!-- -------------------Fin Area Clase-------------------- -->
+
+
+<!-- -------------------Area Clase-------------------- -->
+<div ng-show="edit" class="col p-3 area">
+    <form name="myform">
+        <div class="col-12 p-0 text-center"><img class="py-4 iconos" src="./imagenes/EVALUACIÓN.png"></div>
+        <div class="col">
+            <a class="nav-link p-0" ng-click="contenido()">
+                <button type="button" class="my-auto px-4 py-2 boton-editar" id="editarExamen">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path
+                            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                        <path fill-rule="evenodd"
+                            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                    </svg>
+                </button>
+            </a>
+        </div>
+        <div class="col-12 text-center">
+            <h1 class="titulos-clase">Examen final</h1>
+            <hr>
+            <form>
+                <div class="row">
+                    <div ng-repeat="preguntas in numeroPreguntas" class="col-12 col-md-6 p-2" id="preguntas">
+                        <h4 class="titulos text-justify" id="enunciado1">{{$index+1}}. Pregunta</h4>
+                        <div class="form-group borde-formulario">
+                            <select class="custom-select" ng-model="tema_examen[$index]" id="{{tema_examen[$index]}}" required>
+                                <option value="" selected disabled>Tema</option>
+                                <option ng-repeat="pregunta in banco | unique: 'tema'" 
+                                value="{{pregunta.tema}}">
+                                  {{pregunta.tema}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group borde-formulario">
+                            <select class="custom-select" ng-model="subtema_examen[$index]" id="{{subtema_examen[$index]}}" required>
+                                <option value="" selected disabled>Subtema</option>
+                                <option ng-repeat="pregunta in banco | filter: { tema: tema_examen[$index]} | unique: 'subtema'" 
+                                value="{{pregunta.subtema}}">
+                                  {{pregunta.subtema}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <br>
+        </div>
+        <br>
+        <div class="col text-right">
+            <a class="nav-link"> <button type="button" ng-show="botonAgregar()" ng-click="nuevaOpcion()" class="boton-azul">Agregar</button></a>
+            <a class="nav-link"> <button type="button" ng-show="botonEliminar()" ng-click="eliminarOpcion()" class="boton-azul">Eliminar</button></a>
+        </div>
+        <div class="col text-center">
+            <button class="my-auto mx-auto px-4 py-2 boton-azul" ng-click="myform.$valid && guardarEvaluacion()" value="examen">Guardar</button>
+        </div>
+        </form>
+</div>
+<!-- -------------------Fin Area Clase-------------------- -->

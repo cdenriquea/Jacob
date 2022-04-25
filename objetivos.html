@@ -1,0 +1,210 @@
+<!-- -------------------Area Clase-------------------- -->
+<div ng-show="content" class="col p-3 area">
+    <div class="row">
+        <div class="col-12 text-center"><img class="py-4 iconos" src="./imagenes/OBJETIVOS.png"></div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="col">
+            <a ng-if="usuario == 1" class="nav-link p-0" ng-click="edicion()">
+                <button type="button" class="my-auto px-4 py-2 boton-editar" id="editarObjetivos">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path
+                            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                        <path fill-rule="evenodd"
+                            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                    </svg>
+                </button>
+            </a>
+        </div>
+        <div class="col-12 text-center">
+            <h2 class="titulos-clase">Fundamentos de la Materia</h2>
+            <hr>
+        </div>
+        <div class="col-12 text-justify px-5">
+            <p ng-bind-html="Fundamentos | sanitize"></p>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-12 col-lg-6 py-auto">
+            <div class="col text-center">
+                <h2 class="titulos-clase">Archivos</h2>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-10 col-md-10 col-lg-8 mx-auto">
+                    <div class="row">
+                        <div class="col-6 text-center">
+                            <a download class="text-danger p-0" id="upc"
+                                ng-href="./docs/{{Categoria}}/{{Programa}}/{{Nombre}}/CONTENIDO.pdf"><img
+                                    src="./imagenes/icono pdf.png" width="70"></a>
+                            <p>Contenido</p>
+                        </div>
+                        <div class="col-6 text-center">
+                            <a download class="text-danger p-0" id="guia"
+                                ng-href="./docs/{{Categoria}}/{{Programa}}/{{Nombre}}/LIBRO GUIA.pdf"><img
+                                    src="./imagenes/icono pdf.png" width="70"></a>
+                            <p>Libro guia</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="col text-center">
+                <h2 class="titulos-clase">Puntos de Aprendizaje</h2>
+            </div>
+            <hr>
+            <ul>
+                <li ng-repeat="Objetivo in Objetivos">{{Objetivo}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- -------------------Fin Area Clase-------------------- -->
+
+
+
+<!-- -------------------Area Edición-------------------- -->
+<div ng-show="edit" class="col p-3 area">
+    <form>
+        <div class="row">
+            <div class="col-12 text-center"><img class="py-4 iconos" src="./imagenes/OBJETIVOS.png"></div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="col">
+                <a ng-if="usuario == 1" class="nav-link p-0" ng-click="contenido()">
+                    <button type="button" class="my-auto px-4 py-2 boton-editar" id="editarObjetivos">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path
+                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                            <path fill-rule="evenodd"
+                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                        </svg>
+                    </button>
+                </a>
+            </div>
+            <div class="col-12 text-center">
+                <h2 class="titulos-clase">Fundamentos de la Materia</h2>
+                <hr>
+            </div>
+            <div class="col-12 text-justify px-5">
+                <div class="form-group borde-formulario">
+                    <textarea class="form-control" ng-model='Fundamentos' id="Fundamentos"
+                        placeholder="Fundamentos de la Materia" required rows="3"></textarea>
+                </div>
+            </div>
+            <br>
+            <div class="col">
+                <div class="row">
+                    <div class="col-12 col-lg-6 py-auto">
+                        <div class="col text-center">
+                            <h2 class="titulos-clase">Archivos</h2>
+                        </div>
+                        <hr>
+                        <div class="form-group borde-formulario">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="Contenido" ng-file='uploadfiles'
+                                    accept=".pdf,.xls">
+                                <label class="custom-file-label text-justify" for="Contenido"
+                                    data-browse="Elegir">Contenido de la Materia</label>
+                            </div>
+                        </div>
+                        <div class="form-group borde-formulario">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="LibroGuia" ng-file='uploadfiles'
+                                    accept=".pdf,.xls">
+                                <label class="custom-file-label text-justify" for="LibroGuia" data-browse="Elegir">Libro
+                                    Guia (opcional)</label>
+                            </div>
+                        </div>
+                        <div class="form-group borde-formulario">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="Archivo" ng-file='uploadfiles'
+                                    accept=".pdf,.xls">
+                                <label class="custom-file-label text-justify" for="Archivo" data-browse="Elegir">Archivo
+                                    Relevante (opcional)</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="col text-center">
+                            <h2 class="titulos-clase">Puntos de Aprendizaje</h2>
+                        </div>
+                        <hr>
+                        <div class="form-group borde-formulario">
+                            <input type="text" class="form-control" id="Objetivo1" ng-model="Objetivos[0]"
+                                placeholder="Objetivo de Aprendizaje" required="true">
+                        </div>
+                        <div class="form-group borde-formulario">
+                            <input type="text" class="form-control" id="Objetivo2" ng-model="Objetivos[1]"
+                                placeholder="Objetivo de Aprendizaje" required="true">
+                        </div>
+                        <div class="form-group borde-formulario">
+                            <input type="text" class="form-control" id="Objetivo3" ng-model="Objetivos[2]"
+                                placeholder="Objetivo de Aprendizaje" required="true">
+                        </div>
+                        <div class="form-group borde-formulario">
+                            <input type="text" class="form-control" id="Objetivo4" ng-model="Objetivos[3]"
+                                placeholder="Objetivo de Aprendizaje (opcional)">
+                        </div>
+                        <div class="form-group borde-formulario">
+                            <input type="text" class="form-control" id="Objetivo5" ng-model="Objetivos[4]"
+                                placeholder="Objetivo de Aprendizaje (opcional)">
+                        </div>
+                        <div class="form-group borde-formulario">
+                            <input type="text" class="form-control" id="Objetivo6" ng-model="Objetivos[5]"
+                                placeholder="Objetivo de Aprendizaje (opcional)">
+                        </div>
+                        <div class="form-group borde-formulario">
+                            <input type="text" class="form-control" id="Objetivo7" ng-model="Objetivos[6]"
+                                placeholder="Objetivo de Aprendizaje (opcional)">
+                        </div>
+                        <div class="form-group borde-formulario">
+                            <input type="text" class="form-control" id="Objetivo8" ng-model="Objetivos[7]"
+                                placeholder="Objetivo de Aprendizaje (opcional)">
+                        </div>
+                        <div class="form-group borde-formulario">
+                            <input type="text" class="form-control" id="Objetivo9" ng-model="Objetivos[8]"
+                                placeholder="Objetivo de Aprendizaje (opcional)">
+                        </div>
+                        <div class="form-group borde-formulario">
+                            <input type="text" class="form-control" id="Objetivo10" ng-model="Objetivos[9]"
+                                placeholder="Objetivo de Aprendizaje (opcional)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="col text-center">
+            <button type="submit" class="my-auto mx-auto px-4 py-2 boton-azul"
+                ng-click="modContenido('Objetivos'); upload()" value="objetivo">Guardar</button>
+        </div>
+    </form>
+</div>
+<!-- -------------------Fin Edición-------------------- -->
+<script>
+    ////////Mostrar nombre archivos seleccionados//////////
+
+    $("input[type=file]").change(function () {
+        var fieldVal = $(this).val();
+
+        // Change the node's value by removing the fake path (Chrome)
+        fieldVal = fieldVal.replace("C:\\fakepath\\", "");
+
+        if (fieldVal != undefined || fieldVal != "") {
+            $(this).next(".custom-file-label").attr('data-content', fieldVal);
+            $(this).next(".custom-file-label").text(fieldVal);
+        }
+    });
+</script>

@@ -1,0 +1,48 @@
+<!-- -------------------Area Clase-------------------- -->
+<div class="col p-3 area">
+    <div class="col-12 p-0 text-center"><img class="py-4 iconos" src="./imagenes/CALIFICACION.png"></div>
+    <div ng-if="nota != -1" class="col-12 text-center">
+        <h1 class="titulos-clase">¡Felicitaciones!</h1>
+        <hr>
+        <p>¡Has superado satisfactoriamente todos los contenidos del curso!</p>
+        <h1 class="titulos-clase">Nota : {{nota}}</h1>
+        <hr>
+        <p>Calificación : {{calificacion}}</p>
+    </div>
+    <div ng-if="nota != -1" class="col-12 text-center">
+        <h1 class="titulos-clase">Solución de la evaluación final</h1>
+        <hr>
+        <div id="examen">
+            <div class="row px-2 px-md-3 px-lg-5 py-0 py-md-2 py-lg-3">
+                <div ng-repeat="Pregunta in Preguntas" class="col-12 col-md-6 p-2" id="pregunta{{$index+1}}">
+                    <h4 class="titulos text-justify" id="enunciado{{$index+1}}">{{$index+1}}.{{Pregunta[0]}}</h4>
+                    <div class="form-check text-justify">
+                        <input class="form-check-input" type="radio" name="pregunta{{$index}}" ng-disabled="!checked[$index][0]" ng-checked="checked[$index][0]" id="p-1-r-1">
+                        <label class="form-check-label" for="p-1-r1">
+              {{Pregunta[1]}}
+            </label>
+                        <br>
+                        <input class="form-check-input" type="radio" name="pregunta{{$index}}" ng-disabled="!checked[$index][1]" ng-checked="checked[$index][1]" id="p-1-r-2">
+                        <label class="form-check-label" for="p-1-r2">
+              {{Pregunta[2]}}
+            </label>
+                        <br>
+                        <input class="form-check-input" type="radio" name="pregunta{{$index}}" ng-disabled="!checked[$index][2]" ng-checked="checked[$index][2]" id="p-1-r-3">
+                        <label class="form-check-label" for="p-1-r3">
+              {{Pregunta[3]}}
+            </label>
+                        <br>
+                        <input class="form-check-input" type="radio" name="pregunta{{$index}}" ng-disabled="!checked[$index][3]" ng-checked="checked[$index][3]" id="p-1-r-4">
+                        <label class="form-check-label" for="p-1-r4">
+              {{Pregunta[4]}}
+            </label>
+                    </div>
+                    <hr>
+                    <h6 class="text-justify">{{Explicacion[$index]}}</h6>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
+<!-- -------------------Fin Area Clase-------------------- -->

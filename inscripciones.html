@@ -1,0 +1,46 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">CONFIRMAR INSCRIPCIÓN</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ¿Está seguro de realizar la inscripción del estudiante {{nombreUsua}} en el curso {{nombreCurso}}?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" ng-click="confirmar(idCurso);" class="btn btn-primary">Confirmar Inscripción</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="table" ng-if="val">
+  <thead>
+    <tr>
+      <th scope="col">Documento</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Curso</th>
+      <th scope="col">Opciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="x in records">
+      <td>{{x.NumeDocu}}</td>
+      <td>{{x.Nom1Usua}}</td>
+      <td>{{x.NombCurs}}</td>
+      <td>
+        <!-- Button trigger modal -->
+        <button type="button" ng-click="pasardatos(x.CodiInsc,x.Nom1Usua,x.NombCurs);" class="btn btn-primary"
+          data-toggle="modal" data-target="#exampleModalCenter">
+          Confirmar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,134 @@
+<br>
+<div class="col-12 col-md-10 col-lg-8 mx-auto p-5 text-center" id="formularioMateria">
+    <div class="col-12 col-md-5 mx-auto px-5">
+        <img src="./imagenes/Logo vertical.png" class="img-fluid px-5">
+    </div>
+    <hr>
+    <div class="col-12">
+        <h1 id="titulo-carrera">Formulario de Creación de Cursos</h2>
+    </div>
+    <div class="col-8 mx-auto">
+        <form name= "myform" class="px-0 px-md-5">
+            <div class="form-group borde-formulario">
+                <input type="text" class="form-control" id="Nombre"  ng-model="Nombre" placeholder="Nombres del Curso"
+                    required="true">
+            </div>
+            <div class="form-group borde-formulario">
+                <select class="custom-select" id="CategoriaCurs" ng-model ="CategoriaCurs" required>
+                    <option value="">Categoria</option>
+                    <option ng-repeat="dato in categorias" value="{{dato.Nombre}}">
+                        {{dato.Nombre}}
+                    </option>
+
+                </select>
+            </div>
+            <div class="form-group borde-formulario">
+                <textarea class="form-control" ng-model="Acercade" id="Acercade" rows="3" placeholder="Acerca de" required></textarea>
+            </div>
+            <div class="form-group borde-formulario">
+                <textarea   class="form-control" id="fundamentosMateria" ng-model = "Fundamentos" placeholder="Fundamentos del Curso" required
+                    rows="3"></textarea>
+            </div>
+            <div class="form-group borde-formulario">
+                <textarea class="form-control" ng-model="Informacion" id="Informacion" rows="3" placeholder="Informacion"
+                 required></textarea>
+            </div>
+            <div class="form-group borde-formulario">
+                <input type = "number" class="form-control" id="Precio" ng-model="Precio" placeholder="Precio"
+                required rows="3">
+            </div>
+            <div class="form-group borde-formulario">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="ImCurs" ng-file='uploadfiles' accept=".png,.jpg">
+                    <label class="custom-file-label text-justify" for="Contenido" data-browse="Elegir">Imagen</label>
+                </div>
+          </div>
+            <div class="form-group borde-formulario">
+                <input type="text" class="form-control" id="Objetivo1" ng-model = "Objetivo1" placeholder="Objetivo de Aprendizaje"
+                    required="true">
+            </div>
+            <div class="form-group borde-formulario">
+                <input type="text" class="form-control" id="Objetivo2" ng-model = "Objetivo2" placeholder="Objetivo de Aprendizaje"
+                    required="true">
+            </div>
+            <div class="form-group borde-formulario">
+                <input type="text" class="form-control" id="Objetivo3" ng-model = "Objetivo3" placeholder="Objetivo de Aprendizaje"
+                    required="true">
+            </div>
+            <div class="form-group borde-formulario">
+                <input type="text" class="form-control" id="Objetivo4" ng-model = "Objetivo4" placeholder="Objetivo de Aprendizaje (opcional)">
+            </div>
+            <div class="form-group borde-formulario">
+                <input type="text" class="form-control" id="Objetivo5" ng-model = "Objetivo5" placeholder="Objetivo de Aprendizaje (opcional)">
+            </div>
+            <div class="form-group borde-formulario">
+                <input type="text" class="form-control" id="Objetivo6" ng-model = "Objetivo6" placeholder="Objetivo de Aprendizaje (opcional)">
+            </div>
+            <div class="form-group borde-formulario">
+                <input type="text" class="form-control" id="Objetivo7" ng-model = "Objetivo7" placeholder="Objetivo de Aprendizaje (opcional)">
+            </div>
+            <div class="form-group borde-formulario">
+                <input type="text" class="form-control" id="Objetivo8" ng-model = "Objetivo8" placeholder="Objetivo de Aprendizaje (opcional)">
+            </div>
+            <div class="form-group borde-formulario">
+                <input type="text" class="form-control" id="Objetivo9" ng-model = "Objetivo9" placeholder="Objetivo de Aprendizaje (opcional)">
+            </div>
+            <div class="form-group borde-formulario">
+                <input type="text" class="form-control" id="Objetivo10" ng-model = "Objetivo10" placeholder="Objetivo de Aprendizaje (opcional)">
+            </div>
+            <div class="form-group borde-formulario">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="Contenido" ng-file='uploadfiles' accept=".pdf,.xls" required>
+                    <label class="custom-file-label text-justify" for="customFileLangHTML"
+                        data-browse="Elegir">Contenido del Curso</label>
+                </div>
+            </div>
+            <div class="form-group borde-formulario">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="LibroGuia" ng-file='uploadfiles' accept=".pdf,.xls">
+                    <label class="custom-file-label text-justify" for="customFileLangHTML" data-browse="Elegir">Libro
+                        Guia (opcional)</label>
+                </div>
+            </div>
+            <div class="form-group borde-formulario">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="Archivo" ng-file='uploadfiles' accept=".pdf,.xls">
+                    <label class="custom-file-label text-justify" for="customFileLangHTML" data-browse="Elegir">Archivo
+                        Relevante (opcional)</label>
+                </div>
+            </div>
+            <div class="form-group borde-formulario">
+                <select class="custom-select" id="docentes" ng-model = "Docente" required>
+                        <option value="">Nombre Docente</option>
+                        <option ng-repeat="Docentes in listaDoc"
+                            value="{{Docentes}}">
+                            {{Docentes}}
+                        </option>
+                </select>
+            </div>
+            <div class="form-group borde-formulario">
+                <textarea class="form-control" id="fundamentosMateria" ng-model = "Bienvenida" placeholder="Palabras de Bienvenida Docente"
+                    required rows="3"></textarea>
+            </div>
+            <br>
+            <button type="submit" class="my-auto px-4 py-2 boton-azul" value="cursos" ng-click="myform.$valid && crear_curso(); myform.$valid && upload()">Crear Curso</button>
+        </form>
+    </div>
+</div>
+</div>
+
+            <script>
+                ////////Mostrar nombre archivos seleccionados//////////
+
+                $("input[type=file]").change(function () {
+                    var fieldVal = $(this).val();
+
+                    // Change the node's value by removing the fake path (Chrome)
+                    fieldVal = fieldVal.replace("C:\\fakepath\\", "");
+
+                    if (fieldVal != undefined || fieldVal != "") {
+                        $(this).next(".custom-file-label").attr('data-content', fieldVal);
+                        $(this).next(".custom-file-label").text(fieldVal);
+                    }
+                });
+            </script>

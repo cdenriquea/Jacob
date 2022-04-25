@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Jacob_App">
+
+<head>
+
+    <title>JACOB</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link rel="stylesheet" href="./css/estilos.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <!-- -------------------Titulo del sitio - Jacob-------------------- -->
+
+    <link rel="shortcut icon" href="./imagenes/simbolo.ico">
+
+</head>
+
+<body ng-controller="allcursos">
+    <!-- -------------------Barra de Navegación-------------------- -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top p-0 pt-1" id="navegacion">
+        <div class="container-fluid" id="navbar">
+            <div class="col  col-md-3 pr-0">
+                <a class="navbar-brand text-primary" id="jacob" href="inicio_jacob.html"><img id="Logo"
+                        src="./imagenes/Logo Unificado.png" class="img-fluid"></a>
+            </div>
+
+            <!-- -------------------Icono Hamburguesa-------------------- -->
+            <button class="navbar-toggler border mr-2" type="button" data-toggle="collapse" data-target="#barra"
+                aria-controls="barra" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- -------------------Fin Icono Hamburguesa-------------------- -->
+
+            <!-- -------------------Barra colapsable-------------------- -->
+            <div class="collapse navbar-collapse mx-4" id="barra">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item ml-2">
+                        <a class="nav-link border-right" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item active ml-2">
+                        <a class="nav-link border-right" href="cursos2.html">Cursos</a>
+                    </li>
+                    <li class="nav-item ml-2">
+                        <a class="nav-link border-right" href="index.html#contactanos"> Contacto</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item ml-2">
+                        <a class="nav-link" href="login.html"> <button type="button"
+                                class="boton-azul-borde-mediano px-4">Iniciar
+                                sesión</button></a>
+                    </li>
+                    <li class="nav-item ml-2">
+                        <a class="nav-link" href="registro.html"><button type="button"
+                                class="boton-azul-mediano px-4">Registro</button></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- -------------------Fin Barra colapsable-------------------- -->
+        </div>
+    </nav>
+    <!-- -------------------Fin Barra de Navecación-------------------- -->
+
+    <!-- -------------------Inicio Main-------------------- -->
+    <main>
+<!-- -------------------Buscador-------------------- -->
+<div class="container-fluid" id="franja_amarilla">
+    <div class="row px-5 pt-5 pb-4">
+        <div class="ml-auto">
+            <div class="dropdown text-right">
+                <button class="boton-azul py-1 px-3 dropdown-toggle" type="button" id="categorias"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Categorias
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a ng-repeat="Categoria in Categorias" class="dropdown-item" ng-click="busqueda(Categoria)"
+                        href="#">{{Categoria}}</a>
+                    <a class="dropdown-item" ng-click="busqueda('')" href="#">Todas las categorias</a>
+                </div>
+            </div>
+        </div>
+        <div style="width: 30%;">
+            <form>
+                <div class="form-group borde-formulario mx-3">
+                    <input type="text" class="form-control form-control-sm" id="buscar" placeholder="Buscar Curso"
+                        ng-model="buscarCurso">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- -------------------Fin Buscador-------------------- -->
+
+<!-- -------------------Categoria -------------------- -->
+<div ng-repeat="Categoria in Categorias | filter:buscarCategoria" class="container">
+    <div class="row pt-2">
+        <div class="col-12 pb-3">
+            <h1 id="titulos-cursos" id="titulos">
+                {{Categoria}}
+            </h1>
+        </div>
+        <!-- -------------------Tarjeta-------------------- -->
+        <div ng-repeat="Curso in Cursos | filter:buscarCurso"
+            ng-if="Curso.categoria == Categoria && !records[0].message"
+            class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img ng-src="./docs/Cursos/{{Curso.categoria}}/{{Curso.nombre}}/IMAGEN.jpg" width: 100%
+                        class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">{{Curso.nombre}}</h5>
+                        </li>
+                        <br ng-if="Curso.nombre.length < 16 && Curso.precio < 999999">
+                        <li><i>{{Curso.precio}} $COP</i> <s>$700.000 $COP</s></li>
+                    </ul>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button"
+                                    ng-click="infocurso(Curso.nombre,Curso.categoria,Curso.info,Curso.precio,Curso.id)"
+                                    class="boton-azul-borde-mediano" data-toggle="modal"
+                                    data-target="#modal-curso">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0" href="registro.html" ><button type="button" class="boton-amarillo-mediano" >
+                                Inscríbete
+                                </button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+
+    </div>
+</div>
+<!-- -------------------Fin Categoria Derecho y leyes-------------------- -->
+
+<hr>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">CONFIRMAR INSCRIPCIÓN</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de realizar la inscripción en el curso {{nombreCurso}}?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" ng-click="confirmar(idCurso);" class="btn btn-primary">Confirmar
+                    Inscripción</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- -------------------Modal información-------------------- -->
+<div class="container">
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal-curso" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="titulos" class="modal-title">Cuso de {{nombreCurso}}</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span arial-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body text-center">
+                    <img ng-src="./docs/Cursos/{{Categoria}}/{{nombreCurso}}/IMAGEN.jpg" class="img-fluid">
+                    Precio:{{precioCurso}} $COP
+                    <p class="text-justify">{{infoCurso}}</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-warning btn-sm" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md-10 mx-auto">
+        </div>
+    </div>
+</div>
+<!-- -------------------Fin Modal Curso-------------------- -->
+
+    </main>
+    <!-- -------------------Fin Main-------------------- -->
+
+    <!-- -------------------Footer-------------------- -->
+    <footer class="container-fluid py-1 text-white">
+        <!-- -------------------Información Institucional-------------------- -->
+        <div class="row">
+            <div class="col-12 col-md-8 mx-auto">
+                <div class="row">
+                    <div class="col-12 col-md-6 pt-5 text-center text-md-right">
+                        <img src="./imagenes/logo_aunar.svg" width="300">
+                    </div>
+                    <div class="col-12 col-md-6 text-center text-md-left">
+                        <ul class="list-unstyled">
+                            <li>Corporación Universitaria Autónoma de Nariño</li>
+                            <li>NIT: 891224762-9</li>
+                            <li>Código SNIES: 3817</li>
+                            <li>Sede Principal: Pasto, Colombia</li>
+                            <li>Sede Ipiales, Colombia</li>
+                            <li>Sede Cali, Colombia</li>
+                            <li>Sede Cartagena, Colombia</li>
+                            <li>Sede Villavicencio, Colombia</li>
+                            <li>Sede Puerto Asís, Colombia</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 text-center">
+                <ul class="list-unstyled">
+                    <li>"INSTITUCIÓN DE EDUCACIÓN SUPERIOR SUJETA A INSPECCÍÓN Y VIGILANCIA POR EL MINISTERIO DE
+                        EDUCACIÓN NACIONAL"</li>
+                    <li>Personería Jurídica No. 1054 del 1 de Febrero de 1983</li>
+                    <li>©Copyright 2020 - Derechos Reservados</li>
+                </ul>
+            </div>
+        </div>
+        <!-- -------------------Fin Información intitucional-------------------- -->
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/angular-ui-router.min.js"></script>
+    <script src="./js/ngDraggable.js"></script>
+    <script data-require="angular.js@1.3.15" data-semver="1.3.15"
+        src="https://code.angularjs.org/1.3.15/angular.js"></script>
+
+    <script src="js/main.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="./js/bootstrap.min.js"></script>
+
+
+
+</body>
+
+</html>

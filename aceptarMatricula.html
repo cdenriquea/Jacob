@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="titulos text-center">Solicitudes de Matrícula</h1>
+    </div>
+    <div class="col-12">
+      <div ng-repeat="Programa in Programas |orderBy" class="col">
+        <!-- -------------------Programa-------------------- -->
+        <h2 class="text-center pt-3" id="titulo-carrera">{{Programa}}</h2>
+        <div class="col-12">
+          <!-- -------------------Semestre-------------------- -->
+          <hr>
+          <div ng-repeat="Semestre in SemestresObj |orderBy:'Numero'" ng-if="Semestre.Programa == Programa" class="row">
+            <div class="col-12">
+              <h3 id="titulo-semestre">Semestre {{SemestresR[$index]}}</h3>
+            </div>
+            <table class="table ng-scope">
+              <thead>
+                <tr>
+                  <th scope="col">Documento</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Materias</th>
+                  <th scope="col">Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td ng-repeat="Documento in materias | unique: 'Semestre'" ng-if="Documento.Semestre == Semestre.Numero && Documento.Programa == Programa" class="ng-binding">{{Documento.NumeDocu}}</td>
+                  <td ng-repeat="Usuario in materias | unique: 'Semestre'" ng-if="Usuario.Semestre == Semestre.Numero && Usuario.Programa == Programa" class="ng-binding">{{Usuario.NomUsua}}</td>
+                  <td class="ng-binding">
+                    <ul class="list-unstyled">
+                      <li ng-repeat="Materia in materias" ng-if="Materia.Semestre == Semestre.Numero && Materia.Programa == Programa">{{Materia.NombMat}}</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <button ng-repeat="Usuario in materias | unique: 'Semestre'" ng-if="Usuario.Semestre == Semestre.Numero && Usuario.Programa == Programa" type="button" ng-click = "confirmarMatricula(Usuario.CodiEstu)" class="boton-azul-borde-mediano text-center" data-toggle="modal"
+                      data-target="#exampleModalCenter">
+                      Confirmar
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- -------------------Fin Semestre-------------------- -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  
+</div>

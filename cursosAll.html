@@ -1,0 +1,133 @@
+<!-- -------------------Buscador-------------------- -->
+<div class="container-fluid" id="franja_amarilla">
+    <div class="row px-5 pt-5 pb-4">
+        <div class="ml-auto">
+            <div class="dropdown text-right">
+                <button class="boton-azul py-1 px-3 dropdown-toggle" type="button" id="categorias"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Categorias
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a ng-repeat="Categoria in Categorias" class="dropdown-item" ng-click="busqueda(Categoria)"
+                        href="#">{{Categoria}}</a>
+                    <a class="dropdown-item" ng-click="busqueda('')" href="#">Todas las categorias</a>
+                </div>
+            </div>
+        </div>
+        <div style="width: 30%;">
+            <form>
+                <div class="form-group borde-formulario mx-3">
+                    <input type="text" class="form-control form-control-sm" id="buscar" placeholder="Buscar Curso"
+                        ng-model="buscarCurso">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- -------------------Fin Buscador-------------------- -->
+
+<!-- -------------------Categoria -------------------- -->
+<div ng-repeat="Categoria in Categorias | filter:buscarCategoria" class="container">
+    <div class="row pt-2">
+        <div class="col-12 pb-3">
+            <h1 id="titulos-cursos" id="titulos">
+                {{Categoria}}
+            </h1>
+        </div>
+        <!-- -------------------Tarjeta-------------------- -->
+        <div ng-repeat="Curso in Cursos | filter:buscarCurso"
+            ng-if="Curso.categoria == Categoria && !records[0].message"
+            class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img ng-src="./docs/Cursos/{{Curso.categoria}}/{{Curso.nombre}}/IMAGEN.jpg" width: 100%
+                        class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">{{Curso.nombre}}</h5>
+                        </li>
+                        <br ng-if="Curso.nombre.length < 16 && Curso.precio < 999999">
+                        <li><i>{{Curso.precio}} $COP</i> <s>$700.000 $COP</s></li>
+                    </ul>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" ng-click="infocurso(Curso.nombre,Curso.categoria,Curso.info,Curso.precio,Curso.id)" 
+                                class="boton-azul-borde-mediano" data-toggle="modal" data-target="#modal-curso">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button"
+                                    ng-click="pasardatos(Curso.nombre,Curso.id)"
+                                    class="boton-amarillo-mediano" data-toggle="modal"
+                                    data-target="#exampleModalCenter">
+                                    Inscríbete
+                                </button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+
+    </div>
+</div>
+<!-- -------------------Fin Categoria Derecho y leyes-------------------- -->
+
+<hr>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">CONFIRMAR INSCRIPCIÓN</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de realizar la inscripción en el curso {{nombreCurso}}?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" ng-click="confirmar(idCurso);" class="btn btn-primary">Confirmar
+                    Inscripción</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- -------------------Modal información-------------------- -->
+<div class="container">
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal-curso" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="titulos" class="modal-title">Cuso de {{nombreCurso}}</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span arial-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body text-center">
+                    <img ng-src="./docs/Cursos/{{Categoria}}/{{nombreCurso}}/IMAGEN.jpg" class="img-fluid">
+                    Precio:{{precioCurso}} $COP
+                    <p class="text-justify">{{infoCurso}}</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-warning btn-sm" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md-10 mx-auto">
+        </div>
+    </div>
+</div>
+<!-- -------------------Fin Modal Curso-------------------- -->

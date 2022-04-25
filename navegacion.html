@@ -1,0 +1,153 @@
+<div class="container-fluid">
+    <div class="row">
+        <!-- -------------------Barra de navegación curso-------------------- -->
+        <div class="col-0 p-0" style="z-index: 3;">
+            <!-- -------------------Boton Collapse de navegación curso-------------------- -->
+            <button role="button" class="d-none d-sm-none d-md-block btn btn-primary btn-block" data-toggle="collapse" data-target="#barra-curso" id="boton-barra">
+        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+          class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+          <path
+            d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+        </svg>
+      </button>
+
+        </div>
+        <!-- -------------------Fin Boton Collapse de navegación curso-------------------- -->
+
+        <div id="barra-curso" class="collapse multi-collapse show pb-1 width" style="z-index: 2;">
+            <div class="scrollme">
+                <div>
+                    <div class="card">
+                        <div class="card-header text-center text-white" id="titulo-materia-recto">
+                            <h4>{{NombreCurso}}</h4>
+                        </div>
+                        <ul class="list-group list-group-flush">
+
+                            <!-- -------------------Módulos cursos-------------------- -->
+                            <li ng-repeat="Modulo in Modulos" class="list-group-item p-0">
+                                <a class="nav-link titulos-modulos p-0 text-center" data-toggle="collapse" href="#Modulo{{$index}}" role="button" aria-expanded="false" aria-controls="Modulo{{$index}}">
+                                    <h4>{{Modulo.name}}</h4>
+                                </a>
+                                <div class="collapse show multi-collapse" id="Modulo{{$index}}">
+                                    <ul class="list-group list-group-flush">
+                                        <!-- -------------------Lección  - cursos-------------------- -->
+                                        <li ng-repeat="Leccion in Lecciones " ng-if="Leccion.Modulo == Modulo.name && Leccion.name != 'NULL'" class="list-group-item">
+                                            <a class="nav-link titulos-modulos p-0" data-toggle="collapse" href="#Leccion{{$index}}" role="button" aria-expanded="false" aria-controls="#Leccion{{$index}}"><img src="./imagenes/leccion.png" width="18%">{{Leccion.name}}</a>
+                                            <div class="collapse show multi-collapse" id="Leccion{{$index}}">
+                                                <ul class="list-group list-group-flush pl-2">
+                                                    <!-- -------------------Sección  - cursos-------------------- -->
+                                                    <li class="list-group-item p-0" id="{{Secciones[$index].name}}" ng-repeat="Seccion in Secciones" ng-if="Seccion.Leccion == Leccion.name && Seccion.Modulo == Modulo.name && Seccion.name != 'NULL'">
+                                                        <a ng-click="n_seccion(progSec[$index],Secciones[$index].name)" ui-sref="{{Links[$index]}}" ng-class="{disabled: {{disableSec[$index]}}}" class="{{navLink[$index]}}">
+                                                            <h5><img class="mx-1" ng-src="./imagenes/{{Iconos[$index]}}" width="15%">{{Seccion.name}}</h5>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <!-- -------------------Fin Lecciones-------------------- -->
+                                    </ul>
+                                </div>
+                            </li>
+                            <!-- -------------------Fin Modulos-------------------- -->
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- -------------------Fin Barra de navegación Curso-------------------- -->
+
+        <!-- -------------------Area del curso-------------------- -->
+        <div id="area_clase" class="col px-4 py-1" style="z-index: 1;">
+            <!-- -------------------Navegación curso-------------------- -->
+            <div class="row">
+                <div class="col-12 col-md-8 text-secondary pt-3">
+                    <h5>{{SecLecMod.Modulo}} > {{SecLecMod.Leccion}} > {{SecLecMod.name}}</h5>
+                </div>
+                <div class="col-6 col-md-2 text-right">
+                    <a class="nav-link px-1"><button ng-click="n_seccion(prevProg,prevSec)" type="button"
+                            class="my-auto px-5 py-2 boton-amarillo text-white"><svg xmlns="http://www.w3.org/2000/svg"
+                                width="35" height="35" fill="currentColor" class="bi bi-caret-left-fill"
+                                viewBox="0 0 16 16">
+                                <path
+                                    d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+                            </svg></button></a>
+                </div>
+                <div class="col-6 col-md-2 text-right">
+                    <a class="nav-link px-1"><button ng-click="n_seccion(nextProg,nextSec)" type="button"
+                            class="my-auto px-5 py-2 boton-amarillo text-white"><svg xmlns="http://www.w3.org/2000/svg"
+                                width="35" height="35" fill="currentColor" class="bi bi-caret-right-fill"
+                                viewBox="0 0 16 16">
+                                <path
+                                    d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                            </svg></button></a>
+                </div>
+            </div>
+            <!-- -------------------Fin Navegación curso-------------------- -->
+
+            <!-- -------------------Area Clase-------------------- -->
+            <div ui-view="seccion_curso"> </div>
+            <!-- -------------------Fin Area Clase-------------------- -->
+        </div>
+    </div>
+    <!-- -------------------Fin Main-------------------- -->
+    <!-- Modal Evaluacion Terminada -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLongTitle">¡FELICITACIONES! - Se ha enviado los resultados de tu evaluación al docente.</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <a><button type="button" ng-click="n_seccion(nextProg,nextSec);"
+              class="btn btn-primary">Continuar</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Prueba Exitosa -->
+    <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="./imagenes/prueba_verde.png" class="img-fluid">
+
+                </div>
+                <div class="modal-footer">
+                    <a><button type="button" ng-click="n_seccion(nextProg,nextSec);"
+              class="btn btn-primary">Continuar</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Prueba Fallida -->
+    <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="./imagenes/prueba_rojo.png" class="img-fluid">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="reintentar();" class="btn btn-secondary" data-dismiss="modal">Reintentar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>

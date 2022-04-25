@@ -1,0 +1,109 @@
+<!-- -------------------Area Clase-------------------- -->
+<div ng-show="content" class="col p-3 area">
+    <div class="col-12 p-0 text-center"><img class="py-4 iconos" src="./imagenes/ACTIVIDAD.png"></div>
+    <div ng-if="usuario == 1" class="col">
+        <a class="nav-link p-0" ng-click="edicion()">
+            <button type="button" class="my-auto px-4 py-2 boton-editar" id="editarRefuerzo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                    class="bi bi-pencil-square" viewBox="0 0 16 16">
+                    <path
+                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                    <path fill-rule="evenodd"
+                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                </svg>
+            </button>
+        </a>
+    </div>
+    <div class="col-12">
+        <div id="DisplayContentR" class="col-12"></div>
+    </div>
+    <br>
+    <div class="col-12 text-center">
+        <h1 class="titulos-clase">Solución</h1>
+        <hr>
+        <div class="row">
+            <div class="col-6 col-lg-2">
+                <a download class="text-danger p-0" id="refuerzo"
+                    ng-href="./docs/{{Categoria}}/{{Programa}}/{{Nombre}}/{{seccion}}_PDF.pdf"><img
+                        src="./imagenes/icono pdf.png" width="70"></a>
+            </div>
+            <div class="col-6 col-lg-2">
+                <a class="text-primary p-0" id="refuerzo-video"
+                    ng-href="./docs/{{Categoria}}/{{Programa}}/{{Nombre}}/{{seccion}}_VIDEO.MP4"><img
+                        src="./imagenes/icono video.png" width="70"></a>
+            </div>
+            <div class="col text-justify">
+                <p>Te recomendamos realizar la actividad y encontrar tus propias soluciones antes de descargar este
+                    archivo, para poder comparar los resultados.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- -------------------Fin Area Clase-------------------- -->
+
+<!-- -------------------Area Edición-------------------- -->
+<div ng-show="edit" class="col p-3 area">
+    <form>
+        <div class="col-12 p-0 text-center"><img class="py-4 iconos" src="./imagenes/ACTIVIDAD.png"></div>
+        <div class="col">
+            <a class="nav-link p-0" ng-click="contenido()">
+                <button type="button" class="my-auto px-4 py-2 boton-editar" id="editarRefuerzo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path
+                            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                        <path fill-rule="evenodd"
+                            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                    </svg>
+                </button>
+            </a>
+        </div>
+        <div class="col-12 text-center">
+            <h1 class="titulos-clase">Actividad</h1>
+            <hr>
+        </div>
+        <div class="col-12 text-center">
+            <div class="form-group borde-formulario">
+                <textarea id="contenidoRefuerzo"></textarea>
+            </div>
+            <h1 class="titulos-clase">Solución</h1>
+            <hr>
+            <div class="form-group borde-formulario">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="Archivo" accept=".pdf">
+                    <label class="custom-file-label text-justify" for="customFileLangHTML" data-browse="Elegir">Solución
+                        PDF</label>
+                </div>
+            </div>
+            <div class="form-group borde-formulario">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="Video" accept=".MP4">
+                    <label class="custom-file-label text-justify" for="customFileLangHTML" data-browse="Elegir">Solución
+                        Video MP4 (Opcional)</label>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="col text-center">
+            <button type="submit" class="my-auto mx-auto px-4 py-2 boton-azul"
+                ng-click="modContenido('ActividadRef'); refuerzo_upload()" value="refuerzo">Guardar</button>
+        </div>
+    </form>
+</div>
+<!-- -------------------Fin Area Edición-------------------- -->
+
+<script>
+    ////////Mostrar nombre archivos seleccionados//////////
+
+    $("input[type=file]").change(function () {
+        var fieldVal = $(this).val();
+
+        // Change the node's value by removing the fake path (Chrome)
+        fieldVal = fieldVal.replace("C:\\fakepath\\", "");
+
+        if (fieldVal != undefined || fieldVal != "") {
+            $(this).next(".custom-file-label").attr('data-content', fieldVal);
+            $(this).next(".custom-file-label").text(fieldVal);
+        }
+    });
+</script>

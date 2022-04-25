@@ -1,0 +1,137 @@
+<!-- -------------------Area Clase-------------------- -->
+<div ng-show="content" class="col p-3 area">
+    <div class="col-12 p-0 text-center"><img class="py-4 iconos" src="./imagenes/HORARIO Y CRONOGRAMA.png"></div>
+    <div ng-if="usuario == 1" class="col">
+        <a class="nav-link p-0" ng-click="edicion()">
+            <button type="button" class="my-auto px-4 py-2 boton-editar" id="editarHorario">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                    class="bi bi-pencil-square" viewBox="0 0 16 16">
+                    <path
+                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                    <path fill-rule="evenodd"
+                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                </svg>
+            </button>
+        </a>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-12 col-md-6 text-center">
+            <h1 class="titulos-clase">Horario</h1>
+            <hr>
+            <div ng-repeat="Dias in Dia">
+                <h4>{{Dias}}</h4>
+                <h4>Inicio: {{HoraInicio[$index] | date: "h:mm a"}} - Fin: {{HoraFin[$index] | date: "h:mm a"}}</h4>
+                <br>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 text-center">
+            <h1 class="titulos-clase">Cronograma</h1>
+            <hr>
+            <a download class="text-danger p-0" id="guia"
+                ng-href="./docs/{{Categoria}}/{{Programa}}/{{Nombre}}/CALENDARIO.pdf"><img
+                    src="./imagenes/icono pdf.png" width="70"></a>
+            <p>Calendario</p>
+        </div>
+    </div>
+</div>
+<!-- -------------------Fin Area Clase-------------------- -->
+
+
+<!-- -------------------Area Edición-------------------- -->
+<div ng-show="edit" class="col p-3 area">
+    <form name="myform">
+        <div class="col-12 p-0 text-center"><img class="py-4 iconos" src="./imagenes/HORARIO Y CRONOGRAMA.png"></div>
+        <div class="col">
+            <a class="nav-link p-0" ng-click="contenido()">
+                <button type="button" class="my-auto px-4 py-2 boton-editar" id="editarHorario">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path
+                            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                        <path fill-rule="evenodd"
+                            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                    </svg>
+                </button>
+            </a>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-6 text-center">
+                <div class="form-group borde-formulario">
+                    <select class="custom-select" ng-model="Dia[0]" id="Dia0"
+                        ng-options="Dias for Dias in Semana | filter: '!'+ Dia[1]: true | filter: '!'+ Dia[2]: true"
+                        ng-required="true">
+                        <option value="">Dia de Clase</option>
+                    </select>
+                </div>
+                <div class="form-group formulario text-justify">
+                    <label for="horaInicio">Hora de Inicio </label>
+                    <input class="borde-formulario" type="time" ng-model="HoraInicio[0]" id="HoraInicio[0]"
+                        name="horaInicio1" ng-required="Dia[0]">
+                    <label for="horaFin">// Hora de Finalización </label>
+                    <input class="borde-formulario" type="time" ng-model="HoraFin[0]" id="HoraFin[0]" name="horaFin1"
+                        ng-required="Dia[0]">
+                </div>
+                <div class="form-group borde-formulario">
+                    <select class="custom-select" ng-model="Dia[1]" id="Dia1"
+                        ng-options="Dias for Dias in Semana | filter: '!'+ Dia[0]: true | filter: '!'+ Dia[2]: true">
+                        <option value="">Segundo Dia de Clase(opcional)</option>
+                    </select>
+                </div>
+                <div class="form-group formulario text-justify">
+                    <label for="horaInicio">Hora de Inicio </label>
+                    <input class="borde-formulario" type="time" ng-model="HoraInicio[1]" id="HoraInicio[1]"
+                        name="horaInicio2" ng-required="Dia[1]">
+                    <label for="horaFin">// Hora de Finalización </label>
+                    <input class="borde-formulario" type="time" ng-model="HoraFin[1]" id="HoraFin[1]" name="horaFin2"
+                        ng-required="Dia[1]">
+                </div>
+                <div class="form-group borde-formulario">
+                    <select class="custom-select" ng-model="Dia[2]" id="Dia2"
+                        ng-options="Dias for Dias in Semana | filter: '!'+ Dia[0]: true | filter: '!'+ Dia[1]: true">
+                        <option value="">Tercer Dia de Clase(opcional)</option>
+                    </select>
+                </div>
+                <div class="form-group formulario text-justify">
+                    <label for="horaInicio">Hora de Inicio </label>
+                    <input class="borde-formulario" type="time" ng-model="HoraInicio[2]" id="HoraInicio[2]"
+                        name="horaInicio3" ng-required="Dia[2]" />
+                    <label for="horaFin">// Hora de Finalización </label>
+                    <input class="borde-formulario" type="time" ng-model="HoraFin[2]" id="HoraFin[2]" name="horaFin3"
+                        ng-required="Dia[2]">
+                </div>
+            </div>
+            <div class="col-12 col-md-6 text-center">
+                <div class="form-group borde-formulario">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="Calendario">
+                        <label class="custom-file-label text-justify" for="customFileLangHTML"
+                            data-browse="Elegir">Calendario</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="col text-center">
+            <button type="submit" class="my-auto mx-auto px-4 py-2 boton-azul"
+                ng-click="myform.$valid && modContenido('Horario')" value="objetivo">Guardar</button>
+        </div>
+    </form>
+</div>
+<!-- -------------------Fin Area Edición-------------------- -->
+<script>
+    ////////Mostrar nombre archivos seleccionados//////////
+
+    $("input[type=file]").change(function () {
+        var fieldVal = $(this).val();
+
+        // Change the node's value by removing the fake path (Chrome)
+        fieldVal = fieldVal.replace("C:\\fakepath\\", "");
+
+        if (fieldVal != undefined || fieldVal != "") {
+            $(this).next(".custom-file-label").attr('data-content', fieldVal);
+            $(this).next(".custom-file-label").text(fieldVal);
+        }
+    });
+</script>

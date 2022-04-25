@@ -1,0 +1,226 @@
+        <br>
+        <div class="col-12 col-md-10 col-lg-8 mx-auto p-5 text-center" id="formularioMateria">
+            <div class="col-12 col-md-5 mx-auto px-5">
+                <img src="./imagenes/Logo vertical.png" class="img-fluid px-5">
+            </div>
+            <hr>
+            <div class="col-12">
+                <h1 id="titulo-carrera">Formulario de Creación de Usuario Docente</h2>
+            </div>
+            <div class="col-8 mx-auto">
+                <form class="px-0 px-md-5">
+                        <div class="form-group borde-formulario">
+                            <input 
+                            type="text"
+                            class="form-control"
+                            id="nombreDocente"
+                            ng-model="nombreDocente"
+                            placeholder="Nombre del Docente"
+                            required="true"
+                            >
+                        </div>
+                        <div class="form-group borde-formulario">
+                            <input 
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            ng-model="email"
+                            placeholder="Correo Electrónico Institucional"
+                            pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$"
+                            required="true"
+                            >
+                        </div>
+        
+                        <div class="form-group borde-formulario">
+                        <input 
+                        type="password"
+                        class="form-control"
+                        id="contrasena"
+                        ng-model="contrasena"
+                        placeholder="Contraseña"
+                        pattern=".{8,}"
+                        title="Debe tener minimo 8 caracteres"
+                        required="true"
+                        >
+                    </div>
+        
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="password"
+                        class="form-control"
+                        id="confirmar"
+                        ng-model= "confirmar"
+                        name="confirmar"
+                        placeholder="Confirmar Contraseña"
+                        title="La Confirmacion no coincide con la Contraseña"
+                        required="true"
+                        >
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="number"
+                        class="form-control"
+                        id="contacto"
+                        ng-model = "contacto"
+                        name="contacto"
+                        placeholder="Numero de Contacto"
+                        required="true"
+                        >
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="fotoDoc" ng-file='uploadfiles' accept=".png,.jpg" required>
+                            <label class="custom-file-label text-justify" for="customFileLangHTML" data-browse="Elegir">Fotografia</label>
+                        </div>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="number"
+                        class="form-control"
+                        id="identificacion"
+                        ng-model="identificacion"
+                        name="identificacion"
+                        placeholder="Numero de Identificación"
+                        required="true"
+                        >
+                      </div>
+        
+                      <div class="form-group borde-formulario">
+                        <input 
+                        type="number"
+                        class="form-control"
+                        id="edad"
+                        ng-model="edad"
+                        name="edad"
+                        placeholder="Edad"
+                        required="true"
+                        >
+                      </div>
+
+                      <div class="form-group borde-formulario">
+                        <input 
+                        type="text"
+                        class="form-control"
+                        id="profesion1"
+                        ng-model="profesion1"
+                        placeholder="Profesión"
+                        required="true"
+                        >
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="text"
+                        class="form-control"
+                        id="profesion2"
+                        ng-model="profesion2"
+                        placeholder="Segunda Profesión (opcional)"
+                        >
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="text"
+                        class="form-control"
+                        id="especializacion1"
+                        ng-model="especializacion1"
+                        placeholder="Especialización (opcional)"
+                        >
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="text"
+                        class="form-control"
+                        id="especializacion2"
+                        ng-model="especializacion2"
+                        placeholder="Especialización (opcional)"
+                        >
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="text"
+                        class="form-control"
+                        id="especializacion3"
+                        ng-model="especializacion3"
+                        placeholder="Especialización (opcional)"
+                        >
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="text"
+                        class="form-control"
+                        id="maestria1"
+                        ng-model="maestria1"
+                        placeholder="Maestria (opcional)"
+                        >
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="text"
+                        class="form-control"
+                        id="maestria2"
+                        ng-model="maestria2"
+                        placeholder="Maestria (opcional)"
+                        >
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="text"
+                        class="form-control"
+                        id="maestria3"
+                        ng-model="maestria3"
+                        placeholder="Maestria (opcional)"
+                        >
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="text"
+                        class="form-control"
+                        id="doctorado1"
+                        ng-model="doctorado1"
+                        placeholder="Doctorado (opcional)"
+                        >
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <input 
+                        type="text"
+                        class="form-control"
+                        id="doctorado2"
+                        ng-model="doctorado2"
+                        placeholder="Doctorado (opcional)"
+                        >
+                    </div>
+
+                      <div class="form-group borde-formulario">
+                        <textarea class="form-control" ng-model= "perfil" id="perfil" placeholder="Perfil Profesional" required rows="5"></textarea>
+                    </div>
+                    <div class="form-group borde-formulario">
+                        <select class="custom-select" ng-model = "sede" id="sede" required>
+                            <option value="">Sede</option>
+                            <option value="Cali">Cali</option>
+                            <option value="Cartagena">Cartagena</option>
+                            <option value="Ipiales">Ipiales</option>
+                            <option value="Pasto">Pasto</option>
+                            <option value="Puesto Asis">Puerto Asis</option>
+                            <option value="Villavicencio">Villavicencio</option>
+                        </select>
+                    </div>
+                    <br>
+                    <button type="submit" class="my-auto px-4 py-2 boton-azul" ng-click = "crear_docente()" value="administrativo">Crear Docente</button>
+                </form>
+                </div>
+            </div> 
+            </div>
+            <script>
+                ////////Mostrar nombre archivos seleccionados//////////
+
+                $("input[type=file]").change(function () {
+                    var fieldVal = $(this).val();
+            
+                    // Change the node's value by removing the fake path (Chrome)
+                    fieldVal = fieldVal.replace("C:\\fakepath\\", "");
+            
+                    if (fieldVal != undefined || fieldVal != "") {
+                        $(this).next(".custom-file-label").attr('data-content', fieldVal);
+                        $(this).next(".custom-file-label").text(fieldVal);
+                    }
+                });
+            </script>

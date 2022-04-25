@@ -1,0 +1,47 @@
+<div class="container" id="mis_cursos">
+    <div class="row py-5">
+        <div class="col-12 pb-3">
+            <h1 id="titulos">
+                MIS MATERIAS
+            </h1>
+        </div>
+        <!-- -------------------Tarjeta-------------------- -->
+        <div class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" ng-init="textoboton(x.progre)"
+            ng-repeat="x in records" ng-if="!records[0].message">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img src="./imagenes/{{x.img}}" class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">{{x.nombre}}</h5>
+                        </li>
+                        <li class="px-1">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="{{x.progre}}"
+                                    aria-valuemin="0" aria-valuemax="100" ng-style="{ width: x.progre + '%'}">
+                                    {{x.progre}} %
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" class="btn btn-outline-primary btn-sm"
+                                    data-toggle="modal" data-target="#normatividadCovid">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button
+                                    ng-click="ingresoCurso('Cursos','temas_cursos',x.nombre,x.img,x.info,x.progre,x.Evaluacion,x.id,'2')"
+                                    type="button" class="btn btn-warning btn-sm">{{progarray[$index]}}</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+
+    </div>
+</div>

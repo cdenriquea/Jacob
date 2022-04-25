@@ -1,0 +1,98 @@
+<!-- -------------------Modal Acerca de Materia-------------------- -->
+<div class="container">
+    <div class="modal" tabindex="1" role="dialog" id="modalMateria">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title"><img class="pb-1" src="./imagenes/simbolo y escudo.png" width="25%">
+                        MICREOECONOMÍA</h3>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span arial-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body text-center">
+                    <p>
+                        En este lugar se ubica la informacion de la materia.
+                    </p>
+                    <a class="nav-link pt-3" href="inscritosMateria"><button type="button"
+                            class="my-auto px-4 py-2 boton-azul-mediano" data-dismiss="modal">Inscritos</button></a>
+                    <a class="nav-link pt-3" ui-sref="crear_materia"><button type="button"
+                            class="my-auto px-4 py-2 boton-amarillo-mediano" data-dismiss="modal">Modificar</button></a>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="my-auto px-4 py-2 boton-azul-borde-pequeño"
+                        data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md-10 mx-auto">
+        </div>
+    </div>
+</div>
+<!-- -------------------Fin Modal Acerca de Normatividad COVID-19-------------------- -->
+
+<!-- -------------------Materias-------------------- -->
+<div class="col">
+    <div ng-repeat="Programa in Programas |orderBy" class="col">
+        <!-- -------------------Programa-------------------- -->
+        <h1 class="text-center pt-3" id="titulo-carrera">{{Programa}}</h1>
+        <div class="col-12 col-md-10 col-lg-8 mx-auto">
+            <!-- -------------------Semestre-------------------- -->
+            <hr>
+            <div ng-repeat="Semestre in SemestresObj |orderBy:'Numero'" ng-if="Semestre.Programa == Programa"
+                class="row">
+                <div class="col-12">
+                    <h2 id="titulo-semestre">Semestre {{SemestresR[$index]}}</h2>
+                </div>
+                <!-- -------------------Materia-------------------- -->
+                <div ng-repeat="Materia in materias"
+                    ng-if="Materia.Semestre == Semestre.Numero && Materia.Programa == Programa"
+                    class="col-12 col-md-6 p-4">
+                    <div class="col-12 px-0 borde-materia">
+                        <div class="col-12 p-0 mx-auto" id="titulo-materia">
+                            <h2 class="text-center pt-4 m-0">{{Materia.Nombre}}</h2>
+                            <h6 ng-if= "Materia.Modulos > 1 || x.Modulos == 0" class="text-center pb-4 m-0">{{Materia.Modulos}} Módulos</h6>
+                            <h6 ng-if=" Materia.Modulos == 1" class="text-center pb-4 m-0">{{Materia.Modulos}} Módulo</h6>
+                            
+                        </div>
+                        <div class="col-12 mx-auto py-3 tarjeta-materia px-1 px-lg-2">
+                            <ul class="list-unstyled">
+                                <li class="px-1">
+                                    <div class="progress">
+                                        <div class="progressbar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                                            aria-valuemax="100" style="width: 0%;">
+                                            <span class="sr-only">0% completado</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="row">
+                                <div class="col text-center">
+                                    <a class="nav-link p-0"><button type="button"
+                                            class="my-auto px-4 py-2 boton-azul-borde" data-toggle="modal"
+                                            data-target="#modalMateria">Acerca de</button></a>
+                                </div>
+                                <div class="col text-center">
+                                    <a class="nav-link p-0"><button
+                                            ng-click="ingresoCurso('materias','temas_materias',Materia.Codigo,Materia.Nombre,Materia.Semestre,Materia.Programa,'1')"
+                                            type="button"
+                                            class="my-auto px-4 py-2 boton-amarillo">Modificar</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- -------------------Fin Materia-------------------- -->
+
+            </div>
+            <!-- -------------------Fin Semestre-------------------- -->
+
+        </div>
+        <!-- -------------------Fin Programa-------------------- -->
+    </div>
+</div>
+<!-- -------------------Fin Materias-------------------- -->

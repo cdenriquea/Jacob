@@ -1,0 +1,446 @@
+<div class="container-fluid">
+    <div class="row p-5">
+        <div class="col-4 text-center p-3 borde-matricula">
+            <svg width="15em" height="15em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
+                <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
+            </svg>
+            <a class="nav-link p-0 text-right">
+                <button ng-click="edicion_perfil('Usuario')" type="button" class="my-auto px-4 py-2 boton-editar-barra" data-toggle="modal" data-target="#modalContacto">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path
+                            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                        <path fill-rule="evenodd"
+                            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                    </svg>
+                </button>
+            </a>
+            <div ng-if="usuaEdit == true" class="form-group borde-formulario">
+                <input type="text" class="form-control" ng-model="estudiante[0].Nom1Usua" id="opcion1" placeholder="Nombre" required>
+            </div>
+            <h2 ng-if="usuaEdit == false" class="texto-azul">
+                {{estudiante[0].Nom1Usua}}
+            </h2>
+            <h3>
+                Estudiante
+            </h3>
+            <div ng-if="usuaEdit == true" class="form-group borde-formulario">
+                <input type="number" class="form-control" ng-model="EdadUsua" id="opcion1" placeholder="Edad" required>
+            </div>
+            <h3 ng-if="usuaEdit == false">
+                {{EdadUsua}}
+            </h3>
+            <h3 class="texto-naranja">
+                {{estudiante[0].Programa}}
+            </h3>
+            <h3 class="texto-naranja">
+                {{semestreR}} Semestre
+            </h3>
+            <hr>
+            <div class="row p-0">
+                <div class="col">
+                    <h2 class="text-left texto-azul">
+                        Contacto
+                    </h2>
+                </div>
+                <div class="col ml-auto">
+                    <a class="nav-link p-0 text-right">
+                        <button ng-click="edicion_perfil('Telefono')" type="button" class="my-auto px-4 py-2 boton-editar-barra" data-toggle="modal" data-target="#modalContacto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                <path
+                                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                <path fill-rule="evenodd"
+                                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                            </svg>
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <div ng-if="teleEdit == true" class="form-group borde-formulario">
+                <input type="text" class="form-control" ng-model="estudiante[0].TeleUsua" id="opcion1" placeholder="Telofono" required>
+            </div>
+            <h3 ng-if="teleEdit == false" class="text-left texto-gris">
+                +57 {{estudiante[0].TeleUsua}}
+            </h3>
+            <hr>
+            <div class="row p-0">
+                <div class="col">
+                    <h2 class="text-left texto-azul">
+                        E-mail
+                    </h2>
+                </div>
+                <div class="col ml-auto">
+                    <a class="nav-link p-0 text-right">
+                        <button ng-click="edicion_perfil('Email')" type="button" class="my-auto px-4 py-2 boton-editar-barra" data-toggle="modal" data-target="#modalContacto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                <path
+                                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                <path fill-rule="evenodd"
+                                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                            </svg>
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <div ng-if="emailEdit == true" class="form-group borde-formulario">
+                <input type="text" class="form-control" ng-model="estudiante[0].EmaiUsua" id="opcion1" placeholder="Email" required>
+            </div>
+            <h3 ng-if="emailEdit == false" class="text-left texto-gris">
+                {{estudiante[0].EmaiUsua}}
+            </h3>
+            <hr>
+            <div class="row p-0">
+                <div class="col">
+                    <h2 class="text-left texto-azul">
+                        Dirección
+                    </h2>
+                </div>
+                <div class="col ml-auto">
+                    <a class="nav-link p-0 text-right">
+                        <button ng-click="edicion_perfil('Direccion')" type="button" class="my-auto px-4 py-2 boton-editar-barra" data-toggle="modal" data-target="#modalContacto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                <path
+                                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                <path fill-rule="evenodd"
+                                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                            </svg>
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <div ng-if="direEdit == true" class="form-group borde-formulario">
+                <input type="text" class="form-control" ng-model="estudiante[0].DireUsua" id="opcion1" placeholder="Direccion" required>
+            </div>
+            <h3 ng-if="direEdit == false" class="text-left texto-gris">
+                {{estudiante[0].DireUsua}}
+            </h3>
+            <hr>
+        </div>
+        <div class="col-8">
+            <div class="col">
+                <div class="row p-0">
+                    <div class="px-2">
+                        <a class="nav-link p-0 pb-0 pb-md-3  text-center" href="matricula.html"><button type="button"
+                                class="my-auto px-4 py-2 titulos boton-amarillo">Matrícula</button></a>
+                    </div>
+                    <div class="px-2">
+                        <a class="nav-link p-0 pb-0 pb-md-3  text-center" href="matricula.html"><button type="button"
+                                class="my-auto px-4 py-2 titulos boton-amarillo">Horario</button></a>
+                    </div>
+                    <div class="px-2">
+                        <a class="nav-link p-0 pb-0 pb-md-3  text-center" href="matricula.html"><button type="button"
+                                class="my-auto px-4 py-2 titulos boton-amarillo">Calendario</button></a>
+                    </div>
+                    <div class="px-2">
+                        <a class="nav-link p-0 pb-0 pb-md-3  text-center" href="matricula.html"><button type="button"
+                                class="my-auto px-4 py-2 titulos boton-amarillo">Paz y Salvo</button></a>
+                    </div>
+                    <div class="px-2">
+                        <a class="nav-link p-0 pb-0 pb-md-3  text-center" href="matricula.html"><button type="button"
+                                class="my-auto px-4 py-2 titulos boton-amarillo">Notas</button></a>
+                    </div>
+                    <div class="px-2">
+                        <a class="nav-link p-0 pb-0 pb-md-3  text-center" href="matricula.html"><button type="button"
+                                class="my-auto px-4 py-2 titulos boton-amarillo">Asesoría</button></a>
+                    </div>
+                    <div class="px-2">
+                        <a class="nav-link p-0 pb-0 pb-md-3  text-center" href="matricula.html"><button type="button"
+                                class="my-auto px-4 py-2 titulos boton-amarillo">Retroalimentación</button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col p-3 borde-matricula">
+                <div class="row">
+                    <!-- -------------------Materia-------------------- -->
+                    <div class="col-12 col-md-6 p-4">
+                        <div class="col-12 px-0 borde-materia">
+                            <div class="col-12 p-0 mx-auto" id="titulo-materia">
+                                <h2 class="text-center pt-4 m-0">MICROECONOMÍA</h2>
+                                <h6 class="text-center pb-4 m-0">6 Módulos</h6>
+                            </div>
+                            <div class="col-12 mx-auto py-3 tarjeta-materia px-1 px-lg-2">
+                                <div class="row no-gutters">
+                                    <div class="col text-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" fill="currentColor" class="bi bi-award texto-amarillo" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
+                                            <path
+                                                d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+                                        </svg>
+                                        <h4>
+                                            Listo para iniciar
+                                        </h4>
+                                    </div>
+                                    <div class="col text-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" fill="currentColor" class="bi bi-award texto-amarillo" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
+                                            <path
+                                                d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+                                        </svg>
+                                        <h4>
+                                            Memoria Perfecta
+                                        </h4>
+                                    </div>
+                                    <div class="col text-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" fill="currentColor" class="bi bi-award texto-amarillo" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
+                                            <path
+                                                d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+                                        </svg>
+                                        <h4>
+                                            responsable
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- -------------------Fin Materia-------------------- -->
+                    <!-- -------------------Materia-------------------- -->
+                    <div class="col-12 col-md-6 p-4">
+                        <div class="col-12 px-0 borde-materia">
+                            <div class="col-12 p-0 mx-auto" id="titulo-materia">
+                                <h2 class="text-center pt-4 m-0">MICROECONOMÍA</h2>
+                                <h6 class="text-center pb-4 m-0">6 Módulos</h6>
+                            </div>
+                            <div class="col-12 mx-auto py-3 tarjeta-materia px-1 px-lg-2">
+                                <div class="row no-gutters">
+                                    <div class="col text-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" fill="currentColor" class="bi bi-award texto-amarillo" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
+                                            <path
+                                                d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+                                        </svg>
+                                        <h4>
+                                            Listo para iniciar
+                                        </h4>
+                                    </div>
+                                    <div class="col text-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" fill="currentColor" class="bi bi-award texto-amarillo" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
+                                            <path
+                                                d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+                                        </svg>
+                                        <h4>
+                                            Memoria Perfecta
+                                        </h4>
+                                    </div>
+                                    <div class="col text-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" fill="currentColor" class="bi bi-award texto-amarillo" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
+                                            <path
+                                                d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+                                        </svg>
+                                        <h4>
+                                            responsable
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- -------------------Fin Materia-------------------- -->
+                    <!-- -------------------Materia-------------------- -->
+                    <div class="col-12 col-md-6 p-4">
+                        <div class="col-12 px-0 borde-materia">
+                            <div class="col-12 p-0 mx-auto" id="titulo-materia">
+                                <h2 class="text-center pt-4 m-0">MICROECONOMÍA</h2>
+                                <h6 class="text-center pb-4 m-0">6 Módulos</h6>
+                            </div>
+                            <div class="col-12 mx-auto py-3 tarjeta-materia px-1 px-lg-2">
+                                <div class="row no-gutters">
+                                    <div class="col text-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" fill="currentColor" class="bi bi-award texto-amarillo" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
+                                            <path
+                                                d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+                                        </svg>
+                                        <h4>
+                                            Listo para iniciar
+                                        </h4>
+                                    </div>
+                                    <div class="col text-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" fill="currentColor" class="bi bi-award texto-amarillo" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
+                                            <path
+                                                d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+                                        </svg>
+                                        <h4>
+                                            Memoria Perfecta
+                                        </h4>
+                                    </div>
+                                    <div class="col text-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" fill="currentColor" class="bi bi-award texto-amarillo" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
+                                            <path
+                                                d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+                                        </svg>
+                                        <h4>
+                                            responsable
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- -------------------Fin Materia-------------------- -->
+                    <!-- -------------------Materia-------------------- -->
+                    <div class="col-12 col-md-6 p-4">
+                        <div class="col-12 px-0 borde-materia">
+                            <div class="col-12 p-0 mx-auto" id="titulo-materia">
+                                <h2 class="text-center pt-4 m-0">MICROECONOMÍA</h2>
+                                <h6 class="text-center pb-4 m-0">6 Módulos</h6>
+                            </div>
+                            <div class="col-12 mx-auto py-3 tarjeta-materia px-1 px-lg-2">
+                                <div class="row no-gutters">
+                                    <div class="col text-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" fill="currentColor" class="bi bi-award texto-amarillo" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
+                                            <path
+                                                d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+                                        </svg>
+                                        <h4>
+                                            Listo para iniciar
+                                        </h4>
+                                    </div>
+                                    <div class="col text-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" fill="currentColor" class="bi bi-award texto-amarillo" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
+                                            <path
+                                                d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+                                        </svg>
+                                        <h4>
+                                            Memoria Perfecta
+                                        </h4>
+                                    </div>
+                                    <div class="col text-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" fill="currentColor" class="bi bi-award texto-amarillo" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
+                                            <path
+                                                d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+                                        </svg>
+                                        <h4>
+                                            responsable
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- -------------------Fin Materia-------------------- -->
+                    <!-- -------------------Materia-------------------- -->
+                    <div class="col-12 col-md-6 p-4">
+                        <div class="col-12 px-0 borde-materia">
+                            <div class="col-12 p-0 mx-auto" id="titulo-materia">
+                                <h2 class="text-center pt-4 m-0">MICROECONOMÍA</h2>
+                                <h6 class="text-center pb-4 m-0">6 Módulos</h6>
+                            </div>
+                            <div class="col-12 mx-auto py-3 tarjeta-materia px-1 px-lg-2">
+                                <div class="row no-gutters">
+                                    <div class="col text-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" fill="currentColor" class="bi bi-award texto-amarillo" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
+                                            <path
+                                                d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+                                        </svg>
+                                        <h4>
+                                            Listo para iniciar
+                                        </h4>
+                                    </div>
+                                    <div class="col text-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" fill="currentColor" class="bi bi-award texto-amarillo" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
+                                            <path
+                                                d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+                                        </svg>
+                                        <h4>
+                                            Memoria Perfecta
+                                        </h4>
+                                    </div>
+                                    <div class="col text-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" fill="currentColor" class="bi bi-award texto-amarillo" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
+                                            <path
+                                                d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+                                        </svg>
+                                        <h4>
+                                            responsable
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- -------------------Fin Materia-------------------- -->
+                    <!-- -------------------Materia-------------------- -->
+                    <div class="col-12 col-md-6 p-4">
+                        <div class="col-12 px-0 borde-materia">
+                            <div class="col-12 p-0 mx-auto" id="titulo-materia">
+                                <h2 class="text-center pt-4 m-0">MICROECONOMÍA</h2>
+                                <h6 class="text-center pb-4 m-0">6 Módulos</h6>
+                            </div>
+                            <div class="col-12 mx-auto py-3 tarjeta-materia px-1 px-lg-2">
+                                <div class="row no-gutters">
+                                    <div class="col text-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" fill="currentColor" class="bi bi-award texto-amarillo" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
+                                            <path
+                                                d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+                                        </svg>
+                                        <h4>
+                                            Listo para iniciar
+                                        </h4>
+                                    </div>
+                                    <div class="col text-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" fill="currentColor" class="bi bi-award texto-amarillo" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
+                                            <path
+                                                d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+                                        </svg>
+                                        <h4>
+                                            Memoria Perfecta
+                                        </h4>
+                                    </div>
+                                    <div class="col text-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" fill="currentColor" class="bi bi-award texto-amarillo" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
+                                            <path
+                                                d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+                                        </svg>
+                                        <h4>
+                                            responsable
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- -------------------Fin Materia-------------------- -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

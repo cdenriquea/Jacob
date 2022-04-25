@@ -1,0 +1,141 @@
+<!-- -------------------Area Clase-------------------- -->
+<div class="col p-3 area">
+    <form>
+        <div class="col">
+            <h1 class="titulos-clase text-center">Banco de preguntas</h1>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group borde-formulario">
+                    <select class="custom-select" ng-model="tema" id="tema" required>
+                        <option value="">Tema</option>
+                        <option ng-repeat="tema in temas" value="{{tema}}" ng-if="tema != 'INTRODUCCION'  && tema.includes('Evaluacion') == false">
+                            {{tema}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group borde-formulario">
+                    <textarea class="form-control" ng-focus="true" ng-model="enunciado" id="enunciado" placeholder="Enunciado" required rows="6"></textarea>
+                </div>
+                <div class="form-group borde-formulario">
+                    <textarea class="form-control" ng-model="explicacion" id="explicacion" placeholder="Explicación" required rows="6"></textarea>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group borde-formulario">
+                    <select class="custom-select" id="subtema" ng-model="subtema" required>
+                        <option value="">Subtema</option>
+                        <option ng-repeat="subtema in subtemas"
+                            ng-if="subtema.Modulo == tema && subtema.name != 'Taller - ' + tema && subtema.name != 'NULL' && subtema.name != 'Bienvenid@'"
+                            value="{{subtema.name}}">
+                            {{subtema.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group borde-formulario">
+                    <input type="text" class="form-control" ng-model="opcion1" id="opcion1" placeholder="Opción 1" required>
+                </div>
+                <div class="form-group borde-formulario">
+                    <input type="text" class="form-control" ng-model="opcion2" id="opcion2" placeholder="Opción 2" required>
+                </div>
+                <div class="form-group borde-formulario">
+                    <input type="text" class="form-control" ng-model="opcion3" id="opcion3" placeholder="Opción 3" required>
+                </div>
+                <div class="form-group borde-formulario">
+                    <input type="text" class="form-control" ng-model="opcion4" id="opcion4" placeholder="Opción 4" required>
+                </div>
+                <div class="form-group borde-formulario">
+                    <input type="text" class="form-control" ng-model="respuesta" id="respuesta" placeholder="Respuesta" required>
+                </div>
+                <div class="form-group borde-formulario">
+                    <input type="number" class="form-control" ng-model="tiempo" id="tiempo" name="tiempo" placeholder="Tiempo Requerido(minutos)" required="true">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col text-right">
+            <button ng-if="ocultar == 0" type="submit" ng-click="cancelar_edicion()" value="banco" class="boton-amarillo">Cancelar</button>
+        </div>
+
+        <br>
+        <div class="col text-center">
+            <button ng-if="ocultar == 1" type="submit" ng-click="crear_banco()" value="banco" class="my-auto mx-auto px-4 py-2 boton-azul">Agregar</button>
+        </div>
+
+        <div class="col text-center">
+            <button ng-if="ocultar == 0" type="submit" ng-click="editar_banco()" class="my-auto mx-auto px-4 py-2 boton-azul">Guardar</button>
+            <button ng-if="ocultar == 0" type="submit" ng-click="eliminar_banco()" class="my-auto mx-auto px-4 py-2 boton-amarillo">Eliminar</button>
+        </div>
+
+    </form>
+
+
+
+
+    <div class="col-12 text-center">
+        <div id="banco_preguntas">
+
+            <div class="row px-2 px-md-3 px-lg-5 py-0 py-md-2 py-lg-3">
+
+                <div ng-repeat="Banco in banco" ng-if="!banco[0].message" class="col-12 col-md-6 p-2" id="pregunta {{$index+1}}">
+
+                    <div class="titulos text-justify">
+                        <button ng-click="edicion_banco(Banco.codigo,tema_banco[$index],subtema_banco[$index],enunciado_banco[$index],opciones_banco[$index][0],opciones_banco[$index][1],opciones_banco[$index][2],opciones_banco[$index][3],explicacion_banco[$index],tiempo_banco[$index],Banco.respuesta)"
+                            type=" button" class="my-auto px-4 py-2 boton-editar" id="editarTeoria">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                <path
+                                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                <path fill-rule="evenodd"
+                                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <h4 class="titulos text-justify" id="temas{{$index+1}}">
+                        {{$index+1}}.{{tema_banco[$index]}} - {{subtema_banco[$index]}}
+                    </h4>
+                    <h4 class="titulos text-justify" id="enunciado{{$index+1}}">
+                        {{enunciado_banco[$index]}}
+                    </h4>
+                    <div class="form-check text-justify">
+                        <input class="form-check-input" type="radio" name="pregunta {{$index+1}} - A" ng-disabled="!checked_banco[$index][0]" ng-checked="checked_banco[$index][0]" id="p-1-r-1">
+                        <label class="form-check-label" for="p-1-r1">
+                            {{opciones_banco[$index][0]}}
+                        </label>
+                        <br>
+                        <input class="form-check-input" type="radio" name="pregunta {{$index+1}} - B" ng-disabled="!checked_banco[$index][1]" ng-checked="checked_banco[$index][1]" id="p-1-r-2">
+                        <label class="form-check-label" for="p-1-r2">
+                            {{opciones_banco[$index][1]}}
+                        </label>
+                        <br>
+                        <input class="form-check-input" type="radio" name="pregunta {{$index+1}} - C" ng-disabled="!checked_banco[$index][2]" ng-checked="checked_banco[$index][2]" id="p-1-r-3">
+                        <label class="form-check-label" for="p-1-r3">
+                            {{opciones_banco[$index][2]}}
+                        </label>
+                        <br>
+                        <input class="form-check-input" type="radio" name="pregunta {{$index+1}} - D" ng-disabled="!checked_banco[$index][3]" ng-checked="checked_banco[$index][3]" id="p-1-r-4">
+                        <label class="form-check-label" for="p-1-r4">
+                            {{opciones_banco[$index][3]}}
+                        </label>
+                    </div>
+                    <hr>
+                    <h6 class="text-justify">
+                        Explicación: {{explicacion_banco[$index]}}
+                    </h6>
+                    <h6 class="text-justify">
+                        Tiempo: {{tiempo_banco[$index]}} {{minutos_banco[$index]}}
+                    </h6>
+
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+
+
+
+
+</div>
+<!-- -------------------Fin Area Clase-------------------- -->

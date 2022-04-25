@@ -1,0 +1,40 @@
+<div class="col-12 col-md-6 col-lg-4 mx-auto py-2 text-center">
+  <br>
+  <br>
+  <div class="col px-5">
+    <img src="./imagenes/Logo vertical.png" class="img-fluid px-5">
+  </div>
+  <hr>
+  <div class="col-12 mx-auto">
+    <form class="px-0">
+      <div class="form-group borde-formulario">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFileLangHTML" required>
+          <label class="custom-file-label text-justify" for="customFileLangHTML" data-browse="Elegir">Comprobante de
+            Pago (PDF)</label>
+        </div>
+      </div>
+
+      <button ng-click="cargarComprobante()" type="submit" class="boton-amarillo-block">Enviar</button>
+    </form>
+  </div>
+  <br>
+  <br>
+  <br>
+</div>
+
+<script>
+  ////////Mostrar nombre archivos seleccionados//////////
+
+  $("input[type=file]").change(function () {
+    var fieldVal = $(this).val();
+
+    // Change the node's value by removing the fake path (Chrome)
+    fieldVal = fieldVal.replace("C:\\fakepath\\", "");
+
+    if (fieldVal != undefined || fieldVal != "") {
+      $(this).next(".custom-file-label").attr('data-content', fieldVal);
+      $(this).next(".custom-file-label").text(fieldVal);
+    }
+  });
+</script>

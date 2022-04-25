@@ -1,0 +1,22 @@
+
+            <!-- -------------------Area Clase-------------------- -->
+            <div class="col p-3 area">
+                <div class="col-12 p-0 text-center"><img class="py-4 iconos" src="./imagenes/PRUEBA DE CONOCIMIENTO.png"></div>
+                    <div class="col-12 text-center">
+                        <h1 class="titulos-clase">Completa la Frase</h1>
+                        <hr>
+                        <p class="text-justify">Prueba de conocimiento, completar la frase</p>
+                        <br>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-12 col-md-8 mx-auto text-center">
+                        <span ng-repeat ="Frase in Enunciado">   
+                            {{Frase}}<button type="button" class="btn btn-light btn-lg">  Prueba        </button>
+                        </span>
+                            <a ng-repeat = "Opcion in Completar" class="nav-link" href="#"> <button type="button" class="btn btn-warning btn-block btn-lg">{{Opcion}}</button></a>
+                        </div>
+                    </div>
+                    
+            </div>
+            <!-- -------------------Fin Area Clase-------------------- -->

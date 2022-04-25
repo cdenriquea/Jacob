@@ -1,0 +1,534 @@
+<div class="container-fluid">
+    <div class="row">
+        <!-- -------------------Barra de navegación curso-------------------- -->
+        <div class="col-0 p-0" style="z-index: 3;">
+            <!-- -------------------Boton Collapse de navegación curso-------------------- -->
+            <button role="button" class="d-none d-sm-none d-md-block btn btn-primary btn-block" data-toggle="collapse" data-target="#barra-curso" id="boton-barra">
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+                    class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                    <path
+                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                </svg>
+            </button>
+
+        </div>
+        <!-- -------------------Fin Boton Collapse de navegación curso-------------------- -->
+
+        <div id="barra-curso" class="collapse multi-collapse show pb-1 width" style="z-index: 2;">
+            <div class="scrollme">
+                <div>
+                    <div class="card">
+                        <div class="card-header text-center text-white" id="titulo-materia-recto">
+                            <h4>{{NombreCurso}}</h4>
+                        </div>
+                        <!-- -------------------Crear Banco de Preguntas-------------------- -->
+                        <li class="list-group-item p-0">
+                            <a class="nav-link titulos-modulos p-0 text-center" data-toggle="collapse" href="#banco" role="button" aria-expanded="false" aria-controls="introduccion">
+                                <h4>BANCO DE PREGUNTAS</h4>
+                            </a>
+                            <div class="collapse show multi-collapse" id="banco">
+                                <ul class="list-group list-group-flush pl-2">
+                                    <li class="list-group-item p-0"><a class="nav-link titulos text-center" ui-sref="crear_banco"><button type="button"
+                                                class="my-auto px-4 py-2 boton-naranja-borde" id="crearBanco">Crear
+                                                Banco +</button></a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- -------------------Fin Crear Banco de Preguntas-------------------- -->
+                        <ul class="list-group list-group-flush">
+                            <!-- -------------------Módulos cursos-------------------- -->
+                            <li ng-repeat="Modulo in Modulos" class="list-group-item p-0">
+                                <div class="row">
+                                    <div class="col-9 pl-auto">
+                                        <a class="nav-link titulos-modulos p-0 text-center" data-toggle="collapse" href="#Modulo{{$index}}" role="button" aria-expanded="false" aria-controls="#Modulo{{$index}}">
+                                            <h4>{{Modulo.name}}</h4>
+                                        </a>
+                                    </div>
+                                    <div ng-if="Modulo.name != 'INTRODUCCION'" class="col-3 pl-auto">
+                                        <a class="nav-link p-0">
+                                            <button ng-click="modData('edit',Modulo.name)" type="button" class="my-auto px-4 py-2 boton-editar-barra" data-toggle="modal" data-target="#modalModulo">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                    <path fill-rule="evenodd"
+                                                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                </svg>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+
+
+                                <div class="collapse show multi-collapse" id="Modulo{{$index}}">
+                                    <ul class="list-group list-group-flush">
+                                        <!-- -------------------Lección  - cursos-------------------- -->
+                                        <li ng-repeat="Leccion in Lecciones" ng-if="Leccion.Modulo == Modulo.name && Leccion.name != 'NULL'" class="list-group-item">
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <a class="nav-link titulos-modulos p-0" data-toggle="collapse" href="#Leccion{{$index}}" role="button" aria-expanded="false" aria-controls="#Leccion{{$index}}">
+                                                        <h4><img src="./imagenes/icono leccion.png" width="20%">{{Leccion.name}}</h4>
+                                                    </a>
+                                                </div>
+                                                <div ng-if="Leccion.name != 'Bienvenid@' && Leccion.name != 'Evaluacion'" class="col">
+                                                    <a class="nav-link p-0 text-right">
+                                                        <button ng-click="lecData(Modulo.name,'edit',Leccion.name)" type="button" class="my-auto px-4 py-2 boton-editar-barra" data-toggle="modal" data-target="#modalLeccion">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="17"
+                                                                height="17" fill="currentColor"
+                                                                class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                                <path fill-rule="evenodd"
+                                                                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                            </svg>
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="collapse show multi-collapse" id="Leccion{{$index}}">
+
+                                                <ul id='listaSecciones' class="list-group list-group-flush pl-2">
+                                                    <!-- -------------------Sección  - cursos-------------------- -->
+                                                    <li class="list-group-item p-0" id="{{Secciones[$index].Orden}}" ng-repeat="Seccion in Secciones " ng-if="Seccion.Leccion == Leccion.name && Seccion.Modulo == Modulo.name && Seccion.name != 'NULL'">
+                                                        <div class="row">
+                                                            <div class="col-7">
+                                                                <a ng-click="n_seccion(Secciones[$index].Orden)" ui-sref="{{Links[$index]}}" class="{{navLink[$index]}}">
+                                                                    <h5><img class="mx-1" ng-src="./imagenes/{{Iconos[$index]}}" width="15%">{{Seccion.name}} </h5>
+                                                                </a>
+                                                            </div>
+                                                            <div ng-if="Seccion.Modulo != 'INTRODUCCION' && Seccion.name != 'Taller' && Seccion.name != 'Calificación Taller' && Seccion.name != 'Examen' && Seccion.name != 'Calificacion Examen' " class="col">
+                                                                <a class="nav-link p-0 text-right">
+                                                                    <button ng-click="secData(Leccion.name, Modulo.name, 'edit',Seccion.name,Seccion.Orden)" type="button" class="my-auto px-4 py-2 boton-editar-barra" data-toggle="modal" data-target="#modalContenido">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                            width="15" height="15" fill="currentColor"
+                                                                            class="bi bi-pencil-square"
+                                                                            viewBox="0 0 16 16">
+                                                                            <path
+                                                                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                                            <path fill-rule="evenodd"
+                                                                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                                        </svg>
+                                                                    </button>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <!-- ----------Crear contenido---------- -->
+                                                <div ng-if="Modulo.name != 'INTRODUCCION' && Leccion.name != 'Taller - '+ Modulo.name && Leccion.name != 'Evaluacion'">
+                                                    <a class="nav-link pt-4 text-center">
+                                                        <button type="button" class="my-auto px-4 py-2 boton-naranja-borde-pequeño" ng-click="secData(Leccion.name,Modulo.name,'create')" data-toggle="modal" data-target="#modalContenido">Crear
+                                                            Contenido +</button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- -------------------Fin Lecciones-------------------- -->
+                                        <!-- -------------------Crear Lección-------------------- -->
+                                        <div ng-if="Modulo.name != 'INTRODUCCION' && Modulo.tipo != 'CalificacionE'">
+                                            <a class="nav-link titulos-modulos p-0 text-center" data-toggle="collapse" href="#crearLección" role="button" aria-expanded="false" aria-controls="introduccion"></a>
+                                            <div class="collapse show multi-collapse" id="crearModulo">
+                                                <ul class="list-group list-group-flush pl-2">
+                                                    <li class="list-group-item py-2 text-center">
+                                                        <a class="nav-link p-0">
+                                                            <button type="button" class="my-auto px-4 py-2 boton-naranja-borde-mediano" ng-click="lecData(Modulo.name,'create')" data-toggle="modal" data-target="#modalLeccion">
+                                                                Crear Lección +
+                                                            </button>
+                                                        </a>
+
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- -------------------Crear Taller-------------------- -->
+                                        <div ng-if="Modulo.name != 'INTRODUCCION' && Modulo.tipo != 'CalificacionE'">
+                                            <a class="nav-link titulos-modulos p-0 text-center" data-toggle="collapse" href="#crearTaller" role="button" aria-expanded="false" aria-controls="introduccion"></a>
+                                            <div class="collapse show multi-collapse" id="crearTaller">
+                                                <ul class="list-group list-group-flush pl-2">
+                                                    <li class="list-group-item py-2 text-center">
+                                                        <a class="nav-link p-0">
+                                                            <button type="button" class="my-auto px-4 py-2 boton-naranja-borde-mediano" ng-click="tallerData(Modulo.name,'create')" data-toggle="modal" data-target="#modalTaller">
+                                                                Crear Taller +
+                                                            </button>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </ul>
+                                </div>
+
+                            </li>
+                            <!-- -------------------Fin Modulos-------------------- -->
+                            <!-- -------------------Crear Módulo-------------------- -->
+                            <li class="list-group-item p-0">
+                                <a class="nav-link titulos-modulos p-0 text-center" data-toggle="collapse" href="#crearModulo" role="button" aria-expanded="false" aria-controls="introduccion"></a>
+                                <div class="collapse show multi-collapse" id="crearModulo">
+                                    <ul class="list-group list-group-flush pl-2">
+                                        <li class="list-group-item py-2 text-center">
+                                            <a class="nav-link p-0">
+                                                <button ng-click="modData('create')" type="button" class="my-auto px-4 py-2 boton-naranja-borde" data-toggle="modal" data-target="#modalModulo">
+                                                    Crear Módulo +
+                                                </button>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <!-- -------------------Fin Crear Modulo-------------------- -->
+                            <!-- -------------------Crear Evaluación-------------------- -->
+                            <li class="list-group-item p-0">
+                                <a class="nav-link titulos-modulos p-0 text-center" data-toggle="collapse" href="#crearEvaluacion" role="button" aria-expanded="false" aria-controls="introduccion"></a>
+                                <div class="collapse show multi-collapse" id="crearModulo">
+                                    <ul class="list-group list-group-flush pl-2">
+                                        <li class="list-group-item py-2 text-center">
+                                            <a class="nav-link p-0">
+                                                <button ng-click="evalData('create')" type="button" class="my-auto px-4 py-2 boton-naranja-borde" data-toggle="modal" data-target="#modalEvaluacion">
+                                                    Crear Evaluación +
+                                                </button>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <!-- -------------------Fin Crear Evaluación-------------------- -->
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- -------------------Fin Barra de navegación Curso-------------------- -->
+
+        <!-- -------------------Area del curso-------------------- -->
+        <div id="area_clase" class="col px-4 py-1" style="z-index: 1;">
+            <!-- -------------------Navegación curso-------------------- -->
+            <div class="row">
+                <div class="col-12 col-md-8 text-secondary pt-3">
+                    <h5>{{SecLecMod.Modulo}} > {{SecLecMod.Leccion}} > {{SecLecMod.name}}</h5>
+                </div>
+                <div class="col-6 col-md-2 text-right">
+                    <a class="nav-link px-1"><button ng-click="n_seccion(prevSec)" type="button"
+                            class="my-auto px-5 py-2 boton-amarillo text-white"><svg xmlns="http://www.w3.org/2000/svg"
+                                width="35" height="35" fill="currentColor" class="bi bi-caret-left-fill"
+                                viewBox="0 0 16 16">
+                                <path
+                                    d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+                            </svg></button></a>
+                </div>
+                <div class="col-6 col-md-2 text-right">
+                    <a class="nav-link px-1"><button ng-click="n_seccion(nextSec)" type="button"
+                            class="my-auto px-5 py-2 boton-amarillo text-white"><svg xmlns="http://www.w3.org/2000/svg"
+                                width="35" height="35" fill="currentColor" class="bi bi-caret-right-fill"
+                                viewBox="0 0 16 16">
+                                <path
+                                    d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                            </svg></button></a>
+                </div>
+            </div>
+            <!-- -------------------Fin Navegación curso-------------------- -->
+
+
+            <!-- -------------------Area Clase-------------------- -->
+            <div ui-view="seccion_curso"> </div>
+            <!-- -------------------Fin Area Clase-------------------- -->
+        </div>
+    </div>
+    <!-- -------------------Fin Main-------------------- -->
+    <!-- Modal Evaluacion Terminada -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLongTitle">¡FELICITACIONES! - Se ha enviado los resultados de tu evaluación al docente.</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <a><button type="button" ng-click="n_seccion(nextSec);"
+                            class="btn btn-primary">Continuar</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Prueba Exitosa -->
+    <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="./imagenes/prueba_verde.png" class="img-fluid">
+
+                </div>
+                <div class="modal-footer">
+                    <a><button type="button" ng-click="n_seccion(nextSec);"
+                            class="btn btn-primary">Continuar</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Prueba Fallida -->
+    <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="./imagenes/prueba_rojo.png" class="img-fluid">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="reintentar();" class="btn btn-secondary" data-dismiss="modal">Reintentar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- -------------------Modal Módulo-------------------- -->
+    <div class="container">
+        <div class="modal fade" tabindex="1" role="dialog" id="modalModulo">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 ng-if="tipo == 'create'" class="modal-title"><img class="pb-1" src="./imagenes/simbolo y escudo.png" width="25%"> CREAR MÓDULO</h3>
+                        <h3 ng-if="tipo == 'edit'" class="modal-title"><img class="pb-1" src="./imagenes/simbolo y escudo.png" width="25%"> MODIFICAR MÓDULO</h3>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span arial-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body text-center">
+                        <div class="col-10 mx-auto">
+                            <form id="formModulo" class="px-0">
+                                <div class="form-group borde-formulario">
+                                    <input type="text" class="form-control" id="nombreModulo" ng-model="nombreModulo" placeholder="Nombre del Módulo" required="true">
+                                </div>
+
+                                <button type="submit" class="my-auto px-4 py-2 boton-amarillo-pequeño" ng-click="crear_modulo()" value="materia">Guardar</button>
+                                <button ng-if="tipo == 'edit'" type="submit" class="my-auto px-4 py-2 boton-azul-pequeño" ng-click="eliminar_ModSecLec('NombModulo')" value="materia">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="my-auto px-4 py-2 boton-azul-borde-pequeño" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-md-10 mx-auto">
+            </div>
+        </div>
+    </div>
+    <!-- -------------------Fin Modal Módulo-------------------- -->
+
+    <!-- -------------------Modal Evaluación-------------------- -->
+    <div class="container">
+        <div class="modal fade" tabindex="1" role="dialog" id="modalEvaluacion">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 ng-if="tipo == 'create'" class="modal-title"><img class="pb-1" src="./imagenes/simbolo y escudo.png" width="25%"> CREAR EVALUACIÓN</h3>
+                        <h3 ng-if="tipo == 'edit'" class="modal-title"><img class="pb-1" src="./imagenes/simbolo y escudo.png" width="25%"> MODIFICAR EVALUACIÓN</h3>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span arial-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body text-center">
+                        <div class="col-10 mx-auto">
+                            <form id="formEvaluacion" class="px-0">
+                                <div class="form-group borde-formulario">
+                                    <input type="text" class="form-control" id="nombreEvaluacion" ng-model="nombreEvaluacion" placeholder="Nombre de la Evaluación" required="true">
+                                </div>
+                                <button type="submit" class="my-auto px-4 py-2 boton-amarillo-pequeño" value="materia" ng-click="crear_evaluacion()">Guardar</button>
+                                <button ng-if="tipo == 'edit'" type="submit" class="my-auto px-4 py-2 boton-azul-pequeño" ng-click="eliminar_ModSecLec('NombLeccion')" value="materia">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="my-auto px-4 py-2 boton-azul-borde-pequeño" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-md-10 mx-auto">
+            </div>
+        </div>
+    </div>
+    <!-- -------------------Fin Modal Evaluación-------------------- -->
+
+    <!-- -------------------Modal Lección-------------------- -->
+    <div class="container">
+        <div class="modal fade" tabindex="1" role="dialog" id="modalLeccion">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 ng-if="tipo == 'create'" class="modal-title"><img class="pb-1" src="./imagenes/simbolo y escudo.png" width="25%"> CREAR LECCIÓN</h3>
+                        <h3 ng-if="tipo == 'edit'" class="modal-title"><img class="pb-1" src="./imagenes/simbolo y escudo.png" width="25%"> MODIFICAR LECCIÓN</h3>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span arial-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body text-center">
+                        <div class="col-10 mx-auto">
+                            <form id="formLeccion" class="px-0">
+                                <div class="form-group borde-formulario">
+                                    <input type="text" class="form-control" id="nombreLeccion" ng-model="nombreLeccion" placeholder="Nombre de la Lección" required="true">
+                                </div>
+                                <button type="submit" class="my-auto px-4 py-2 boton-amarillo-pequeño" value="materia" ng-click="crear_leccion()">Guardar</button>
+                                <button ng-if="tipo == 'edit'" type="submit" class="my-auto px-4 py-2 boton-azul-pequeño" ng-click="eliminar_ModSecLec('NombLeccion')" value="materia">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="my-auto px-4 py-2 boton-azul-borde-pequeño" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-md-10 mx-auto">
+            </div>
+        </div>
+    </div>
+    <!-- -------------------Fin Modal Lección-------------------- -->
+
+    <!-- -------------------Modal Taller-------------------- -->
+    <div class="container">
+        <div class="modal fade" tabindex="1" role="dialog" id="modalTaller">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 ng-if="tipo == 'create'" class="modal-title"><img class="pb-1" src="./imagenes/simbolo y escudo.png" width="25%"> CREAR TALLER</h3>
+                        <h3 ng-if="tipo == 'edit'" class="modal-title"><img class="pb-1" src="./imagenes/simbolo y escudo.png" width="25%"> MODIFICAR TALLER</h3>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span arial-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body text-center">
+                        <div class="col-10 mx-auto">
+                            <form id="formTaller" class="px-0">
+                                <div class="form-group borde-formulario">
+                                    <textarea id="contenidoTaller"></textarea>
+                                </div>
+                                <div class="form-group borde-formulario">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="Archivo" accept=".pdf">
+                                        <label class="custom-file-label text-justify" for="customFileLangHTML" data-browse="Elegir">Solución PDF</label>
+                                    </div>
+                                </div>
+                                <div class="form-group borde-formulario">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="Video" accept=".MP4">
+                                        <label class="custom-file-label text-justify" for="customFileLangHTML" data-browse="Elegir">Solución MP4 (opcional)</label>
+                                    </div>
+                                </div>
+                                <button ng-if="tipo == 'create'" type="submit" class="my-auto px-4 py-2 boton-amarillo-pequeño" ng-click="crear_taller(); refuerzo_upload()" value="materia">Guardar</button>
+                                <button ng-if="tipo == 'edit'" type="submit" class="my-auto px-4 py-2 boton-amarillo-pequeño" ng-click="modTaller()" value="materia">Guardar</button>
+                                <button ng-if="tipo == 'edit'" type="submit" class="my-auto px-4 py-2 boton-azul-pequeño" ng-click="eliminar_ModSecLec('NombLeccion')" value="materia">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div ng-if="tipo == 'edit'" class="modal-footer">
+                        <button type="button" class="my-auto px-4 py-2 boton-azul-borde-pequeño" data-dismiss="modal">Cerrar</button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-md-10 mx-auto">
+            </div>
+        </div>
+    </div>
+    <!-- -------------------Fin Modal Taller-------------------- -->
+
+    <!-- -------------------Modal Contenido-------------------- -->
+    <div class="container">
+        <div class="modal fade" tabindex="1" role="dialog" id="modalContenido">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 ng-if="tipo == 'create'" class="modal-title"><img class="pb-1" src="./imagenes/simbolo y escudo.png" width="25%"> CREAR CONTENIDO</h3>
+                        <h3 ng-if="tipo == 'edit'" class="modal-title"><img class="pb-1" src="./imagenes/simbolo y escudo.png" width="25%">MODIFICAR CONTENIDO</h3>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span arial-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body text-center">
+                        <div class="col-10 mx-auto">
+                            <form id="formContenido" class="px-0">
+                                <div class="form-group borde-formulario" required>
+                                    <select class="custom-select" ng-model="tipoContenido" id="tipoContenido">
+                                        <option value="">Tipo de Contenido</option>
+                                        <option ng-if="tipo == 'edit'" value="Mantener">Mantener</option>
+                                        <option value="Teoria">Objetivos</option>
+                                        <option value="Teoria">Teoría</option>
+                                        <option value="Video">Video</option>
+                                        <option value="PruebaAsoc">Prueba Asociación</option>
+                                        <option value="PruebaRespUnica">Prueba Opción Múltiple</option>
+                                        <option value="PruebaFrase">Prueba Completar Frase</option>
+                                        <option value="ActividadRef">Actividad de Refuerzo</option>
+                                    </select>
+                                </div>
+                                <div class="form-group borde-formulario">
+                                    <input type="text" class="form-control" id="nombreContenido" ng-model="nombreContenido" placeholder="Nombre del Contenido" required="true">
+                                </div>
+                                <button type="submit" class="my-auto px-4 py-2 boton-amarillo-pequeño" ng-click="crear_seccion()" value="materia">Guardar</button>
+                                <button ng-if="tipo == 'edit'" type="submit" class="my-auto px-4 py-2 boton-azul-pequeño" ng-click="eliminar_ModSecLec('NombSeccion')" value="materia">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="my-auto px-4 py-2 boton-azul-borde-pequeño" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-md-10 mx-auto">
+            </div>
+        </div>
+    </div>
+    <!-- -------------------Fin Modal Contenido-------------------- -->
+
+
+    <script>
+        ////////Mostrar nombre archivos seleccionados//////////
+
+        $("input[type=file]").change(function() {
+            var fieldVal = $(this).val();
+
+            // Change the node's value by removing the fake path (Chrome)
+            fieldVal = fieldVal.replace("C:\\fakepath\\", "");
+
+            if (fieldVal != undefined || fieldVal != "") {
+                $(this).next(".custom-file-label").attr('data-content', fieldVal);
+                $(this).next(".custom-file-label").text(fieldVal);
+            }
+        });
+    </script>

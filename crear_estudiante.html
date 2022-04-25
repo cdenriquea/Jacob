@@ -1,0 +1,112 @@
+<br>
+<div class="col-12 col-md-10 col-lg-8 mx-auto p-5 text-center" id="formularioMateria">
+    <div class="col-12 col-md-5 mx-auto px-5">
+        <img src="./imagenes/Logo vertical.png" class="img-fluid px-5">
+    </div>
+    <hr>
+    <div class="col-12">
+        <h1 id="titulo-carrera">Formulario de Creación de Usuario Estudiante</h2>
+    </div>
+    <div class="col-8 mx-auto">
+        <form class="px-0 px-md-5">
+            <div class="form-group borde-formulario">
+                <input type="text" class="form-control" id="nombreEstudiante" mg-model="nombre"
+                    placeholder="Nombre del Estudiante" required="true">
+            </div>
+            <div class="form-group borde-formulario">
+                <input type="email" class="form-control" id="email" ng-model="email" placeholder="Correo electrónico"
+                    pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$"
+                    required="true">
+            </div>
+
+            <div class="form-group borde-formulario">
+                <input type="password" class="form-control" id="contrasena" ng-model="contrasena"
+                    placeholder="Contraseña" pattern=".{8,}" title="Debe tener minimo 8 caracteres" required="true">
+            </div>
+
+            <div class="form-group borde-formulario">
+                <input type="password" class="form-control" id="confirmar" name="confirmar" ng-model="confirmar"
+                    placeholder="Confirmar Contraseña" title="La Confirmacion no coincide con la Contraseña"
+                    required="true">
+            </div>
+
+            <div class="form-group borde-formulario">
+                <input type="number" class="form-control" id="identificacion" name="identificacion"
+                    ng-model="identificacion" placeholder="Numero de Identificación" required="true">
+            </div>
+
+            <div class="form-group borde-formulario">
+                <input type="number" class="form-control" id="contacto" ng-model="tele" name="contacto"
+                    placeholder="Numero de Contacto" required="true">
+            </div>
+
+            <div class="form-group borde-formulario">
+                <input type="number" class="form-control" id="edad" ng-model="edad" name="edad" placeholder="Edad"
+                    required="true">
+            </div>
+
+            <div class="form-group borde-formulario">
+                <select ng-model="pais" id="pais" class="custom-select" ng-change="cargarDepartamentos();" required>
+                    <option value="">Pais...</option>
+                    <option ng-repeat="dato in paises" value="{{dato.codigo}}">
+                        {{dato.nombre}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group borde-formulario">
+                <select ng-model="departamento" id="departamento" class="custom-select" ng-change="cargarCiudades();"
+                    required>
+                    <option value="">Departamento/Estado/Provincia...</option>
+                    <option ng-repeat="depa in departamentos" value="{{depa.id}}">
+                        {{depa.nombre}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group borde-formulario">
+                <select ng-model="ciudad" id="ciudad" class="custom-select" required>
+                    <option value="">Ciudad...</option>
+                    <option ng-repeat="ciud in ciudades" value="{{ciud.id}}">
+                        {{ciud.nombre}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group borde-formulario">
+                <input type="text" class="form-control" id="dire" ng-model="dire" placeholder="Dirección"
+                    required="true">
+            </div>
+            <div class="form-group borde-formulario">
+                <select class="custom-select" id="Programa" ng-model="Programa" ng-change="cargarMaterias();" required>
+                    <option value="">Programa</option>
+                    <option ng-repeat="dato in programas" value="{{dato.Nombre}}">
+                        {{dato.Nombre}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group borde-formulario">
+                <select class="custom-select" id="sede" required>
+                    <option value="">Sede</option>
+                    <option value="1">Cali</option>
+                    <option value="1">Cartagena</option>
+                    <option value="1">Ipiales</option>
+                    <option value="1">Pasto</option>
+                    <option value="1">Puerto Asis</option>
+                    <option value="1">Villavicencio</option>
+                </select>
+            </div>
+            <div class="form-group borde-formulario">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFileLangHTML">
+                    <label class="custom-file-label text-justify" for="customFileLangHTML"
+                        data-browse="Elegir">Fotografia</label>
+                </div>
+            </div>
+            <br>
+            <button  ng-click="registro()" type="submit" class="my-auto px-4 py-2 boton-azul" value="administrativo">Crear
+                Estudiante</button>
+        </form>
+    </div>
+</div>
+</div>

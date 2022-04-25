@@ -1,0 +1,45 @@
+<div class="container-fluid text-center">
+    <div class="row px-5">
+        <div class="col">
+            <h2 class="p-3" id="titulo-carrera">{{nombreCurso}}</h2>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-3 px-5">
+    <div class="col borde-matricula py-5">
+        <div class="row px-5">
+            <div class="col my-auto">
+                <h2 id="titulo-creditos">Pregunta {{preguntaActual}} de {{numPreguntas}}</h2>
+            </div>
+            <div class="col text-right">
+                <h3 id="titulo-carrera">Tiempo restante:</h3>
+                <h3 id="titulo-creditos">{{counter | counter | date:'mm:ss'}}</h3>
+            </div>
+        </div>
+        <h6 class="px-5">**Pregunta de opción múltiple con única respuesta**</h6>
+        <hr>
+        <div class="col-12 text-center">
+            <h2 class="text-justify">{{Enunciado}}</h2>
+        </div>
+        <div class="row">
+            <div class="col-12 mx-auto text-center">
+            <a class="nav-link" ng-repeat="opciones in Opciones"> <button ng-style="color[$index]"
+                    ng-click="comprobar(opciones,$index)" type="button" class="boton-azul-borde-block">{{opciones}}</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid p-5">
+    <div class="row">
+        <div class="col my-auto ml-auto">
+            <div class="row">
+                <div class="text-right px-3 ml-auto">
+                    <a class="nav-link p-0"><button type="button"
+                           ng-click = "continuarExamen()" class="my-auto px-4 py-2 boton-amarillo">Continuar</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

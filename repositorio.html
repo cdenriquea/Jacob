@@ -1,0 +1,736 @@
+<!-- -------------------Buscador-------------------- -->
+<div class="container-fluid" id="franja_amarilla">
+    <div class="row px-5 pt-5 pb-4">
+        <div class="ml-auto">
+            <div class="dropdown text-right">
+                <button class="boton-azul py-1 px-3 dropdown-toggle" type="button" id="categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Categorias
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a ng-repeat="Categoria in lista" class="dropdown-item" ng-click="busqueda(Categoria.Nombre)" href="#">{{Categoria.Nombre}}</a>
+                    <a class="dropdown-item" ng-click="busqueda('')" href="#">Todas las categorias</a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="dropdown text-right px-2">
+                <button class="boton-azul py-1 px-3 dropdown-toggle" type="button" id="categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Formato
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#1">Video</a>
+                    <a class="dropdown-item" href="#2">PDF</a>
+                    <a class="dropdown-item" href="#3">Doc</a>
+                    <a class="dropdown-item" href="#4">Exc</a>
+                    <a class="dropdown-item" href="#5">Audio</a>
+                    <a class="dropdown-item" href="#6">Imagen</a>
+                </div>
+            </div>
+        </div>
+        <div style="width: 30%;">
+            <form>
+                <div class="form-group borde-formulario mx-3">
+                    <input type="text" class="form-control form-control-sm" id="buscar" placeholder="Buscar Curso" ng-model="buscarCurso">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- -------------------Fin Buscador-------------------- -->
+
+<!-- -------------------Modal Acerca de Normatividad COVID-19-------------------- -->
+<div class="container">
+    <div class="modal" tabindex="1" role="dialog" id="normatividadCovid">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><img class="pb-1" src="./imagenes/simbolo y escudo.png" width="20%"> Normatividad COVID-19</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span arial-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body text-center">
+                    <p>
+                        En este lugar se ubica la informacion del archivo.
+                    </p>
+                    <img src="./imagenes/pandemia.jpg" class="img-fluid">
+                    <a class="nav-link pt-3" href="#"><button type="button"
+                            class="boton-azul-borde px-3">Abrir</button></a>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="boton-amarillo-mediano" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md-10 mx-auto">
+        </div>
+    </div>
+</div>
+<!-- -------------------Fin Modal Acerca de Normatividad COVID-19-------------------- -->
+
+<!-- -------------------Modal Acerca de Litigación oral-------------------- -->
+<div class="container">
+    <div class="modal" tabindex="1" role="dialog" id="litigacionOral">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><img class="pb-1" src="./imagenes/simbolo y escudo.png" width="20%"> Litigación oral</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span arial-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body text-center">
+                    <p>
+                        En este lugar se ubica la informacion del archivo.
+                    </p>
+                    <img src="./imagenes/litigacionOral.jpg" class="img-fluid">
+                    <a class="nav-link pt-3" href="#"><button type="button"
+                            class="boton-azul-borde px-3">Abrir</button></a>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="boton-amarillo-mediano" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md-10 mx-auto">
+        </div>
+    </div>
+</div>
+<!-- -------------------Fin Modal Acerca de Litigación oral-------------------- -->
+
+<!-- -------------------Modal Acerca de Conciliación y arbitraje-------------------- -->
+<div class="container">
+    <div class="modal" tabindex="1" role="dialog" id="conciliacionArbitraje">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><img class="pb-1" src="./imagenes/simbolo y escudo.png" width="20%"> Conciliación y arbitraje</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span arial-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body text-center">
+                    <p>
+                        En este lugar se ubica la informacion del archivo.
+                    </p>
+                    <img src="./imagenes/conciliacion.jpg" class="img-fluid">
+                    <a class="nav-link pt-3" href="#"><button type="button"
+                            class="boton-azul-borde px-3">Abrir</button></a>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="boton-amarillo-mediano" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md-10 mx-auto">
+        </div>
+    </div>
+</div>
+<!-- -------------------Fin Modal Acerca de Conciliación y arbitraje-------------------- -->
+
+<!-- -------------------Categoria Derecho y Leyes-------------------- -->
+<div ng-repeat="categoria in lista | filter:buscarCategoria" class="container" id="derecho">
+    <div class="row pt-2">
+        <div class="col-12 pb-3">
+            <h1 id="titulos-cursos">
+                {{categoria.Nombre}}
+            </h1>
+        </div>
+        <!-- -------------------Tarjeta-------------------- -->
+        <div class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria-2">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img src="./imagenes/icono video.png" class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">Normatividad COVID-19</h5>
+                        </li>
+                    </ul>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" class="boton-azul-borde-mediano"
+                                    data-toggle="modal" data-target="#normatividadCovid">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0" href="#"><button type="button"
+                                    class="boton-amarillo-mediano px-4">Abrir</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+
+        <!-- -------------------Tarjeta-------------------- -->
+        <div class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria-2">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img src="./imagenes/icono video.png" class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">Litigación Oral</h5>
+                        </li>
+                    </ul>
+                    <br>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" class="boton-azul-borde-mediano"
+                                    data-toggle="modal" data-target="#litigacionOral">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0" href="#"><button type="button"
+                                    class="boton-amarillo-mediano px-4">Abrir</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+
+        <!-- -------------------Tarjeta-------------------- -->
+        <div class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria-2">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img src="./imagenes/icono video.png" class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">Conciliación y Arbitraje</h5>
+                        </li>
+                    </ul>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" class="boton-azul-borde-mediano"
+                                    data-toggle="modal" data-target="#conciliacionArbitraje">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0" href="#"><button type="button"
+                                    class="boton-amarillo-mediano px-4">Abrir</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+
+        <!-- -------------------Tarjeta-------------------- -->
+        <div class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria-2">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img src="./imagenes/icono video.png" class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">Normatividad COVID-19</h5>
+                        </li>
+                    </ul>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" class="boton-azul-borde-mediano"
+                                    data-toggle="modal" data-target="#normatividadCovid">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0" href="#"><button type="button"
+                                    class="boton-amarillo-mediano px-4">Abrir</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+
+        <!-- -------------------Tarjeta-------------------- -->
+        <div class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria-2">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img src="./imagenes/icono video.png" class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">Litigación Oral</h5>
+                        </li>
+                    </ul>
+                    <br>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" class="boton-azul-borde-mediano"
+                                    data-toggle="modal" data-target="#litigacionOral">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0" href="#"><button type="button"
+                                    class="boton-amarillo-mediano px-4">Abrir</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+
+        <!-- -------------------Tarjeta-------------------- -->
+        <div class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria-2">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img src="./imagenes/icono video.png" class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">Conciliación y Arbitraje</h5>
+                        </li>
+                    </ul>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" class="boton-azul-borde-mediano"
+                                    data-toggle="modal" data-target="#conciliacionArbitraje">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0" href="#"><button type="button"
+                                    class="boton-amarillo-mediano px-4">Abrir</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+    </div>
+    <div class="row pt-2">
+        <!-- -------------------Tarjeta-------------------- -->
+        <div class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria-2">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img src="./imagenes/icono pdf.png" class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">Normatividad COVID-19</h5>
+                        </li>
+                    </ul>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" class="boton-azul-borde-mediano"
+                                    data-toggle="modal" data-target="#normatividadCovid">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0" href="#"><button type="button"
+                                    class="boton-amarillo-mediano px-4">Abrir</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+        <!-- -------------------Tarjeta-------------------- -->
+        <div class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria-2">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img src="./imagenes/icono pdf.png" class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">Normatividad COVID-19</h5>
+                        </li>
+                    </ul>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" class="boton-azul-borde-mediano"
+                                    data-toggle="modal" data-target="#normatividadCovid">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0" href="#"><button type="button"
+                                    class="boton-amarillo-mediano px-4">Abrir</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+        <!-- -------------------Tarjeta-------------------- -->
+        <div class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria-2">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img src="./imagenes/icono pdf.png" class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">Normatividad COVID-19</h5>
+                        </li>
+                    </ul>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" class="boton-azul-borde-mediano"
+                                    data-toggle="modal" data-target="#normatividadCovid">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0" href="#"><button type="button"
+                                    class="boton-amarillo-mediano px-4">Abrir</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+    </div>
+    <div class="row pt-2">
+        <!-- -------------------Tarjeta-------------------- -->
+        <div class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria-2">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img src="./imagenes/word.png" class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">Normatividad COVID-19</h5>
+                        </li>
+                    </ul>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" class="boton-azul-borde-mediano"
+                                    data-toggle="modal" data-target="#normatividadCovid">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0" href="#"><button type="button"
+                                    class="boton-amarillo-mediano px-4">Abrir</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+        <!-- -------------------Tarjeta-------------------- -->
+        <div class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria-2">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img src="./imagenes/word.png" class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">Normatividad COVID-19</h5>
+                        </li>
+                    </ul>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" class="boton-azul-borde-mediano"
+                                    data-toggle="modal" data-target="#normatividadCovid">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0" href="#"><button type="button"
+                                    class="boton-amarillo-mediano px-4">Abrir</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+    </div>
+    <div class="row pt-2">
+        <!-- -------------------Tarjeta-------------------- -->
+        <div class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria-2">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img src="./imagenes/audio.png" class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">Normatividad COVID-19</h5>
+                        </li>
+                    </ul>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" class="boton-azul-borde-mediano"
+                                    data-toggle="modal" data-target="#normatividadCovid">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0" href="#"><button type="button"
+                                    class="boton-amarillo-mediano px-4">Abrir</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+        <!-- -------------------Tarjeta-------------------- -->
+        <div class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria-2">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img src="./imagenes/audio.png" class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">Normatividad COVID-19</h5>
+                        </li>
+                    </ul>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" class="boton-azul-borde-mediano"
+                                    data-toggle="modal" data-target="#normatividadCovid">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0" href="#"><button type="button"
+                                    class="boton-amarillo-mediano px-4">Abrir</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+        <!-- -------------------Tarjeta-------------------- -->
+        <div class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria-2">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img src="./imagenes/audio.png" class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">Normatividad COVID-19</h5>
+                        </li>
+                    </ul>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" class="boton-azul-borde-mediano"
+                                    data-toggle="modal" data-target="#normatividadCovid">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0" href="#"><button type="button"
+                                    class="boton-amarillo-mediano px-4">Abrir</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+        <!-- -------------------Tarjeta-------------------- -->
+        <div class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria-2">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img src="./imagenes/audio.png" class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">Normatividad COVID-19</h5>
+                        </li>
+                    </ul>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" class="boton-azul-borde-mediano"
+                                    data-toggle="modal" data-target="#normatividadCovid">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0" href="#"><button type="button"
+                                    class="boton-amarillo-mediano px-4">Abrir</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+    </div>
+    <div class="row pt-2">
+        <!-- -------------------Tarjeta-------------------- -->
+        <div class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria-2">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img src="./imagenes/imagenes.png" class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">Normatividad COVID-19</h5>
+                        </li>
+                    </ul>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" class="boton-azul-borde-mediano"
+                                    data-toggle="modal" data-target="#normatividadCovid">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0" href="#"><button type="button"
+                                    class="boton-amarillo-mediano px-4">Abrir</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+        <!-- -------------------Tarjeta-------------------- -->
+        <div class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria-2">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img src="./imagenes/imagenes.png" class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">Normatividad COVID-19</h5>
+                        </li>
+                    </ul>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" class="boton-azul-borde-mediano"
+                                    data-toggle="modal" data-target="#normatividadCovid">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0" href="#"><button type="button"
+                                    class="boton-amarillo-mediano px-4">Abrir</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+        <!-- -------------------Tarjeta-------------------- -->
+        <div class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria-2">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img src="./imagenes/imagenes.png" class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">Normatividad COVID-19</h5>
+                        </li>
+                    </ul>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" class="boton-azul-borde-mediano"
+                                    data-toggle="modal" data-target="#normatividadCovid">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0" href="#"><button type="button"
+                                    class="boton-amarillo-mediano px-4">Abrir</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+        <!-- -------------------Tarjeta-------------------- -->
+        <div class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria-2">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img src="./imagenes/imagenes.png" class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">Normatividad COVID-19</h5>
+                        </li>
+                    </ul>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" class="boton-azul-borde-mediano"
+                                    data-toggle="modal" data-target="#normatividadCovid">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0" href="#"><button type="button"
+                                    class="boton-amarillo-mediano px-4">Abrir</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+        <!-- -------------------Tarjeta-------------------- -->
+        <div class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria-2">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img src="./imagenes/imagenes.png" class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">Normatividad COVID-19</h5>
+                        </li>
+                    </ul>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" class="boton-azul-borde-mediano"
+                                    data-toggle="modal" data-target="#normatividadCovid">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0" href="#"><button type="button"
+                                    class="boton-amarillo-mediano px-4">Abrir</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+        <!-- -------------------Tarjeta-------------------- -->
+        <div class="col-sm-6 col-md-3 col-lg-2 py-2 text-center p-1" id="categoria-2">
+            <div class="card col p-0 mx-auto text-center">
+                <div class="card-header p-0">
+                    <img src="./imagenes/imagenes.png" class="img-fluid">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5 id="titulos">Normatividad COVID-19</h5>
+                        </li>
+                    </ul>
+                    <div class="row no-gutters">
+                        <div class="col text-center">
+                            <a class="nav-link p-0"><button type="button" class="boton-azul-borde-mediano"
+                                    data-toggle="modal" data-target="#normatividadCovid">Acerca de</button></a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="nav-link p-0" href="#"><button type="button"
+                                    class="boton-amarillo-mediano px-4">Abrir</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- -------------------Fin Tarjeta-------------------- -->
+    </div>
+</div>
+<!-- -------------------Fin Categoria-------------------- -->
+<hr>

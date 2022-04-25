@@ -1,0 +1,106 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="col">
+                <!-- -------------------Programa-------------------- -->
+                <h1 class="text-center pt-3" id="titulo-carrera">Usuarios</h1>
+                <!-- -------------------Fin Programa-------------------- -->
+                <br>
+                <hr>
+                <br>
+                <div class="row">
+                    <div class="col-12">
+                        <h3 id="titulo-semestre">Administrativos</h2>
+                    </div>
+                    <table class="table ng-scope">
+                        <thead>
+                            <tr>
+                                <th scope="col">Documento</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat = "x in array | filter: {TipoUsua: 1} ">
+                                <td class="ng-binding">{{x.NumeDocu}}</td>
+                                <td class="ng-binding">{{x.Nom1Usua}}</td>
+                                <td class="ng-binding">{{x.EmaiUsua}}</td>
+                                <td>
+                                    <button type="button" class="boton-azul-borde-mediano text-center"
+                                        data-toggle="modal" data-target="#exampleModalCenter">
+                                        Modificar
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <hr>
+                <br>
+                <div class="row">
+                    <div class="col-12">
+                        <h3 id="titulo-semestre">Docentes</h2>
+                    </div>
+                    <table class="table ng-scope">
+                        <thead>
+                            <tr>
+                                <th scope="col">Documento</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="x in array | filter: {TipoUsua: 3} ">
+                                <td class="ng-binding">{{x.NumeDocu}}</td>
+                                <td class="ng-binding">{{x.Nom1Usua}}</td>
+                                <td class="ng-binding">{{x.EmaiUsua}}</td>
+                                <td>
+                                    <button type="button" class="boton-azul-borde-mediano text-center" data-toggle="modal"
+                                        data-target="#exampleModalCenter">
+                                        Modificar
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <hr>
+                <br>
+                <div class="row">
+                    <div class="col-12">
+                        <h3 id="titulo-semestre">Estudiantes</h2>
+                    </div>
+                    <table class="table ng-scope">
+                        <thead>
+                            <tr>
+                                <th scope="col">Documento</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="x in array | filter: {TipoUsua: 2} ">
+                                <td class="ng-binding">{{x.NumeDocu}}</td>
+                                <td class="ng-binding">{{x.Nom1Usua}}</td>
+                                <td class="ng-binding">{{x.EmaiUsua}}</td>
+                                <td>
+                                    <button type="button" class="boton-azul-borde-mediano text-center" data-toggle="modal"
+                                        data-target="#exampleModalCenter">
+                                        Modificar
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>

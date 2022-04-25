@@ -1,0 +1,82 @@
+<div class="container-fluid text-center">
+    <div class="row px-5">
+        <div class="col">
+            <h2 class="p-3" id="titulo-carrera">{{nombreCurso}}</h2>
+        </div>
+    </div>
+</div>
+<div class="container py-3 px-5 borde-matricula">
+    <div class="row">
+        <!-- -------------------Materia-------------------- -->
+        <div ng-repeat="minicurso in miniCursos" class="col-12 col-md-6 p-4">
+            <div class="col-12 px-0 borde-materia">
+                <div class="col-12 p-0 mx-auto" id="titulo-materia">
+                    <h2 class="text-center py-4 m-0">{{minicurso.Tema}}</h2>
+                </div>
+                <div class="col-12 mx-auto py-3 tarjeta-materia px-1 px-lg-2">
+                    <ul class="list-unstyled">
+                        <li class="px-1">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="{{minicurso.Progreso}}"
+                                    aria-valuemin="0" aria-valuemax="100" ng-style="{ width: minicurso.Progreso + '%'}">
+                                    {{minicurso.Progreso}} %
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="row">
+                        <div ng-if="minicurso.Progreso != 100" class="col text-right">
+                            <a class="nav-link p-0" ng-click="ingresominiCurso(minicurso.Tema,minicurso.Progreso,minicurso.MateriaPrev)"><button type="button"
+                                    class="my-auto px-4 py-2 boton-amarillo">Nivelación</button></a>
+                        </div>
+                        <div ng-if="minicurso.Progreso == 100" class="col">
+                            <P>*¡FELICITACIONES, RECUERDAS MUY BIEN LOS TEMAS ESTUDIADOS!</P>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- -------------------Fin Materia-------------------- -->
+
+
+        <!-- -------------------Materia-------------------- -->
+        <div class="col-12 col-md-6 p-4">
+            <div class="col-12 px-0 borde-materia">
+                <div class="col-12 p-0 mx-auto" id="titulo-materia">
+                    <h2 class="text-center py-4 m-0">TOTAL</h2>
+                </div>
+                <div class="col-12 mx-auto py-3 tarjeta-materia px-1 px-lg-2">
+                    <ul class="list-unstyled">
+                        <li class="px-1">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="{{progreTotal}}"
+                                    aria-valuemin="0" aria-valuemax="100" ng-style="{ width: progreTotal + '%'}">
+                                    {{progreTotal}} %
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="row">
+                        <div class="col">
+                            <P>REALIZA TODOS LOS CURSOS DE NIVELACIÓN Y ASI PODRAS CONTINUAR CON LA MATERIA.</P>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- -------------------Fin Materia-------------------- -->
+    </div>
+</div>
+<div class="container-fluid p-5">
+    <div class="row">
+        <div class="col my-auto ml-auto">
+            <div class="row">
+                <div class="text-right px-3 ml-auto">
+                    <a ng-if="progreTotal == 100" class="nav-link p-0" ng-click="inicio_materia()"><button type="button"
+                            class="my-auto px-4 py-2 boton-amarillo">Continuar</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
