@@ -10,8 +10,8 @@
                 <div class="form-group borde-formulario">
                     <select class="custom-select" ng-model="tema" id="tema" required>
                         <option value="">Tema</option>
-                        <option ng-repeat="tema in temas" value="{{tema}}" ng-if="tema != 'INTRODUCCION'  && tema.includes('Evaluacion') == false">
-                            {{tema}}
+                        <option ng-repeat="tema in temas" value="{{tema.name}}" ng-if="tema.name != 'INTRODUCCION'  && tema.name.includes('Evaluacion') == false">
+                            {{tema.name}}
                         </option>
                     </select>
                 </div>

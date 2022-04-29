@@ -1452,6 +1452,8 @@ Jacob_App.controller("barra_navegacion", function ($scope, $timeout, $sessionSto
     $scope.temas = Modulos;
     $scope.subtemas = Lecciones;
 
+    console.log($scope.temas);
+
     // Listar
     for (var i = 0; i < $scope.Secciones.length; i++) {
       if ($scope.Secciones[i].name == $sessionStorage.actualNombSec) {
