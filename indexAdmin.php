@@ -46,17 +46,17 @@ if (!isset($_SESSION['user_session2'])) {
       <!-- -------------------Barra colapsable-------------------- -->
       <div class="collapse navbar-collapse mx-4" id="barra">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item ml-2 active">
-            <a class="nav-link border-right" ui-sref="homeAdmin">Inicio</a>
+          <li class="{{nav_item[0]}}">
+            <a class="nav-link border-right" ng-click="cambiarNav(0)" ui-sref="homeAdmin">Inicio</a>
           </li>
-          <li class="nav-item ml-2">
-            <a class="nav-link border-right" ui-sref="materias">Materias</a>
+          <li class="{{nav_item[1]}}">
+            <a class="nav-link border-right" ng-click="cambiarNav(1)" ui-sref="materias">Materias</a>
           </li>
-          <li class="nav-item ml-2">
-            <a class="nav-link border-right" ui-sref="repositorio">Repositorio</a>
+          <li class="{{nav_item[2]}}">
+            <a class="nav-link border-right" ng-click="cambiarNav(2)" ui-sref="repositorio">Repositorio</a>
           </li>
-          <li class="nav-item ml-2">
-            <a class="nav-link border-right" ui-sref="plus_cursos">+ Cursos</a>
+          <li class="{{nav_item[3]}}">
+            <a class="nav-link border-right" ng-click="cambiarNav(3)" ui-sref="plus_cursos">+Cursos</a>
           </li>
         </ul>
 
@@ -211,9 +211,14 @@ if (!isset($_SESSION['user_session2'])) {
   </div>
 
 
-  <div ng-if="'plus_cursos' | includedByState"  class="ml-auto text-right" id="crear">
+  <div ng-if="'plus_cursos' | includedByState" class="ml-auto text-right" id="crear">
     <a class="nav-link py-1" ui-sref="crear_categoria"><button type="button" class="my-auto px-4 py-2 boton-naranja-borde">Crear Categoría +</button></a>
     <a class="nav-link py-1" ui-sref="crear_curso"><button type="button" class="my-auto px-4 py-2 boton-naranja-borde">Crear Curso +</button></a>
+  </div>
+
+  <div ng-if="'repositorio' | includedByState" class="ml-auto text-right" id="crear">
+    <a class="nav-link py-1" ui-sref="crear_categoria"><button type="button" class="my-auto px-4 py-2 boton-naranja-borde">Crear Categoría +</button></a>
+    <a class="nav-link py-1" ui-sref="crear_archivo"><button type="button" class="my-auto px-4 py-2 boton-naranja-borde">Crear Archivo +</button></a>
   </div>
 
 

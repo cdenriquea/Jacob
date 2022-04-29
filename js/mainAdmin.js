@@ -9,6 +9,16 @@ Jacob_App.config(function ($stateProvider, $urlRouterProvider) {
       templateUrl: "homeAdmin.html",
       controller: "adminController",
     })
+    .state("homeDocente", {
+      url: "/homeDocente",
+      templateUrl: "homeDocente.html",
+      controller: "docenteController",
+    })
+    .state("reportes", {
+      url: "/reportes",
+      templateUrl: "reportes_docente.html",
+      controller: "docenteController",
+    })
     .state("materias", {
       url: "/materias",
       templateUrl: "materias.html",
@@ -22,7 +32,7 @@ Jacob_App.config(function ($stateProvider, $urlRouterProvider) {
     .state("crear_categoria", {
       url: "/crear_categoria",
       templateUrl: "crear_categoria.html",
-      controller: "plus_cursos",
+      controller: "crear_categoria",
     })
     .state("crear_curso", {
       url: "/crear_curso",
@@ -235,7 +245,19 @@ Jacob_App.run([
   function ($state, $rootScope, $stateParams, $anchorScroll) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
-    $state.go("homeAdmin");
+
+    const pathUrl = window.location.href;
+    var indexPath = pathUrl.substring(pathUrl.lastIndexOf("/") + 1);
+    switch (indexPath) {
+      case "indexDocente.php":
+        $state.go("homeDocente");
+        break;
+      case "indexAdmin.php":
+        $state.go("homeAdmin");
+        break;
+    }
+
+    //console.log("Page location is " + indexPath);
     $anchorScroll.yOffset = 1000; // Scroll de 1000 px extra
 
     //Siempre iniciar en top
@@ -334,11 +356,54 @@ Jacob_App.controller("adminController", function ($scope, $timeout, $sessionStor
         $scope.nom_usu = array[0].name;
         $scope.usu_tipo = array[0].usu_tipo;
         $scope.emai_usua = array[0].emai_usua;
+        $sessionStorage.usu_tipo = $scope.usu_tipo;
       }, 100);
     }
   };
   xmlhttp.open("GET", url, true);
   xmlhttp.send();
+
+  //Marcado en selección de Pestañas
+  $scope.nav_item = ["nav-item ml-2 active", "nav-item ml-2", "nav-item ml-2", "nav-item ml-2"];
+  $scope.cambiarNav = function (pestaña) {
+    for (var i = 0; i < $scope.nav_item.length; i++) {
+      if (pestaña == i) {
+        $scope.nav_item[i] = "nav-item ml-2 active";
+      } else {
+        $scope.nav_item[i] = "nav-item ml-2";
+      }
+    }
+  };
+});
+Jacob_App.controller("docenteController", function ($scope, $timeout, $sessionStorage) {
+  var xmlhttp = new XMLHttpRequest();
+  var url = "php/user.php";
+  xmlhttp.onreadystatechange = function () {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+      var array = JSON.parse(xmlhttp.responseText);
+      $timeout(function () {
+        $sessionStorage.idGlobal = array[0].id;
+        $scope.nom_usu = array[0].name;
+        $scope.usu_tipo = array[0].usu_tipo;
+        $scope.emai_usua = array[0].emai_usua;
+        $sessionStorage.usu_tipo = $scope.usu_tipo;
+      }, 100);
+    }
+  };
+  xmlhttp.open("GET", url, true);
+  xmlhttp.send();
+
+  //Marcado en selección de Pestañas
+  $scope.nav_item = ["nav-item ml-2 active", "nav-item ml-2", "nav-item ml-2", "nav-item ml-2", "nav-item ml-2"];
+  $scope.cambiarNav = function (pestaña) {
+    for (var i = 0; i < $scope.nav_item.length; i++) {
+      if (pestaña == i) {
+        $scope.nav_item[i] = "nav-item ml-2 active";
+      } else {
+        $scope.nav_item[i] = "nav-item ml-2";
+      }
+    }
+  };
 });
 
 Jacob_App.controller("inscripciones", function ($scope, $state, $timeout, $rootScope) {
@@ -428,6 +493,7 @@ Jacob_App.controller("materias", function ($scope, $timeout, $sessionStorage, $s
       var Semestres = [];
       $scope.SemestresR = [];
       $scope.Programas = [];
+      $scope.idDocente = [];
 
       for (var i = 0; i < $sessionStorage.Materias.length; i++) {
         Semestres[i] = {
@@ -435,6 +501,7 @@ Jacob_App.controller("materias", function ($scope, $timeout, $sessionStorage, $s
           Programa: $sessionStorage.Materias[i].Programa,
         };
         $scope.Programas[i] = $sessionStorage.Materias[i].Programa;
+        $scope.idDocente[i] = $sessionStorage.Materias[i].idDocente;
       }
       //Filtrar
 
@@ -469,7 +536,7 @@ Jacob_App.controller("materias", function ($scope, $timeout, $sessionStorage, $s
     $scope.Codigo = Codigo;
   };
 
-  $scope.ingresoCurso = function (Categoria, Tipo, id, Nombre, Semestre, Programa, Usua) {
+  $scope.ingresoCurso = function (Categoria, Tipo, id, Nombre, Semestre, Programa, Usua, idDocente) {
     var evaluacionCurso = -1;
 
     $sessionStorage.Categoria = Categoria;
@@ -480,57 +547,64 @@ Jacob_App.controller("materias", function ($scope, $timeout, $sessionStorage, $s
     $sessionStorage.Programa = Programa;
     $sessionStorage.Usuario = Usua;
     $sessionStorage.evaluacionCurso = evaluacionCurso;
+    $sessionStorage.idDocente = idDocente;
 
-    //Contenido para curso-materia seleccionado
-    $scope.curso = "Contenido Curso";
-    $.post("php/contenido_materias.php", { idCurso: $sessionStorage.idCurso, Tipo: $sessionStorage.Tipo }, function (curso) {
-      var array = JSON.parse(curso);
+    console.log($sessionStorage.usu_tipo);
 
-      $timeout(function () {
-        //Revisar y organizar Datos //
-        array.sort(function (x, y) {
-          return x.Puesto - y.Puesto;
-        });
+    if ($sessionStorage.usu_tipo == 2 || $sessionStorage.idGlobal == $sessionStorage.idDocente) {
+      //Contenido para curso-materia seleccionado
+      $scope.curso = "Contenido Curso";
+      $.post("php/contenido_materias.php", { idCurso: $sessionStorage.idCurso, Tipo: $sessionStorage.Tipo }, function (curso) {
+        var array = JSON.parse(curso);
 
-        $sessionStorage.tema = array;
-        $sessionStorage.NombModulo = [];
-        $sessionStorage.NombLeccion = [];
-        $sessionStorage.navLink = [];
-        $sessionStorage.Nota = parseFloat($sessionStorage.evaluacionCurso);
-        for (i = 0; i < $sessionStorage.tema.length; i++) {
-          $sessionStorage.NombModulo[i] = $sessionStorage.tema[i].NombModulo;
-          $sessionStorage.NombLeccion[i] = $sessionStorage.tema[i].NombLeccion;
-        }
+        $timeout(function () {
+          //Revisar y organizar Datos //
+          array.sort(function (x, y) {
+            return x.Puesto - y.Puesto;
+          });
 
-        //nav-link
-        for (i = 1; i < $sessionStorage.tema.length; i++) {
-          $sessionStorage.navLink[i] = "nav-link titulos-modulos";
-        }
-        $sessionStorage.navLink[0] = "nav-link titulos-activos";
-        //Inicio Seccion
-        $scope.inicioSec = $sessionStorage.tema[0].Seccion;
-        $scope.inicioNombSec = $sessionStorage.tema[0].NombSeccion;
-        $scope.contSec = $sessionStorage.tema[0].Contenido;
+          $sessionStorage.tema = array;
+          $sessionStorage.NombModulo = [];
+          $sessionStorage.NombLeccion = [];
+          $sessionStorage.navLink = [];
+          $sessionStorage.Nota = parseFloat($sessionStorage.evaluacionCurso);
+          for (i = 0; i < $sessionStorage.tema.length; i++) {
+            $sessionStorage.NombModulo[i] = $sessionStorage.tema[i].NombModulo;
+            $sessionStorage.NombLeccion[i] = $sessionStorage.tema[i].NombLeccion;
+          }
 
-        $sessionStorage.actualSec = $scope.inicioSec;
-        $sessionStorage.actualNombSec = $scope.inicioNombSec;
+          //nav-link
+          for (i = 1; i < $sessionStorage.tema.length; i++) {
+            $sessionStorage.navLink[i] = "nav-link titulos-modulos";
+          }
+          $sessionStorage.navLink[0] = "nav-link titulos-activos";
+          //Inicio Seccion
+          $scope.inicioSec = $sessionStorage.tema[0].Seccion;
+          $scope.inicioNombSec = $sessionStorage.tema[0].NombSeccion;
+          $scope.contSec = $sessionStorage.tema[0].Contenido;
 
-        try {
-          $sessionStorage.prevSec = $sessionStorage.tema[0].Orden;
-        } catch (e) {
-          $sessionStorage.prevSec = $sessionStorage.tema[0].Orden;
-        }
+          $sessionStorage.actualSec = $scope.inicioSec;
+          $sessionStorage.actualNombSec = $scope.inicioNombSec;
 
-        try {
-          $sessionStorage.nextSec = $sessionStorage.tema[1].Orden;
-        } catch (e) {
-          $sessionStorage.nextSec = $sessionStorage.tema[1].Orden;
-        }
-        $sessionStorage.actualSecId = $sessionStorage.tema[0].Orden;
-        $sessionStorage.Objetivos = $sessionStorage.tema[0].Contenido.split("</p>");
-        $state.go("objetivos");
-      }, 10);
-    });
+          try {
+            $sessionStorage.prevSec = $sessionStorage.tema[0].Orden;
+          } catch (e) {
+            $sessionStorage.prevSec = $sessionStorage.tema[0].Orden;
+          }
+
+          try {
+            $sessionStorage.nextSec = $sessionStorage.tema[1].Orden;
+          } catch (e) {
+            $sessionStorage.nextSec = $sessionStorage.tema[1].Orden;
+          }
+          $sessionStorage.actualSecId = $sessionStorage.tema[0].Orden;
+          $sessionStorage.Objetivos = $sessionStorage.tema[0].Contenido.split("</p>");
+          $state.go("objetivos");
+        }, 10);
+      });
+    } else {
+      alert("No esta autorizado para modificar la materia!!");
+    }
   };
 
   $scope.logout = function () {
@@ -559,13 +633,11 @@ Jacob_App.controller("materias", function ($scope, $timeout, $sessionStorage, $s
 });
 
 Jacob_App.controller("plus_cursos", function ($scope, $timeout, $sessionStorage, $state, $rootScope) {
-  $scope.mensaje = "Hola";
   $.post("php/listar_cursos_all.php", { valorBusqueda: $sessionStorage.idGlobal }, function (mensaje) {
     var array = JSON.parse(mensaje);
     $timeout(function () {
       $scope.Cursos = array;
       $sessionStorage.Materias = array;
-      console.log(array);
 
       // Funcion para remover valores
       function removerDuplicados(data) {
@@ -579,7 +651,6 @@ Jacob_App.controller("plus_cursos", function ($scope, $timeout, $sessionStorage,
       }
 
       $scope.Categorias = removerDuplicados($scope.Categorias);
-      console.log($scope.Categorias);
     }, 50);
   });
 
@@ -718,9 +789,12 @@ Jacob_App.controller("crear_materia", function ($scope, $timeout, $state, $http,
     $timeout(function () {
       var array2 = JSON.parse(mensaje);
       $scope.listaDoc = [];
+      $scope.idDoc = [];
       for (i = 0; i < array2.length; i++) {
         $scope.listaDoc[i] = array2[i].Nom1Usua;
+        $scope.idDoc[i] = array2[i].idDocente;
       }
+      console.log("id del docente", $scope.idDoc);
     }, 50);
   });
 
@@ -910,22 +984,8 @@ Jacob_App.controller("crear_materia", function ($scope, $timeout, $state, $http,
     }
 
     //Docentes
-    var Docentes;
-    var cont = 0;
-    for (var i = 1; i < 8; i++) {
-      if ($scope["Docente" + i] !== undefined && $scope["Docente" + i] !== "") {
-        cont = cont + 1;
-        if (cont == 1) {
-          Docentes = $scope["Docente" + i];
-        } else {
-          Docentes = Docentes + "</p>" + $scope["Docente" + i];
-        }
-      }
-    }
-
-    if (Docentes === undefined || Docentes == "") {
-      Docentes = "NULL";
-    }
+    var Docentes = $scope.Docente1.split("|")[0];
+    var IdDocente = $scope.Docente1.split("|")[1];
 
     //Bienvenida
     var Bienvenida;
@@ -1019,6 +1079,8 @@ Jacob_App.controller("crear_materia", function ($scope, $timeout, $state, $http,
       }
     }
 
+    console.log("Docente", Docentes);
+
     $.post(
       "php/crear_materia2.php",
       {
@@ -1038,9 +1100,12 @@ Jacob_App.controller("crear_materia", function ($scope, $timeout, $state, $http,
         Sede: Sede,
         Jornada: Jornada,
         Horario: Horario,
+        idCreador: $sessionStorage.idGlobal,
+        idDocente: IdDocente,
       },
       function (mensaje) {
         $timeout(function () {
+          console.log($sessionStorage.idGlobal);
           var array = JSON.parse(mensaje);
           if (array[0].message == "true") {
             console.log("si");
@@ -1095,15 +1160,18 @@ Jacob_App.controller("barra_navegacion", function ($scope, $timeout, $sessionSto
       Modulo: $sessionStorage.tema[i].NombModulo,
       Leccion: $sessionStorage.tema[i].NombLeccion,
       Orden: $sessionStorage.tema[i].Orden,
+      idCreador: $sessionStorage.tema[i].idCreador,
     };
     Lecciones[i] = {
       name: $sessionStorage.tema[i].NombLeccion,
       tipo: $sessionStorage.tema[i].Seccion,
       Modulo: $sessionStorage.tema[i].NombModulo,
+      idCreador: $sessionStorage.tema[i].idCreador,
     };
     Modulos[i] = {
       name: $sessionStorage.NombModulo[i],
       tipo: $sessionStorage.tema[i].Seccion,
+      idCreador: $sessionStorage.tema[i].idCreador,
     };
   }
 
@@ -1358,15 +1426,18 @@ Jacob_App.controller("barra_navegacion", function ($scope, $timeout, $sessionSto
         Modulo: $sessionStorage.tema[i].NombModulo,
         Leccion: $sessionStorage.tema[i].NombLeccion,
         Orden: $sessionStorage.tema[i].Orden,
+        idCreador: $sessionStorage.tema[i].idCreador,
       };
       Lecciones[i] = {
         name: $sessionStorage.tema[i].NombLeccion,
         tipo: $sessionStorage.tema[i].Seccion,
         Modulo: $sessionStorage.tema[i].NombModulo,
+        idCreador: $sessionStorage.tema[i].idCreador,
       };
       Modulos[i] = {
         name: $sessionStorage.tema[i].NombModulo,
         tipo: $sessionStorage.tema[i].Seccion,
+        idCreador: $sessionStorage.tema[i].idCreador,
       };
     }
 
@@ -3225,7 +3296,7 @@ Jacob_App.controller("contenido_curso", function ($scope, $state, $timeout, $roo
         $scope.OpcCorrectas[i] = $scope.Evaluacion[i].respuesta;
         $scope.Explicacion[i] = $scope.Evaluacion[i].explicacion;
       }
-      $scope.calificacion = $sessionStorage.Calificacion;
+      $scope.calificacion = $sessionStorage.calificacion;
       $scope.nota = $sessionStorage.Nota.toFixed(1);
 
       //Checked-disabled//
@@ -3256,6 +3327,7 @@ Jacob_App.controller("contenido_curso", function ($scope, $state, $timeout, $roo
         if (opciones.includes(undefined) || opciones.length < $scope.Preguntas.length) {
           $scope.mostrar = "true";
         } else {
+          $scope.Evaluacion = $sessionStorage.preguntasEvalTemp;
           $sessionStorage.Respuesta = angular.copy(opciones);
           $scope.Respuesta = $sessionStorage.Respuesta;
           $scope.mostrar = "";
@@ -3284,6 +3356,7 @@ Jacob_App.controller("contenido_curso", function ($scope, $state, $timeout, $roo
 
           var nota = (5 * parseInt(num)) / parseInt($scope.OpcCorrectas.length);
           $sessionStorage.Nota = nota;
+          console.log($sessionStorage.Respuesta, $scope.OpcCorrectas);
 
           $scope.mensaje = "Enviando Evaluacion";
           $.post(
@@ -3659,6 +3732,34 @@ Jacob_App.controller("crear_programa", function ($scope, $state, $timeout, $root
     );
   };
 });
+Jacob_App.controller("crear_categoria", function ($scope, $state, $timeout, $rootScope, $stateParams, $localStorage, $sessionStorage, $http) {
+  $scope.crear_categoria = function () {
+    $.post(
+      "php/crear_categoria.php",
+      {
+        Nombre: $scope.nombreCategoria,
+      },
+      function (mensaje) {
+        $timeout(function () {
+          console.log(mensaje);
+          var array = JSON.parse(mensaje);
+          if (array[0].message == "true") {
+            console.log("si");
+            alert("Creacion exitosa!!");
+            $state.go("plus_cursos");
+          } else {
+            if (array[0].message == "false2") {
+              alert("El programa ya existen!!");
+            } else {
+              console.log("no");
+              alert("Se genero un error!!");
+            }
+          }
+        }, 200);
+      },
+    );
+  };
+});
 
 Jacob_App.controller("aceptarMatricula", function ($scope, $state, $timeout, $rootScope, $stateParams, $localStorage, $sessionStorage, $http) {
   $scope.idCurso = 0;
@@ -3909,8 +4010,10 @@ Jacob_App.controller("crear_curso", function ($scope, $timeout, $state, $http, $
     $timeout(function () {
       var array2 = JSON.parse(mensaje);
       $scope.listaDoc = [];
+      $scope.idDoc = [];
       for (i = 0; i < array2.length; i++) {
         $scope.listaDoc[i] = array2[i].Nom1Usua;
+        $scope.idDoc[i] = array2[i].idDocente;
       }
     }, 50);
   });
@@ -3950,6 +4053,9 @@ Jacob_App.controller("crear_curso", function ($scope, $timeout, $state, $http, $
       Objetivos = "NULL";
     }
 
+    var Docente = $scope.Docente.split("|")[0];
+    var IdDocente = $scope.Docente.split("|")[1];
+
     $.post(
       "php/crear_curso.php",
       {
@@ -3958,10 +4064,12 @@ Jacob_App.controller("crear_curso", function ($scope, $timeout, $state, $http, $
         Descripcion: $scope.Acercade,
         Fundamentos: $scope.Fundamentos,
         Objetivos: Objetivos,
-        Nomb_Docente: $scope.Docente,
+        Nomb_Docente: Docente,
+        idDocente: IdDocente,
         Bienvenida: $scope.Bienvenida,
         Precio: $scope.Precio,
         Informacion: $scope.Informacion,
+        idCreador: $sessionStorage.idGlobal,
       },
       function (mensaje) {
         $timeout(function () {
@@ -3991,31 +4099,14 @@ Jacob_App.controller("crear_curso", function ($scope, $timeout, $state, $http, $
 });
 
 Jacob_App.controller("repositorio", function ($scope, $state, $timeout, $sessionStorage) {
-  //Cargar programas
-  var xmlhttp = new XMLHttpRequest();
-  var url = "php/buscar_programa.php";
-  xmlhttp.onreadystatechange = function () {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-      var array = JSON.parse(xmlhttp.responseText);
-      $sessionStorage.listProgramas = array;
-    }
-  };
-  xmlhttp.open("GET", url, true);
-  xmlhttp.send();
-
   //Cargar categorias
-  var xmlhttp1 = new XMLHttpRequest();
-  var url = "php/buscar_categoria.php";
-  xmlhttp1.onreadystatechange = function () {
-    if (xmlhttp1.readyState == 4 && xmlhttp1.status == 200) {
-      var array = JSON.parse(xmlhttp1.responseText);
+  $.post("php/buscar_categoria.php", { TipoUsua: "3" }, function (mensaje) {
+    $timeout(function () {
+      var array = JSON.parse(mensaje);
       $sessionStorage.listCategorias = array;
-    }
-  };
-  xmlhttp1.open("GET", url, true);
-  xmlhttp1.send();
-
-  $scope.lista = $sessionStorage.listProgramas;
+      $scope.lista = $sessionStorage.listCategorias;
+    }, 50);
+  });
 
   $scope.busqueda = function (categoria) {
     $scope.buscarCategoria = categoria;
@@ -4025,7 +4116,6 @@ Jacob_App.controller("repositorio", function ($scope, $state, $timeout, $session
     $timeout(function () {
       var array = JSON.parse(mensaje);
       $sessionStorage.archivos = array;
-      console.log($sessionStorage.archivos);
     }, 50);
   });
 });

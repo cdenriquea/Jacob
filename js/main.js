@@ -2541,48 +2541,27 @@ Jacob_App.controller("matricula", function ($scope, $state, $timeout, $sessionSt
 });
 
 Jacob_App.controller("repositorio", function ($scope, $state, $timeout, $sessionStorage) {
-  //Cargar programas
-  var xmlhttp = new XMLHttpRequest();
-  var url = "php/buscar_programa.php";
-  xmlhttp.onreadystatechange = function () {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-      var array = JSON.parse(xmlhttp.responseText);
-      $sessionStorage.listProgramas = array;
-    }
-  };
-  xmlhttp.open("GET", url, true);
-  xmlhttp.send();
-
   //Cargar categorias
-  var xmlhttp1 = new XMLHttpRequest();
-  var url = "php/buscar_categoria.php";
-  xmlhttp1.onreadystatechange = function () {
-    if (xmlhttp1.readyState == 4 && xmlhttp1.status == 200) {
-      var array = JSON.parse(xmlhttp1.responseText);
+  $.post("php/buscar_categoria.php", { TipoUsua: "3" }, function (mensaje) {
+    $timeout(function () {
+      var array = JSON.parse(mensaje);
       $sessionStorage.listCategorias = array;
-    }
-  };
-  xmlhttp1.open("GET", url, true);
-  xmlhttp1.send();
-
-  $scope.lista = $sessionStorage.listProgramas;
+      $scope.lista = $sessionStorage.listCategorias;
+      console.log($scope.lista);
+    }, 50);
+  });
 
   $scope.busqueda = function (categoria) {
     $scope.buscarCategoria = categoria;
   };
   //Cargar archivos
-  var xmlhttp2 = new XMLHttpRequest();
-  var url = "php/buscarDirectorio.php";
-  xmlhttp2.onreadystatechange = function () {
-    if (xmlhttp2.readyState == 4 && xmlhttp2.status == 200) {
-      var array = JSON.parse(xmlhttp2.responseText);
+  $.post("php/buscarDirectorio.php", { TipoUsua: "3" }, function (mensaje) {
+    $timeout(function () {
+      var array = JSON.parse(mensaje);
       $sessionStorage.archivos = array;
-    }
-  };
-  xmlhttp2.open("GET", url, true);
-  xmlhttp2.send();
-
-  console.log($sessionStorage.archivos);
+      console.log($sessionStorage.archivos);
+    }, 50);
+  });
 });
 
 Jacob_App.controller("perfil", function ($scope, $state, $timeout, $sessionStorage) {

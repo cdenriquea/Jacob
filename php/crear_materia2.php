@@ -1,41 +1,39 @@
 <?php
-	include 'conectar.php';
-	
-	$query = "SELECT * FROM materias WHERE Nombre='".$_POST['Nombre']."';";
+include 'conectar.php';
 
-	mysqli_set_charset($conn, "utf8"); //formato de datos utf8
+$query = "SELECT * FROM materias WHERE Nombre='" . $_POST['Nombre'] . "';";
 
-	if(!$result = mysqli_query($conn, $query)) die();
+mysqli_set_charset($conn, "utf8"); //formato de datos utf8
 
-	$numRows = mysqli_num_rows($result);
+if (!$result = mysqli_query($conn, $query)) die();
 
-	if($numRows == 0){
-       
-    $OBJETIVOS = $_POST['Objetivos']."</p>".$_POST['Fundamentos'];
-    $DOCENTE = $_POST['Nomb_Docente']."</p>".$_POST['Bienvenida'];
-    $HORARIO = $_POST['Horario'];
+$numRows = mysqli_num_rows($result);
 
-		$sqlInsertMate = "INSERT INTO materias (Nombre,Programa,Semestre,Categoria,Creditos,Prerequisito,Descripcion,MateriaPrev,TemaPrev,Sede,Jornada,Fecha,img) VALUES ('".$_POST['Nombre']."','".$_POST['Programa']."',".$_POST['Semestre'].",'".$_POST['Categoria']."','".$_POST['Creditos']."','".$_POST['Prerequisito']."','".$_POST['Descripcion']."','".$_POST['MateriaPrev']."','".$_POST['TemaPrev']."','".$_POST['Sede']."','".$_POST['Jornada']."',CURDATE(),'imagen.jpg');";
-    mysqli_query($conn, $sqlInsertMate);
-    $Id = mysqli_insert_id($conn);
+if ($numRows == 0) {
 
-    if($Id != 0){
-        $sqlInsert = "INSERT INTO temas_materias (Puesto,CodiMate,Materia,Seccion,NombModulo,NombLeccion,NombSeccion,Contenido) VALUES (1,'{$Id}','" . $_POST['Nombre'] . "','Objetivos','INTRODUCCION','Bienvenid@','Objetivos','{$OBJETIVOS}');";
-        $sqlInsert .= "INSERT INTO temas_materias (Puesto,CodiMate,Materia,Seccion,NombModulo,NombLeccion,NombSeccion,Contenido) VALUES (2,'{$Id}','" . $_POST['Nombre'] . "','Equipo','INTRODUCCION','Bienvenid@','Conoce a tu docente','{$DOCENTE}');";
-        $sqlInsert .= "INSERT INTO temas_materias (Puesto,CodiMate,Materia,Seccion,NombModulo,NombLeccion,NombSeccion,Contenido) VALUES (3,'{$Id}','" . $_POST['Nombre'] . "','Horario','INTRODUCCION','Bienvenid@','Horario y Cronograma','{$HORARIO}')";
-    }
+  $OBJETIVOS = $_POST['Objetivos'] . "</p>" . $_POST['Fundamentos'];
+  $DOCENTE = $_POST['Nomb_Docente'] . "</p>" . $_POST['Bienvenida'];
+  $HORARIO = $_POST['Horario'];
+
+  $sqlInsertMate = "INSERT INTO materias (Nombre,Programa,Semestre,Categoria,Creditos,Prerequisito,Descripcion,MateriaPrev,TemaPrev,Sede,Jornada,Fecha,img,idDocente) VALUES ('" . $_POST['Nombre'] . "','" . $_POST['Programa'] . "'," . $_POST['Semestre'] . ",'" . $_POST['Categoria'] . "','" . $_POST['Creditos'] . "','" . $_POST['Prerequisito'] . "','" . $_POST['Descripcion'] . "','" . $_POST['MateriaPrev'] . "','" . $_POST['TemaPrev'] . "','" . $_POST['Sede'] . "','" . $_POST['Jornada'] . "',CURDATE(),'imagen.jpg','" . $_POST['idDocente'] . "');";
+  mysqli_query($conn, $sqlInsertMate);
+  $Id = mysqli_insert_id($conn);
+
+  if ($Id != 0) {
+    $sqlInsert = "INSERT INTO temas_materias (Puesto,CodiMate,Materia,Seccion,NombModulo,NombLeccion,NombSeccion,Contenido,idCreador) VALUES (1,'{$Id}','" . $_POST['Nombre'] . "','Objetivos','INTRODUCCION','Bienvenid@','Objetivos','{$OBJETIVOS}','" . $_POST['idCreador'] . "');";
+    $sqlInsert .= "INSERT INTO temas_materias (Puesto,CodiMate,Materia,Seccion,NombModulo,NombLeccion,NombSeccion,Contenido,idCreador) VALUES (2,'{$Id}','" . $_POST['Nombre'] . "','Equipo','INTRODUCCION','Bienvenid@','Conoce a tu docente','{$DOCENTE}','" . $_POST['idCreador'] . "');";
+    $sqlInsert .= "INSERT INTO temas_materias (Puesto,CodiMate,Materia,Seccion,NombModulo,NombLeccion,NombSeccion,Contenido,idCreador) VALUES (3,'{$Id}','" . $_POST['Nombre'] . "','Horario','INTRODUCCION','Bienvenid@','Horario y Cronograma','{$HORARIO}','" . $_POST['idCreador'] . "')";
+  }
 
 
-    if ($conn->multi_query($sqlInsert) === TRUE) {
-            echo '[{"message":"true"}]';
-          } else {
-            echo "Error: " . $sqlInsert . "<br>" . $conn->error;
-            echo '[{"message":"false"}]';
-          }
-          
-     
-	}else{
-		echo '[{"message":"false2"}]';
-	}
+  if ($conn->multi_query($sqlInsert) === TRUE) {
+    echo '[{"message":"true"}]';
+  } else {
+    echo "Error: " . $sqlInsert . "<br>" . $conn->error;
+    echo '[{"message":"false"}]';
+  }
+} else {
+  echo '[{"message":"false2"}]';
+}
 
-	$conn->close();
+$conn->close();

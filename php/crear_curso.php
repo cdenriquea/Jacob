@@ -14,13 +14,13 @@ if ($numRows == 0) {
   $OBJETIVOS = $_POST['Objetivos'] . "</p>" . $_POST['Fundamentos'];
   $DOCENTE = $_POST['Nomb_Docente'] . "</p>" . $_POST['Bienvenida'];
 
-  $sqlInsertCurs = "INSERT INTO cursos (NombCurs,Categoria,Precio,Informacion,Descripcion,Fecha,img) VALUES ('" . $_POST['Nombre'] . "','" . $_POST['Categoria'] . "','" . $_POST['Precio'] . "','" . $_POST['Informacion'] . "','" . $_POST['Descripcion'] . "',CURDATE(),'imagen.jpg');";
+  $sqlInsertCurs = "INSERT INTO cursos (NombCurs,Categoria,Precio,Informacion,Descripcion,Fecha,img,idDocente) VALUES ('" . $_POST['Nombre'] . "','" . $_POST['Categoria'] . "','" . $_POST['Precio'] . "','" . $_POST['Informacion'] . "','" . $_POST['Descripcion'] . "',CURDATE(),'imagen.jpg','" . $_POST['idDocente'] . "');";
   mysqli_query($conn, $sqlInsertCurs);
   $Id = mysqli_insert_id($conn);
 
   if ($Id != 0) {
-    $sqlInsert = "INSERT INTO temas_cursos (Puesto,CodiMate,Materia,Seccion,NombModulo,NombLeccion,NombSeccion,Contenido) VALUES (1,'{$Id}','" . $_POST['Nombre'] . "','Objetivos','INTRODUCCION','Bienvenid@','Objetivos','" . $_POST['Objetivos'] . "');";
-    $sqlInsert .= "INSERT INTO temas_cursos (Puesto,CodiMate,Materia,Seccion,NombModulo,NombLeccion,NombSeccion,Contenido) VALUES (2,'{$Id}','" . $_POST['Nombre'] . "','Equipo','INTRODUCCION','Bienvenid@','Conoce a tu docente','" . $_POST['Nomb_Docente'] . "')";
+    $sqlInsert = "INSERT INTO temas_cursos (Puesto,CodiMate,Materia,Seccion,NombModulo,NombLeccion,NombSeccion,Contenido,idCreador) VALUES (1,'{$Id}','" . $_POST['Nombre'] . "','Objetivos','INTRODUCCION','Bienvenid@','Objetivos','" . $_POST['Objetivos'] . "','" . $_POST['idCreador'] . "');";
+    $sqlInsert .= "INSERT INTO temas_cursos (Puesto,CodiMate,Materia,Seccion,NombModulo,NombLeccion,NombSeccion,Contenido,idCreador) VALUES (2,'{$Id}','" . $_POST['Nombre'] . "','Equipo','INTRODUCCION','Bienvenid@','Conoce a tu docente','" . $_POST['Nomb_Docente'] . "','" . $_POST['idCreador'] . "')";
   }
 
 

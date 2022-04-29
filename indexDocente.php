@@ -1,20 +1,13 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_session2'])) {
-  header("Location: ./");
+  header("homeDocente");
 }
 ?>
 <!DOCTYPE html>
 <html lang="es" ng-app="Jacob_App">
 
 <head>
-  <style>
-    a.disabled {
-      pointer-events: none;
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-  </style>
 
   <title>JACOB</title>
 
@@ -26,19 +19,22 @@ if (!isset($_SESSION['user_session2'])) {
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="./css/bootstrap.min.css" />
-  <link rel="stylesheet" href="./css/pagination.min.css" />
   <!-- -------------------Titulo del sitio - Jacob-------------------- -->
 
   <link rel="shortcut icon" href="./imagenes/simbolo.ico">
 
+  <!-- -------------------Tiny-MCE------------------- -->
+
+  <script src="https://cdn.tiny.cloud/1/n0hzbe2ngp77nh6eh8daauz41o66okvhgtr4ylsgjp8kazil/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
 </head>
 
-<body ng-controller="mainController">
+<body ng-controller="docenteController">
   <!-- -------------------Barra de Navegación-------------------- -->
   <nav class="navbar navbar-expand-lg navbar-light sticky-top p-0 pt-1" id="navegacion">
     <div class="container-fluid" id="navbar">
-      <div class="col col-md-3 pr-0">
-        <a class="navbar-brand text-primary" id="jacob" href="inicio_jacob.html"><img id="Logo" src="./imagenes/Logo Unificado.png" class="img-fluid"></a>
+      <div class="col">
+        <a class="navbar-brand text-primary" id="jacob" ui-sref="homeDocente"><img id="Logo" src="./imagenes/Logo Unificado.png" class="d-block d-sm-block d-md-none pt-1"><img id="Logo" src="./imagenes/Logo Unificado.png" class="d-none d-sm-none d-md-block"></a>
       </div>
 
       <!-- -------------------Icono Hamburguesa-------------------- -->
@@ -48,22 +44,22 @@ if (!isset($_SESSION['user_session2'])) {
       <!-- -------------------Fin Icono Hamburguesa-------------------- -->
 
       <!-- -------------------Barra colapsable-------------------- -->
-      <div class="collapse navbar-collapse" id="barra">
+      <div class="collapse navbar-collapse mx-4" id="barra">
         <ul class="navbar-nav ml-auto">
           <li class="{{nav_item[0]}}">
-            <a class="nav-link border-right" ng-click="cambiarNav(0)" ui-sref="home">Inicio</a>
+            <a class="nav-link border-right" ng-click="cambiarNav(0)" ui-sref="homeDocente">Inicio</a>
           </li>
           <li class="{{nav_item[1]}}">
-            <a class="nav-link border-right" ng-click="cambiarNav(1)" ui-sref="perfil">Perfil</a>
+            <a class="nav-link border-right" ng-click="cambiarNav(1)" ui-sref="materias">Materias</a>
           </li>
           <li class="{{nav_item[2]}}">
             <a class="nav-link border-right" ng-click="cambiarNav(2)" ui-sref="repositorio">Repositorio</a>
           </li>
           <li class="{{nav_item[3]}}">
-            <a class="nav-link border-right" ng-click="cambiarNav(3)" ui-sref="cursos">+Cursos</a>
+            <a class="nav-link border-right" ng-click="cambiarNav(3)" ui-sref="plus_cursos">+Cursos</a>
           </li>
           <li class="{{nav_item[4]}}">
-            <a class="nav-link border-right" ng-click="cambiarNav(4)" ui-sref="foro">Foro</a>
+            <a class="nav-link border-right" ng-click="cambiarNav(4)" ui-sref="reportes">Reportes</a>
           </li>
         </ul>
 
@@ -116,9 +112,6 @@ if (!isset($_SESSION['user_session2'])) {
                 <a class="dropdown-item" href="#" title="nombre">
                   <h5>{{nom_usu}} {{ape_usu}}</h5>
                 </a>
-                <a class="dropdown-item" href="#" title="nombre">
-                  <h5>{{emai_usua}}</h5>
-                </a>
                 <hr>
                 <a class="dropdown-item" href="#" title="preferencias‎">Preferencias‎</a>
                 <a class="dropdown-item" href="#" title="preferencias‎">contáctanos‎</a>
@@ -130,26 +123,13 @@ if (!isset($_SESSION['user_session2'])) {
       </div>
       <!-- -------------------Fin Barra colapsable-------------------- -->
     </div>
-
-    <!-- -------------------Franja separadora visible con menu colapsado-------------------- -->
-    <div class="container-fluid p-0 d-block d-sm-block d-lg-none" style="z-index: 4;" id="franja"></div>
   </nav>
   <!-- -------------------Fin Barra de navegación-------------------- -->
-
-  <!-- -------------------Franja separadora-------------------- -->
-  <div class="container-fluid sticky-top-2 d-none d-sm-none d-lg-block" style="z-index: 4;" id="franja"></div>
-
   <!-- -------------------Inicio Main-------------------- -->
 
   <main>
 
-
-    <!-- -------------------Mensaje Inicial-------------------- -->
-
     <div ui-view> </div>
-    <!-- -------------------Fin Mensaje Inicial-------------------- -->
-
-    <!-- -------------------Fin Categoria Mis Cursos-------------------- -->
   </main>
   <!-- -------------------Fin Main-------------------- -->
 
@@ -220,65 +200,15 @@ if (!isset($_SESSION['user_session2'])) {
     <!-- -------------------Fin Información intitucional-------------------- -->
   </footer>
 
-  <!-- Modal -->
-  <!-- -------------------Modal Fin examen diagnostico-------------------- -->
-  <div class="container">
-    <div class="modal fade" tabindex="1" role="dialog" id="ModalFin">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title"><img class="pb-1" src="./imagenes/simbolo y escudo.png" width="25%"> FIN EXAMEN DIAGNOSTICO</h3>
-            <button type="button" class="close" data-dismiss="modal">
-              <span arial-hidden="true">&times;</span>
-            </button>
-          </div>
-
-          <div class="modal-body">
-            <h3> Felicidades has terminado el examen, a continuación debes revisar los minicursos para nivelar estos temas en caso de requerirse.</h4>
-          </div>
 
 
-          <div class="modal-footer">
-            <button type="button" class="my-auto px-4 py-2 boton-azul-borde-pequeño" data-dismiss="modal">Cerrar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col col-md-10 mx-auto">
-      </div>
-    </div>
+  <div ng-if="'repositorio' | includedByState" class="ml-auto text-right" id="crear">
+    <a class="nav-link py-1" ui-sref="crear_categoria"><button type="button" class="my-auto px-4 py-2 boton-naranja-borde">Crear Categoría +</button></a>
+    <a class="nav-link py-1" ui-sref="crear_archivo"><button type="button" class="my-auto px-4 py-2 boton-naranja-borde">Crear Archivo +</button></a>
   </div>
 
 
-  <!-- -------------------Modal Inicio Materia-------------------- -->
-  <div class="container">
-    <div class="modal fade" tabindex="1" role="dialog" id="ModalMat">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title"><img class="pb-1" src="./imagenes/simbolo y escudo.png" width="25%"> NIVELACION TERMINADA</h3>
-            <button type="button" class="close" data-dismiss="modal">
-              <span arial-hidden="true">&times;</span>
-            </button>
-          </div>
 
-          <div class="modal-body">
-            <h3> Felicidades has terminado los minicursos de nivelación, ahora puedes continuar con el contenido de la materia.</h4>
-          </div>
-
-
-          <div class="modal-footer">
-            <button type="button" class="my-auto px-4 py-2 boton-azul-borde-pequeño" data-dismiss="modal">Cerrar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col col-md-10 mx-auto">
-      </div>
-    </div>
-  </div>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -290,10 +220,8 @@ if (!isset($_SESSION['user_session2'])) {
   <script src="js/angular-route.js"></script>
   <script src="js/angular-ui-router.min.js"></script>
   <script src="js/ui-bootstrap.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/mainAdmin.js"></script>
   <script src="./js/ngDraggable.js"></script>
-
-
 
 
   <script src="js/jquery-ui.min.js"></script>
