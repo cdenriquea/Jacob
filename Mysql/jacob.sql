@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-05-2021 a las 20:10:04
+-- Tiempo de generación: 30-04-2022 a las 01:55:50
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.2.34
 
@@ -39,6 +39,45 @@ CREATE TABLE `actividades` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `banco_preguntas`
+--
+
+CREATE TABLE `banco_preguntas` (
+  `CodBanc` int(11) NOT NULL,
+  `Materia` varchar(100) COLLATE utf8_bin NOT NULL,
+  `Tema` varchar(100) COLLATE utf8_bin NOT NULL,
+  `Subtema` varchar(100) COLLATE utf8_bin NOT NULL,
+  `Enunciado` varchar(5000) COLLATE utf8_bin NOT NULL,
+  `Explicacion` varchar(5000) COLLATE utf8_bin NOT NULL,
+  `Opciones` varchar(5000) COLLATE utf8_bin NOT NULL,
+  `Respuesta` varchar(1000) COLLATE utf8_bin NOT NULL,
+  `Tiempo` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `banco_preguntas`
+--
+
+INSERT INTO `banco_preguntas` (`CodBanc`, `Materia`, `Tema`, `Subtema`, `Enunciado`, `Explicacion`, `Opciones`, `Respuesta`, `Tiempo`) VALUES
+(1, 'Microeconomía', 'Estadística Mod', 'Lección 1', 'Enunciado 1', 'Explicación 1', 'Opción 1</p>Opción 2</p>Opción 3</p>Opción 4', 'Opción 4', 1),
+(2, 'Microeconomía', 'Matemáticas', 'Leccion 2', 'Enunciado de la pregunta', 'La opción es 3 porque...', 'Opción 1</p>Opción 2</p>Opción 3</p>Opción 4', 'Opción 3', 5),
+(3, 'Fundamentos de Matemáticas', 'Modulo 1', 'Leccion 1', 'Enunciado pregunta 1', 'Explicacion pregunta 1', 'Opción 1</p>Opción 2</p>Opción 3</p>Opción 4', 'Opción 3', 1.5),
+(4, 'Fundamentos de Matemáticas', 'Modulo 1', 'Leccion 1A', 'Enunciado pregunta 1A', 'Explicación pregunta 1A', 'Opción 1</p>Opción 2</p>Opción 3</p>Opción 4', 'Opción 2', 1),
+(5, 'Fundamentos de Matemáticas', 'Modulo 2', 'Leccion 2', 'Enunciado pregunta 2', 'Explicación pregunta 2', 'Opción 1</p>Opción 2</p>Opción 3</p>Opción 4', 'Opción 4', 0.5),
+(6, 'Fundamentos de Matemáticas', 'Modulo 3', 'Leccion 3A', 'Enunciado pregunta 3A', 'Explicación pregunta 3A', 'Opción 1</p>Opción 2</p>Opción 3</p>Opción 4', 'Opción 1', 0.8),
+(7, 'Fundamentos de Matemáticas', 'Modulo 3', 'Leccion 3', 'Enunciado Pregunta 3', 'Explicación pregunta 3', 'Opción 1</p>Opción 2</p>Opción 3</p>Opción 4', 'Opción 2', 1),
+(8, 'Fundamentos de Matemáticas', 'Modulo 3', 'Leccion 3', 'Enunciado', 'Exp', '1</p>2</p>3</p>4', '3', 1),
+(15, 'Introducción a la economía', 'Modulo 1', 'Leccion 1', 'Enunciado 1.0', 'Explicación 1.0', '1</p>2</p>3</p>4', '3', 5),
+(23, 'Introducción a la economía', 'Modulo 1', 'Leccion 1', 'Enunciado 1.1', 'Explicación 1.1', '1</p>2</p>3</p>4', '4', 5),
+(24, 'Introducción a la economía', 'Modulo 1', 'Leccion 2', 'Enunciado 1.2', 'Explicación 1.2', '1</p>2</p>3</p>4', '1', 3),
+(25, 'Introducción a la economía', 'Modulo 1', 'Leccion 2', 'Enunciado 1.3', 'Explicación 1.3', '1</p>2</p>3</p>4', '2', 5),
+(26, 'Introducción a la economía', 'Modulo 1', 'Leccion 2', 'Enunciado 1.4', 'Explicación 1.4', '1</p>2</p>3</p>4', '1', 5),
+(27, 'Introducción a la economía', 'Modulo 2', 'Leccion 2.1', 'Enunciado 2.0', 'Explicación 2.0', '1</p>2</p>3</p>4', '3', 4),
+(28, 'Introducción a la economía', 'Modulo 2', 'Leccion 2.1', 'Enunciado 2.1', 'Exp', '1</p>2</p>3</p>4', '3', 5);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `carreras`
 --
 
@@ -54,43 +93,58 @@ CREATE TABLE `carreras` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `categorias`
+--
+
+CREATE TABLE `categorias` (
+  `Codigo` int(20) NOT NULL,
+  `Nombre` varchar(100) COLLATE utf8_bin NOT NULL,
+  `Tipo` varchar(100) COLLATE utf8_bin NOT NULL,
+  `Modalidad` varchar(100) COLLATE utf8_bin NOT NULL,
+  `NumSemestres` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`Codigo`, `Nombre`, `Tipo`, `Modalidad`, `NumSemestres`) VALUES
+(1, 'Derecho', '', '', 10),
+(2, 'Contaduría pública', '', '', 10),
+(3, 'Administración de Empresas', '', '', 10),
+(4, 'Ingeniería', '', '', 10),
+(6, 'Humanidades', 'profesional', 'Presencial', 10),
+(8, 'Categoria de prueba', '', '', 0),
+(9, 'Categoria 2', '', '', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `cursos`
 --
 
 CREATE TABLE `cursos` (
   `CodiCurs` int(11) NOT NULL,
   `NombCurs` varchar(500) COLLATE utf8_bin NOT NULL,
-  `img` varchar(200) COLLATE utf8_bin NOT NULL,
-  `estado` int(11) NOT NULL,
-  `Descripcion` varchar(1000) COLLATE utf8_bin NOT NULL,
+  `Categoria` varchar(100) COLLATE utf8_bin NOT NULL,
   `Precio` varchar(50) COLLATE utf8_bin NOT NULL,
   `Informacion` varchar(1000) COLLATE utf8_bin NOT NULL,
-  `Modulos` int(11) NOT NULL DEFAULT 3
+  `Descripcion` varchar(1000) COLLATE utf8_bin NOT NULL,
+  `img` varchar(200) COLLATE utf8_bin NOT NULL,
+  `Fecha` date DEFAULT NULL,
+  `estado` int(11) NOT NULL DEFAULT 1,
+  `idDocente` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `cursos`
 --
 
-INSERT INTO `cursos` (`CodiCurs`, `NombCurs`, `img`, `estado`, `Descripcion`, `Precio`, `Informacion`, `Modulos`) VALUES
-(1, 'Normatividad COVID - 19', 'pandemia.jpg', 1, 'Descripción Normatividad COVID-19', '300.000', 'Información Curso', 3),
-(2, 'Litigación Oral', 'litigacionOral.jpg', 1, 'Descripción Litigación Oral', '250.000 ', 'Información Curso', 3),
-(3, 'Conciliación y Arbitraje', 'conciliacion.jpg', 1, 'Descripción Conciliación y Arbitraje', '500.000', 'Información Curso', 3);
-
---
--- Disparadores `cursos`
---
-DELIMITER $$
-CREATE TRIGGER `contenido_curso` AFTER INSERT ON `cursos` FOR EACH ROW BEGIN
-DECLARE CONT INT DEFAULT 0;
-WHILE CONT < 11 DO
-INSERT INTO temas_cursos(CodiCurs,Seccion,NombModulo,NombLeccion,NombSeccion,Contenido)
-SELECT CodiCurs,Seccion,NombModulo,NombLeccion,NombSeccion,Contenido FROM temas_cursos WHERE Orden = CONT;
-SET CONT = CONT + 1;
-END WHILE;
-END
-$$
-DELIMITER ;
+INSERT INTO `cursos` (`CodiCurs`, `NombCurs`, `Categoria`, `Precio`, `Informacion`, `Descripcion`, `img`, `Fecha`, `estado`, `idDocente`) VALUES
+(1, 'Normatividad COVID - 19', 'Contaduría pública', '300000', 'Información Curso', 'Descripción Normatividad COVID-19', 'pandemia.jpg', '2022-02-21', 1, 0),
+(2, 'Litigación Oral', 'Contaduría pública', '250000 ', 'Información Curso', 'Descripción Litigación Oral', 'litigacionOral.jpg', '2022-02-21', 1, 0),
+(3, 'Conciliación y Arbitraje', 'Derecho', '500000', 'Información Curso', 'Descripción Conciliación y Arbitraje', 'conciliacion.jpg', '2022-02-21', 1, 0),
+(5, 'Curso de Prueba', 'Derecho', '500000', 'Información', 'Acerca del curso', 'imagen.jpg', '2022-03-02', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -227,15 +281,45 @@ CREATE TABLE `insccurs` (
 --
 
 INSERT INTO `insccurs` (`CodiInsc`, `CodiCurs`, `CodiEstu`, `estado`, `Progreso`, `evaluacion`) VALUES
-(1, 1, 4, 1, '0', -1),
 (3, 1, 5, 0, '0', -1),
-(4, 3, 4, 0, '0', -1),
 (16, 1, 6, 0, '0', -1),
 (17, 1, 6, 0, '0', -1),
-(20, 2, 42, 1, '0', -1),
-(23, 1, 41, 1, '100.0', 0.833333),
+(20, 2, 42, -1, '0', -1),
+(23, 1, 41, -1, '100.0', 2.14286),
 (25, 2, 41, 0, '0', -1),
-(26, 3, 41, 0, '0', -1);
+(26, 3, 41, 0, '0', -1),
+(31, 1, 12, 1, '100.0', 2.85714);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `inscmat`
+--
+
+CREATE TABLE `inscmat` (
+  `CodiInsc` int(11) NOT NULL,
+  `CodiEstu` int(11) NOT NULL,
+  `CodiCurs` int(11) NOT NULL,
+  `Semestre` int(20) NOT NULL,
+  `Programa` varchar(200) COLLATE utf8_bin NOT NULL,
+  `estado` int(11) NOT NULL,
+  `Progreso` varchar(11) COLLATE utf8_bin NOT NULL DEFAULT '-2',
+  `evaluacion` float NOT NULL DEFAULT -1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `inscmat`
+--
+
+INSERT INTO `inscmat` (`CodiInsc`, `CodiEstu`, `CodiCurs`, `Semestre`, `Programa`, `estado`, `Progreso`, `evaluacion`) VALUES
+(1, 12, 1, 2, 'Contaduría pública', 1, '100.0', -1),
+(2, 12, 3, 1, 'Contaduría pública', 4, '-2', -1),
+(3, 12, 4, 1, 'Contaduría pública', 4, '-2', -1),
+(4, 12, 5, 2, 'Contaduría pública', 1, '-2', -1),
+(5, 12, 6, 2, 'Contaduría pública', 1, '-2', -1),
+(6, 12, 7, 2, 'Contaduría pública', 1, '-2', -1),
+(7, 12, 8, 1, 'Contaduría pública', 4, '-2', -1),
+(8, 12, 9, 3, 'Contaduría pública', 0, '-2', -1);
 
 -- --------------------------------------------------------
 
@@ -248,32 +332,37 @@ CREATE TABLE `materias` (
   `Nombre` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `Programa` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `Semestre` int(11) NOT NULL,
-  `Categoria` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '''Teórica/Mixta/Práctica''',
+  `Categoria` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `Creditos` int(20) NOT NULL,
-  `Prerequisito` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `Descripcion` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `MateriaPrev` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `TemaPrev` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `Fundamentos` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `Objetivos` varchar(300) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `Nomb_Docente` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `Bienvenida` varchar(300) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `Sede` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `Jornada` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `Horario` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `Prerequisito` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `Descripcion` varchar(1000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `MateriaPrev` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `TemaPrev` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `Sede` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `Jornada` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `Estado` int(20) NOT NULL DEFAULT 1,
-  `Fecha` date DEFAULT NULL
+  `Fecha` date DEFAULT NULL,
+  `img` varchar(100) NOT NULL,
+  `Modulos` int(11) NOT NULL,
+  `idDocente` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `materias`
 --
 
-INSERT INTO `materias` (`Codigo`, `Nombre`, `Programa`, `Semestre`, `Categoria`, `Creditos`, `Prerequisito`, `Descripcion`, `MateriaPrev`, `TemaPrev`, `Fundamentos`, `Objetivos`, `Nomb_Docente`, `Bienvenida`, `Sede`, `Jornada`, `Horario`, `Estado`, `Fecha`) VALUES
-(1, 'Microeconomía', 'Contaduría pública', 1, 'Teórica', 2, '0', 'Prueba', '', '', 'Prueba', 'Prueba', 'Prueba', 'Prueba', 'Prueba', 'Prueba', 'Prueba', 1, NULL),
-(2, 'Contabilidad', 'Contaduría pública', 2, 'Mixta', 2, '0', 'Prueba', '', '', 'Prueba', 'Prueba', 'Prueba', 'Prueba', 'Prueba', 'Prueba', 'Prueba', 1, NULL),
-(3, 'Finanzas', 'Derecho', 4, 'Teórica', 3, '1', 'Prueba', '', '', 'Prueba', 'Prueba', 'Prueba', 'Prueba', 'Prueba', 'Prueba', 'Prueba', 1, NULL),
-(15, 'Derecho Penal', 'Derecho', 6, 'Teórica', 4, 'Materia 1', 'Descripcion Derecho Penal', 'Materia 1', 'Tema 1', 'Fundamentos Derecho Penal', 'Objetivo 1', 'Docente 1', 'Bienvenida', 'Ipiales', 'Diurno', 'Martes y Jueves 10:00 - 11:00', 1, '2021-05-14');
+INSERT INTO `materias` (`Codigo`, `Nombre`, `Programa`, `Semestre`, `Categoria`, `Creditos`, `Prerequisito`, `Descripcion`, `MateriaPrev`, `TemaPrev`, `Sede`, `Jornada`, `Estado`, `Fecha`, `img`, `Modulos`, `idDocente`) VALUES
+(1, 'Microeconomía', 'Contaduría pública', 2, 'Teórica', 2, 'NULL', 'Prueba', 'Fundamentos de Matemáticas</p>Fundamentos de Matemáticas</p>Fundamentos de Matemáticas', 'Modulo 1</p>Modulo 2</p>Modulo 3', 'Prueba', 'Prueba', 1, NULL, 'microecono.jpg', 5, 0),
+(2, 'Derecho Penal', 'Derecho', 2, 'Mixta', 4, 'NULL', 'Acerca de Derecho Penal', 'NULL', 'NULL', 'Ipiales', 'Nocturno', 1, '2021-06-11', 'derecho_Penal.jpeg', 2, 0),
+(3, 'Introducción a la economía', 'Contaduría pública', 1, 'Mixta', 4, 'NULL', 'Acerca de materia', 'Microeconomía</p>Microeconomía</p>Microeconomía</p>Microeconomía', 'Matemáticas</p>Normativas</p>Mercados</p>Estadística Mod', 'Ipiales', 'Diurno', 1, '2021-10-20', 'imagen.jpg', 2, 16),
+(4, 'Fundamentos de Matemáticas', 'Contaduría pública', 1, 'Teórica', 3, 'NULL', 'Acerca de', 'NULL', 'NULL', 'Ipiales', 'Diurno', 1, '2021-10-20', 'imagen.jpg', 3, 0),
+(5, 'Calculo integral', 'Contaduría pública', 2, 'Teórica', 3, 'Fundamentos de Matemáticas</p>Introducción a la economía', 'Acerca de calculo integral', 'Fundamentos de Matemáticas', 'Modulo 1', 'Ipiales', 'Diurno', 1, '2021-10-20', 'imagen.jpg', 2, 0),
+(6, 'Derecho Comercial', 'Contaduría pública', 2, 'Teórica', 3, 'Derecho constitucional', 'Acerca de', 'Introducción a la economía', 'MODULO 1', 'Ipiales', 'Diurno', 1, '2021-10-20', 'imagen.jpg', 2, 0),
+(7, 'Planeacion Empresarial', 'Contaduría pública', 2, 'Teórica', 3, 'Introducción a la economía', 'Acerca de', 'Introducción a la economía', 'MODULO 1', 'Ipiales', 'Diurno', 1, '2021-10-20', 'imagen.jpg', 1, 0),
+(8, 'Derecho constitucional', 'Contaduría pública', 1, 'Teórica', 1, 'NULL', 'Acerca de', 'NULL', 'NULL', 'Ipiales', 'Diurno', 1, '2021-10-20', 'imagen.jpg', 2, 0),
+(9, 'Macroeconomia', 'Contaduría pública', 3, 'Teórica', 2, 'Microeconomía</p>Introducción a la economía', 'Acerca de', 'Microeconomía</p>Microeconomía</p>Fundamentos de Matemáticas', 'Estadística Mod</p>Matemáticas</p>Modulo 1', 'Ipiales', 'Nocturno', 1, '2021-10-20', 'imagen.jpg', 1, 0),
+(14, 'Materia Prueba', 'Contaduría pública', 3, 'Teórica', 3, 'Microeconomía</p>Derecho Comercial</p>Introducción a la economía', 'Detalles', 'Fundamentos de Matemáticas</p>Fundamentos de Matemáticas</p>Microeconomía', 'Modulo 1</p>Modulo 2</p>Matemáticas', 'Pasto', 'Diurno', 1, '2021-12-09', 'imagen.jpg', 3, 0),
+(31, 'Materia Doc', 'Contaduría pública', 2, 'Teórica', 4, 'NULL', 'sdfsdf', 'NULL', 'NULL', 'Pasto', 'Diurno', 1, '2022-04-29', 'imagen.jpg', 1, 10);
 
 -- --------------------------------------------------------
 
@@ -1437,6 +1526,30 @@ INSERT INTO `municipios` (`cod_mun`, `nom_mun`, `cod_dep`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `nivelacion`
+--
+
+CREATE TABLE `nivelacion` (
+  `codigo` int(11) NOT NULL,
+  `CodiEstu` int(255) NOT NULL,
+  `Materia` varchar(500) COLLATE utf8_bin NOT NULL,
+  `MateriaPrev` varchar(100) COLLATE utf8_bin NOT NULL,
+  `Tema` varchar(500) COLLATE utf8_bin NOT NULL,
+  `Progreso` varchar(100) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `nivelacion`
+--
+
+INSERT INTO `nivelacion` (`codigo`, `CodiEstu`, `Materia`, `MateriaPrev`, `Tema`, `Progreso`) VALUES
+(31, 12, 'Microeconomía', 'Fundamentos de Matemáticas', 'Modulo 1', '100.0'),
+(32, 12, 'Microeconomía', 'Fundamentos de Matemáticas', 'Modulo 2', '100.0'),
+(33, 12, 'Microeconomía', 'Fundamentos de Matemáticas', 'Modulo 3', '100.0');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `pais`
 --
 
@@ -1689,6 +1802,293 @@ INSERT INTO `pais` (`cod_pai`, `nom_pai`, `codigo`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `pma__bookmark`
+--
+
+CREATE TABLE `pma__bookmark` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `dbase` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `user` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `label` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `query` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Bookmarks';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__central_columns`
+--
+
+CREATE TABLE `pma__central_columns` (
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `col_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `col_type` varchar(64) COLLATE utf8_bin NOT NULL,
+  `col_length` text COLLATE utf8_bin DEFAULT NULL,
+  `col_collation` varchar(64) COLLATE utf8_bin NOT NULL,
+  `col_isNull` tinyint(1) NOT NULL,
+  `col_extra` varchar(255) COLLATE utf8_bin DEFAULT '',
+  `col_default` text COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Central list of columns';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__column_info`
+--
+
+CREATE TABLE `pma__column_info` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `column_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `comment` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `mimetype` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `transformation` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `transformation_options` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `input_transformation` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `input_transformation_options` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Column information for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__designer_settings`
+--
+
+CREATE TABLE `pma__designer_settings` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `settings_data` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Settings related to Designer';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__export_templates`
+--
+
+CREATE TABLE `pma__export_templates` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `export_type` varchar(10) COLLATE utf8_bin NOT NULL,
+  `template_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `template_data` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Saved export templates';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__favorite`
+--
+
+CREATE TABLE `pma__favorite` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `tables` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Favorite tables';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__history`
+--
+
+CREATE TABLE `pma__history` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `username` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `db` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `table` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `timevalue` timestamp NOT NULL DEFAULT current_timestamp(),
+  `sqlquery` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='SQL history for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__navigationhiding`
+--
+
+CREATE TABLE `pma__navigationhiding` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `item_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `item_type` varchar(64) COLLATE utf8_bin NOT NULL,
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Hidden items of navigation tree';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__pdf_pages`
+--
+
+CREATE TABLE `pma__pdf_pages` (
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `page_nr` int(10) UNSIGNED NOT NULL,
+  `page_descr` varchar(50) CHARACTER SET utf8 NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='PDF relation pages for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__recent`
+--
+
+CREATE TABLE `pma__recent` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `tables` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Recently accessed tables';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__relation`
+--
+
+CREATE TABLE `pma__relation` (
+  `master_db` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `master_table` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `master_field` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `foreign_db` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `foreign_table` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `foreign_field` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Relation table';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__savedsearches`
+--
+
+CREATE TABLE `pma__savedsearches` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `username` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `search_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `search_data` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Saved searches';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__table_coords`
+--
+
+CREATE TABLE `pma__table_coords` (
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `pdf_page_number` int(11) NOT NULL DEFAULT 0,
+  `x` float UNSIGNED NOT NULL DEFAULT 0,
+  `y` float UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table coordinates for phpMyAdmin PDF output';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__table_info`
+--
+
+CREATE TABLE `pma__table_info` (
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `display_field` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table information for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__table_uiprefs`
+--
+
+CREATE TABLE `pma__table_uiprefs` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `prefs` text COLLATE utf8_bin NOT NULL,
+  `last_update` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tables'' UI preferences';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__tracking`
+--
+
+CREATE TABLE `pma__tracking` (
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `version` int(10) UNSIGNED NOT NULL,
+  `date_created` datetime NOT NULL,
+  `date_updated` datetime NOT NULL,
+  `schema_snapshot` text COLLATE utf8_bin NOT NULL,
+  `schema_sql` text COLLATE utf8_bin DEFAULT NULL,
+  `data_sql` longtext COLLATE utf8_bin DEFAULT NULL,
+  `tracking` set('UPDATE','REPLACE','INSERT','DELETE','TRUNCATE','CREATE DATABASE','ALTER DATABASE','DROP DATABASE','CREATE TABLE','ALTER TABLE','RENAME TABLE','DROP TABLE','CREATE INDEX','DROP INDEX','CREATE VIEW','ALTER VIEW','DROP VIEW') COLLATE utf8_bin DEFAULT NULL,
+  `tracking_active` int(1) UNSIGNED NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Database changes tracking for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__userconfig`
+--
+
+CREATE TABLE `pma__userconfig` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `timevalue` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `config_data` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='User preferences storage for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__usergroups`
+--
+
+CREATE TABLE `pma__usergroups` (
+  `usergroup` varchar(64) COLLATE utf8_bin NOT NULL,
+  `tab` varchar(64) COLLATE utf8_bin NOT NULL,
+  `allowed` enum('Y','N') COLLATE utf8_bin NOT NULL DEFAULT 'N'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='User groups with configured menu items';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__users`
+--
+
+CREATE TABLE `pma__users` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `usergroup` varchar(64) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Users and their assignments to user groups';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `programas`
+--
+
+CREATE TABLE `programas` (
+  `Codigo` int(20) NOT NULL,
+  `Nombre` varchar(100) COLLATE utf8_bin NOT NULL,
+  `Tipo` varchar(100) COLLATE utf8_bin NOT NULL,
+  `Modalidad` varchar(100) COLLATE utf8_bin NOT NULL,
+  `NumSemestres` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `programas`
+--
+
+INSERT INTO `programas` (`Codigo`, `Nombre`, `Tipo`, `Modalidad`, `NumSemestres`) VALUES
+(1, 'Derecho', '', '', 10),
+(2, 'Contaduría pública', '', '', 10),
+(3, 'Administración de Empresas', '', '', 10),
+(4, 'Ingeniería', '', '', 10),
+(6, 'Humanidades', 'profesional', 'Presencial', 10),
+(7, 'Artes', 'profesional', 'Presencial', 10);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `semestre`
 --
 
@@ -1743,33 +2143,144 @@ CREATE TABLE `temas` (
 
 CREATE TABLE `temas_cursos` (
   `Orden` int(11) NOT NULL,
-  `CodiCurs` int(11) NOT NULL,
+  `Puesto` int(11) NOT NULL,
+  `CodiMate` int(11) NOT NULL,
+  `Materia` varchar(200) COLLATE utf8_bin NOT NULL,
   `Seccion` varchar(150) COLLATE utf8_bin NOT NULL DEFAULT 'Objetivos/Equipo/Horario/Teoria/Video/PruebaAsoc/PruebaRespUnica/PruebaFrase/ActividadRef/Taller/CalificacionT/Evaluacion/CalificacionE',
   `NombModulo` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT 'Modulo # - Nombre Modulo',
   `NombLeccion` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT 'Nombre Lección',
   `NombSeccion` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT 'Nombre Seccion',
-  `Contenido` varchar(10000) COLLATE utf8_bin NOT NULL DEFAULT 'OBJETIVOS:*Contenido Introducción</p>Objetivo 1</p>Objetivo 2</p>Objetivo 3</p>Objetivo 4*EQUIPO:*Nombre del Docente</p>Descripción Docente</p>fotografia_docente.png</p>Bienvenida*HORARIO:*Horario*TEORIA:*Titulo 1</p>Contenido 1</p>Titulo 2</p>Contenido 2* VIDEO:*Titulo video</p>video.mp4* PRUEBA ASOCIACION:*Opción 1</p>Opción 2</p>Opción 3</p>Opción 4</p> Respuesta 1</p>Respuesta 2</p>Respuesta 3</p>Respuesta 4* PRUEBA RESPUESTA UNICA:*Opción 1</p>Opción 2</p>Opción 3</p>Opción 4</p>Respuesta* PRUEBA FRASE :*Enunciado 1</p>Completar 1</p>Enunciado 2</p>Completar 2</p>Enunciado 3</p>Completar 3</p>Enunciado 4</p>Completar 4*ACTIVIDAD REFUERZO:*Titulo Actividad</p>Enunciado Actividad</p>Solucion1.pdf</p>Solucion2.mp4*TALLER:*Enunciado Taller*CALIFICACION TALLER:*Nota</p>Calificacion</p>Solucion1.pdf</p>Solucion2.mp4*EVALUACION:*¿"Esta es la Pregunta?</p>Respuesta 1A</p>Respuesta 1B</p>Respuesta 1C</p>Respuesta 1D</p>¿"Esta es la Pregunta?</p>Respuesta 2A</p>Respuesta 2B</p>Respuesta 2C</p>Respuesta 2D</p>¿"Esta es la Pregunta?</p>Respuesta 3A</p>Respuesta 3B</p>Respuesta 3C</p>Respuesta3D</p>¿"Esta es la Pregunta?</p>Respuesta 4A</p>Respuesta 4B</p>Respuesta 4C</p>Respuesta4D</p>¿"Esta es la Pregunta?</p>Respuesta 5A</p>Respuesta 5B</p>Respuesta 5C</p>Respuesta 5D</p>¿"Esta es la Pregunta?</p>Respuesta 6A</p>Respuesta 6B</p>Respuesta 6C</p>Respuesta 6D*CALIFICACION:*Mensaje Despedida</p>A:Explicacion</p>C:Explicacion</p>D:Explicacion</p>B:Explicacion</p>A:Explicacion</p>B:Explicacion*'
+  `Contenido` varchar(10000) COLLATE utf8_bin NOT NULL,
+  `Creador` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT 'Admin',
+  `idCreador` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `temas_cursos`
 --
 
-INSERT INTO `temas_cursos` (`Orden`, `CodiCurs`, `Seccion`, `NombModulo`, `NombLeccion`, `NombSeccion`, `Contenido`) VALUES
-(1, 1, 'Objetivos', 'INTRODUCCION', 'Bienvenid@', 'Objetivos', 'Objetivo 1</p>Objetivo 2</p>Objetivo 3</p>Objetivo 4</p>Objetivo 5</p>Objetivo 6</p>imagen_obj.png</p>Contenido</p>fundamentos U.P.C. Ejemplo.pdf</p>Libro guia Ejemplo.pdf'),
-(2, 1, 'Equipo', 'INTRODUCCION', 'Bienvenid@', 'Conoce a tu docente', 'Nombre del Docente</p>Descripción Docente</p>fotografia_docente.png</p>Contenido Bienvenida'),
-(3, 1, 'Horario', 'INTRODUCCION', 'Bienvenid@', 'Horario y Cronograma', 'Dia</p>Inicio: -  Fin:</p>Lunes</p>Inicio: 07:00 a.m.  -  Fin: 09:00 a.m.</p>Jueves</p>Inicio: 07:00 a.m.  -  Fin: 09:00 a.m.</p>./curso_ejemplo/0 Módulo 0 - Bienvenida al curso/3 Horario y cronograma/Cronograma Ejemplo.pdf'),
-(4, 1, 'Teoria', 'Modulo 1', 'Leccion 1', 'Teoria L1', 'Titulo 1</p>Contenido 1</p>Titulo 2</p>Contenido 2\r\n'),
-(5, 1, 'Video', 'Modulo 1', 'Leccion 1', 'Video Clase', 'Titulo video</p>https://www.youtube-nocookie.com/embed/yO0IHTnjshM?AutoHide=1&showinfo=0&modestbranding=1&rel=0'),
-(6, 1, 'PruebaAsoc', 'Modulo 1', 'Leccion 1', 'Prueba Asociacion', 'Opción 1</p>Opción 2</p>Opción 3</p>Opción 4</p>Respuesta 1</p>Respuesta 2</p>Respuesta 3</p>Respuesta 4'),
-(7, 1, 'PruebaRespUnica', 'Modulo 1', 'Leccion 1', 'Prueba Respuesta única', 'Opción 1</p>Opción 2</p>Opción 3</p>Opción 4</p>Enunciado</p>Respuesta:Opción 3'),
-(8, 1, 'PruebaFrase', 'Modulo 1', 'Leccion 1', 'Prueba Frase', 'Completar 1</p>Completar 2</p>Completar 3</p>Completar 4</p>Enunciado 1</p>Enunciado 2</p>Enunciado 3</p>Enunciado 4'),
-(9, 1, 'ActividadRef', 'Modulo 1', 'Leccion 1', 'Actividad de Refuerzo', 'Titulo Actividad</p>Enunciado Actividad</p>prueba.pdf</p>https://www.youtube-nocookie.com/embed/yO0IHTnjshM?AutoHide=1&showinfo=0&modestbranding=1&rel=0'),
-(10, 1, 'Taller', 'Modulo 1', 'TALLER', 'Taller', 'Enunciado del Taller</p>imagen_taller.png'),
-(11, 1, 'CalificacionT', 'Modulo 1', 'TALLER', 'Calificación Taller', 'Calificacion</p>./curso_ejemplo/1 Módulo 1 - Nombre del módulo/1 Trabajo - Taller 1/Solución Ejemplo T-T 1.pdf</p>./curso_ejemplo/1 Módulo 1 - Nombre del módulo/4 Trabajo - Taller 1/Solución Ejemplo T-T 1.mp4'),
-(12, 1, 'Teoria', 'Modulo 1', 'Leccion 2', 'Teoria L2', 'Teoria 2 Prueba</p>Contenido 1</p>Titulo 2</p>Contenido 2'),
-(13, 1, 'Evaluacion', 'Evaluacion Final', 'EVALUACION', 'Examen', '¿\"Esta es la Pregunta?</p>Respuesta 1A</p>Respuesta 1B</p>Respuesta 1C</p>Respuesta 1D</p>¿\"Esta es la Pregunta?</p>Respuesta 2A</p>Respuesta 2B</p>Respuesta 2C</p>Respuesta 2D</p>¿\"Esta es la Pregunta?</p>Respuesta 3A</p>Respuesta 3B</p>Respuesta 3C</p>Respuesta3D</p>¿\"Esta es la Pregunta?</p>Respuesta 4A</p>Respuesta 4B</p>Respuesta 4C</p>Respuesta4D</p>¿\"Esta es la Pregunta?</p>Respuesta 5A</p>Respuesta 5B</p>Respuesta 5C</p>Respuesta 5D</p>¿\"Esta es la Pregunta?</p>Respuesta 6A</p>Respuesta 6B</p>Respuesta 6C</p>Respuesta 6D</p>'),
-(14, 1, 'CalificacionE', 'Evaluacion Final', 'EVALUACION', 'Calificación Examen', 'Mensaje Despedida</p>B:Explicacion</p>C:Explicacion</p>D:Explicacion</p>B:Explicacion</p>A:Explicacion</p>B:Explicacion');
+INSERT INTO `temas_cursos` (`Orden`, `Puesto`, `CodiMate`, `Materia`, `Seccion`, `NombModulo`, `NombLeccion`, `NombSeccion`, `Contenido`, `Creador`, `idCreador`) VALUES
+(1, 1, 1, '', 'Objetivos', 'INTRODUCCION', 'Bienvenid@', 'Objetivos', 'Objetivo 1</p>Objetivo 2</p>Objetivo 3</p>Objetivo 4</p>Objetivo 5</p>Objetivo 6</p>imagen_obj.png</p>Contenido</p>fundamentos U.P.C. Ejemplo.pdf</p>Libro guia Ejemplo.pdf', 'Admin', 0),
+(2, 2, 1, '', 'Equipo', 'INTRODUCCION', 'Bienvenid@', 'Conoce a tu docente', 'Nombre del Docente</p>Descripción Docente</p>fotografia_docente.png</p>Contenido Bienvenida', 'Admin', 0),
+(3, 3, 1, '', 'Horario', 'INTRODUCCION', 'Bienvenid@', 'Horario y Cronograma', 'Dia</p>Inicio: -  Fin:</p>Lunes</p>Inicio: 07:00 a.m.  -  Fin: 09:00 a.m.</p>Jueves</p>Inicio: 07:00 a.m.  -  Fin: 09:00 a.m.</p>./curso_ejemplo/0 Módulo 0 - Bienvenida al curso/3 Horario y cronograma/Cronograma Ejemplo.pdf', 'Admin', 0),
+(13, 13, 1, '', 'Evaluacion', 'Evaluacion 2', 'EVALUACION', 'Examen', '¿\"Esta es la Pregunta?</p>Respuesta 1A</p>Respuesta 1B</p>Respuesta 1C</p>Respuesta 1D</p>¿\"Esta es la Pregunta?</p>Respuesta 2A</p>Respuesta 2B</p>Respuesta 2C</p>Respuesta 2D</p>¿\"Esta es la Pregunta?</p>Respuesta 3A</p>Respuesta 3B</p>Respuesta 3C</p>Respuesta3D</p>¿\"Esta es la Pregunta?</p>Respuesta 4A</p>Respuesta 4B</p>Respuesta 4C</p>Respuesta4D</p>¿\"Esta es la Pregunta?</p>Respuesta 5A</p>Respuesta 5B</p>Respuesta 5C</p>Respuesta 5D</p>¿\"Esta es la Pregunta?</p>Respuesta 6A</p>Respuesta 6B</p>Respuesta 6C</p>Respuesta 6D</p>¿\"Esta es la Pregunta?</p>Respuesta 7A</p>Respuesta 7B</p>Respuesta 7C</p>Respuesta7D', 'Admin', 0),
+(14, 14, 1, '', 'CalificacionE', 'Evaluacion 2', 'EVALUACION', 'Calificación Examen', 'Mensaje Despedida</p>B:Explicacion</p>C:Explicacion</p>D:Explicacion</p>B:Explicacion</p>A:Explicacion</p>B:Explicacion</p>D:Explicacion', 'Admin', 0),
+(49, 1, 5, 'Curso de Prueba', 'Objetivos', 'INTRODUCCION', 'Bienvenid@', 'Objetivos', 'Objetivo 1</p>Objetivo 2</p>Objetivo 3</p>Objetivo 4', 'Admin', 0),
+(50, 2, 5, 'Curso de Prueba', 'Equipo', 'INTRODUCCION', 'Bienvenid@', 'Conoce a tu docente', 'Docente Prueba 1', 'Admin', 0),
+(62, 15, 1, 'Normatividad COVID - 19', 'PruebaRespUnica', 'Modulo 1', 'Leccion 1', 'Prueba 1', 'Opción 1</p>Opción 2</p>Opción 3</p>Opción 4</p>Opción 5</p>Enunciado</p>Opción 3', 'Admin', 0),
+(63, 1, 11, 'Curso Doc', 'Objetivos', 'INTRODUCCION', 'Bienvenid@', 'Objetivos', '1</p>2</p>3</p>4', 'Admin', 16),
+(64, 2, 11, 'Curso Doc', 'Equipo', 'INTRODUCCION', 'Bienvenid@', 'Conoce a tu docente', 'Docente Prueba 1', 'Admin', 16);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `temas_materias`
+--
+
+CREATE TABLE `temas_materias` (
+  `Orden` int(11) NOT NULL,
+  `Puesto` int(11) NOT NULL,
+  `CodiMate` int(11) NOT NULL,
+  `Materia` varchar(100) COLLATE utf8_bin NOT NULL,
+  `Seccion` varchar(150) COLLATE utf8_bin NOT NULL DEFAULT 'Objetivos/Equipo/Horario/Teoria/Video/PruebaAsoc/PruebaRespUnica/PruebaFrase/ActividadRef/Taller/CalificacionT/Evaluacion/CalificacionE',
+  `NombModulo` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT 'Modulo # - Nombre Modulo',
+  `NombLeccion` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT 'Nombre Lección',
+  `NombSeccion` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT 'Nombre Seccion',
+  `Contenido` mediumtext COLLATE utf8_bin NOT NULL DEFAULT 'OBJETIVOS:*Contenido Introducción</p>Objetivo 1</p>Objetivo 2</p>Objetivo 3</p>Objetivo 4*EQUIPO:*Nombre del Docente</p>Descripción Docente</p>fotografia_docente.png</p>Bienvenida*HORARIO:*Horario*TEORIA:*Titulo 1</p>Contenido 1</p>Titulo 2</p>Contenido 2* VIDEO:*Titulo video</p>video.mp4* PRUEBA ASOCIACION:*Opción 1</p>Opción 2</p>Opción 3</p>Opción 4</p> Respuesta 1</p>Respuesta 2</p>Respuesta 3</p>Respuesta 4* PRUEBA RESPUESTA UNICA:*Opción 1</p>Opción 2</p>Opción 3</p>Opción 4</p>Respuesta* PRUEBA FRASE :*Enunciado 1</p>Completar 1</p>Enunciado 2</p>Completar 2</p>Enunciado 3</p>Completar 3</p>Enunciado 4</p>Completar 4*ACTIVIDAD REFUERZO:*Titulo Actividad</p>Enunciado Actividad</p>Solucion1.pdf</p>Solucion2.mp4*TALLER:*Enunciado Taller*CALIFICACION TALLER:*Nota</p>Calificacion</p>Solucion1.pdf</p>Solucion2.mp4*EVALUACION:*¿"Esta es la Pregunta?</p>Respuesta 1A</p>Respuesta 1B</p>Respuesta 1C</p>Respuesta 1D</p>¿"Esta es la Pregunta?</p>Respuesta 2A</p>Respuesta 2B</p>Respuesta 2C</p>Respuesta 2D</p>¿"Esta es la Pregunta?</p>Respuesta 3A</p>Respuesta 3B</p>Respuesta 3C</p>Respuesta3D</p>¿"Esta es la Pregunta?</p>Respuesta 4A</p>Respuesta 4B</p>Respuesta 4C</p>Respuesta4D</p>¿"Esta es la Pregunta?</p>Respuesta 5A</p>Respuesta 5B</p>Respuesta 5C</p>Respuesta 5D</p>¿"Esta es la Pregunta?</p>Respuesta 6A</p>Respuesta 6B</p>Respuesta 6C</p>Respuesta 6D*CALIFICACION:*Mensaje Despedida</p>A:Explicacion</p>C:Explicacion</p>D:Explicacion</p>B:Explicacion</p>A:Explicacion</p>B:Explicacion*',
+  `Creador` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT 'Admin',
+  `idCreador` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `temas_materias`
+--
+
+INSERT INTO `temas_materias` (`Orden`, `Puesto`, `CodiMate`, `Materia`, `Seccion`, `NombModulo`, `NombLeccion`, `NombSeccion`, `Contenido`, `Creador`, `idCreador`) VALUES
+(1, 1, 1, 'Microeconomía', 'Objetivos', 'INTRODUCCION', 'Bienvenid@', 'Objetivos', 'Objetivo 1</p>Objetivo 2</p>Objetivo 3</p>Objetivo 4</p>Objetivo 5</p>Objetivo 6</p>Fundamentos', '', 0),
+(2, 2, 1, 'Microeconomía', 'Equipo', 'INTRODUCCION', 'Bienvenid@', 'Conoce a tu docente', 'Docente Prueba 1</p>Descripción Docente', '', 0),
+(3, 3, 1, 'Microeconomía', 'Horario', 'INTRODUCCION', 'Bienvenid@', 'Horario y Cronograma', 'Dia</p>Inicio: -  Fin:</p>Lunes</p>Inicio: 07:00 a.m.  -  Fin: 09:00 a.m.</p>Jueves</p>Inicio: 07:00 a.m.  -  Fin: 09:00 a.m.</p>./curso_ejemplo/0 Módulo 0 - Bienvenida al curso/3 Horario y cronograma/Cronograma Ejemplo.pdf', '', 0),
+(4, 4, 1, 'Microeconomía', 'Teoria', 'Modulo1', 'Lección 1', 'Teoria', '<p>Titulo 1Contenido 1Titulo 2Contenido 2</p>', '', 0),
+(5, 5, 1, 'Microeconomía', 'Video', 'Modulo1', 'Lección 1', 'NULL', 'Titulo video</p>https://www.youtube-nocookie.com/embed/yO0IHTnjshM?AutoHide=1&showinfo=0&modestbranding=1&rel=0', '', 0),
+(8, 11, 1, 'Microeconomía', 'PruebaFrase', 'Normativas', 'Leccion 3', 'Prueba Frase', 'Completar 1</p>Completar 2</p>Completar 3</p>Completar 4</p>Enunciado 1</p>Enunciado 2</p>Enunciado 3</p>Enunciado 4', '', 0),
+(9, 12, 1, 'Microeconomía', 'ActividadRef', 'Normativas', 'Leccion 3', 'Actividad de Refuerzo', 'Titulo Actividad</p>Enunciado Actividad</p>prueba.pdf</p>https://www.youtube-nocookie.com/embed/yO0IHTnjshM?AutoHide=1&showinfo=0&modestbranding=1&rel=0', '', 0),
+(10, 15, 1, 'Microeconomía', 'Taller', 'Mercados', 'TALLER', 'Taller', 'Enunciado del Taller</p>imagen_taller.png', '', 0),
+(11, 16, 1, 'Microeconomía', 'CalificacionT', 'Mercados', 'TALLER', 'Calificación Taller', 'Calificacion</p>./curso_ejemplo/1 Módulo 1 - Nombre del módulo/1 Trabajo - Taller 1/Solución Ejemplo T-T 1.pdf</p>./curso_ejemplo/1 Módulo 1 - Nombre del módulo/4 Trabajo - Taller 1/Solución Ejemplo T-T 1.mp4', '', 0),
+(14, 1, 2, 'Derecho Penal', 'Objetivos', 'INTRODUCCION', 'Bienvenid@', 'Objetivos', 'Objetivo 1</p>Objetivo 2</p>Objetivo 3</p>Objetivo 4</p>Objetivo 5</p>Fundamentos Derecho Penal', '', 0),
+(15, 2, 2, 'Derecho Penal', 'Equipo', 'INTRODUCCION', 'Bienvenid@', 'Conoce a tu docente', 'Docente Prueba 2</p>Palabras de Bienvenida', '', 0),
+(16, 3, 2, 'Derecho Penal', 'Horario', 'INTRODUCCION', 'Bienvenid@', 'Horario y Cronograma', 'Lunes</p>22:42</p>12:42</p>Miercoles</p>15:36</p>17:36', '', 0),
+(17, 4, 2, 'Derecho Penal', 'Teoria', 'Modulo A', 'Leccion A', 'Teoría 1', '<h1 style=\"text-align: center;\"><span style=\"color: #000000; font-family: verdana, geneva, sans-serif;\">TITULO 1</span></h1>\n<p style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif; color: #000000;\">Contenido Teoria 1</span><br /><span style=\"font-family: verdana, geneva, sans-serif;\"><img style=\"display: block; margin-left: auto; margin-right: auto;\" title=\"AUNAR\" src=\"imagenesContenido/Aunar.png\" alt=\"\" width=\"200\" height=\"202\" /></span></p>\n<h2> </h2>\n<h2 style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif;\"><em>Subtitulo</em></span></h2>\n<h1 style=\"text-align: center;\"><span style=\"font-family: verdana, geneva, sans-serif;\">TITULO 2</span></h1>\n<p style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif;\">Contenido Teoria 2 </span></p>\n<div> </div>', '', 0),
+(18, 5, 2, 'Derecho Penal', 'Video', 'Modulo A', 'Leccion A', 'Video1', 'Titulo del video</p>https://www.youtube.com/watch?v=MdNXu8gjFDQ&ab_channel=ComunicacionesAUNAR', '', 0),
+(20, 6, 2, 'Derecho Penal', 'PruebaAsoc', 'Modulo A', 'Leccion A', 'Asociación 1', 'Concepto 1</p>Concepto 2</p>Concepto 3</p>Concepto 4</p>Opción 1</p>Opción 2</p>Opción 3</p>Opción 4', '', 0),
+(22, 7, 2, 'Derecho Penal', 'PruebaRespUnica', 'Modulo A', 'Leccion A', 'Prueba selección', 'Opción 1</p>Opción 2</p>Opción 3</p>Opción 4</p>Enunciado de la pregunta</p>Opción 2', '', 0),
+(23, 8, 2, 'Derecho Penal', 'PruebaFrase', 'Modulo A', 'Leccion A', 'Prueba Frase 1', 'para</p>frase</p>contexto</p>configuración</p>Esta es una prueba</p>completar una</p>, por favor completar los campos requeridos dependiendo del</p>y verificar la respuesta al hacer la', '', 0),
+(24, 9, 2, 'Derecho Penal', 'ActividadRef', 'Modulo A', 'Leccion A', 'Refuerzo 1', '<h1 style=\"text-align: center;\">Titulo Actividad</h1>\n<p style=\"text-align: justify;\">Contenido actividad</p>', '', 0),
+(26, 1, 3, 'Introducción a la economía', 'Objetivos', 'INTRODUCCION', 'Bienvenid@', 'Objetivos', 'Objetivo 1</p>Objetivo 2</p>Objetivo 3</p>Objetivo 4</p>Objetivo 5</p>Fundamentos de la materia', '', 0),
+(27, 2, 3, 'Introducción a la economía', 'Equipo', 'INTRODUCCION', 'Bienvenid@', 'Conoce a tu docente', 'Docente Prueba 2</p>Bienvenida', '', 0),
+(28, 3, 3, 'Introducción a la economía', 'Horario', 'INTRODUCCION', 'Bienvenid@', 'Horario y Cronograma', 'Martes</p>14:0</p>16:0</p>Miercoles</p>7:0</p>9:0', '', 0),
+(30, 1, 4, 'Fundamentos de Matemáticas', 'Objetivos', 'INTRODUCCION', 'Bienvenid@', 'Objetivos', 'Objetivo 1</p>Objetivo 2</p>Objetivo 3</p>Objetivo 4</p>Objetivo 5</p>Fundamentos', '', 0),
+(31, 2, 4, 'Fundamentos de Matemáticas', 'Equipo', 'INTRODUCCION', 'Bienvenid@', 'Conoce a tu docente', 'Docente Prueba 1</p>Bienvenida', '', 0),
+(32, 3, 4, 'Fundamentos de Matemáticas', 'Horario', 'INTRODUCCION', 'Bienvenid@', 'Horario y Cronograma', 'Miercoles</p>15:48</p>19:48</p>Jueves</p>7:48</p>9:48', '', 0),
+(33, 4, 4, 'Fundamentos de Matemáticas', 'Teoria', 'NULL', 'NULL', 'NULL', '<h1 style=\"text-align: center;\"><span style=\"color: #000000; font-family: verdana, geneva, sans-serif;\">TITULO 1</span></h1><p style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif; color: #000000;\">Contenido Teoria 1</span><br /><span style=\"font-family: verdana, geneva, sans-serif;\"><img style=\"display: block; margin-left: auto; margin-right: auto;\" title=\"AUNAR\" src=\"imagenesContenido/Aunar.png\" alt=\"\" width=\"200\" height=\"202\" /></span></p><h2> </h2><h2 style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif;\"><em>Subtitulo</em></span></h2><h1 style=\"text-align: center;\"><span style=\"font-family: verdana, geneva, sans-serif;\">TITULO 2</span></h1><p style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif;\">Contenido Teoria 2 </span></p><div> </div>', '', 0),
+(34, 1, 5, 'Calculo integral', 'Objetivos', 'INTRODUCCION', 'Bienvenid@', 'Objetivos', 'Objetivo 1</p>Objetivo 2</p>Objetivo 3</p>Objetivo 4</p>Fundamentos', '', 0),
+(35, 2, 5, 'Calculo integral', 'Equipo', 'INTRODUCCION', 'Bienvenid@', 'Conoce a tu docente', 'Docente Prueba 2</p>Bienvenida', '', 0),
+(36, 3, 5, 'Calculo integral', 'Horario', 'INTRODUCCION', 'Bienvenid@', 'Horario y Cronograma', 'Lunes</p>16:0</p>18:0</p>Martes</p>8:0</p>10:0', '', 0),
+(37, 4, 5, 'Calculo integral', 'Teoría', 'NULL', 'NULL', 'NULL', 'NULL', '', 0),
+(38, 5, 5, 'Calculo integral', 'Teoría', 'NULL', 'NULL', 'NULL', 'NULL', '', 0),
+(39, 6, 5, 'Calculo integral', 'Teoria', 'NULL', 'NULL', 'NULL', '<h1 style=\"text-align: center;\"><span style=\"color: #000000; font-family: verdana, geneva, sans-serif;\">TITULO 1</span></h1><p style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif; color: #000000;\">Contenido Teoria 1</span><br /><span style=\"font-family: verdana, geneva, sans-serif;\"><img style=\"display: block; margin-left: auto; margin-right: auto;\" title=\"AUNAR\" src=\"imagenesContenido/Aunar.png\" alt=\"\" width=\"200\" height=\"202\" /></span></p><h2> </h2><h2 style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif;\"><em>Subtitulo</em></span></h2><h1 style=\"text-align: center;\"><span style=\"font-family: verdana, geneva, sans-serif;\">TITULO 2</span></h1><p style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif;\">Contenido Teoria 2 </span></p><div> </div>', '', 0),
+(58, 1, 6, 'Derecho Comercial', 'Objetivos', 'INTRODUCCION', 'Bienvenid@', 'Objetivos', 'Objetivos 1</p>Objetivos 2</p>Objetivos 3</p>Objetivos 4</p>Objetivos 5</p>Objetivos 6</p>Fundamentos', '', 0),
+(59, 2, 6, 'Derecho Comercial', 'Equipo', 'INTRODUCCION', 'Bienvenid@', 'Conoce a tu docente', 'Docente Prueba 2</p>Bienvenida', '', 0),
+(60, 3, 6, 'Derecho Comercial', 'Horario', 'INTRODUCCION', 'Bienvenid@', 'Horario y Cronograma', 'Lunes</p>16:35</p>18:35</p>Martes</p>9:35</p>10:35', '', 0),
+(61, 4, 6, 'Derecho Comercial', 'Teoría', 'NULL', 'NULL', 'NULL', 'NULL', '', 0),
+(62, 5, 6, 'Derecho Comercial', 'Teoría', 'NULL', 'NULL', 'NULL', 'NULL', '', 0),
+(63, 6, 6, 'Derecho Comercial', 'Teoria', 'NULL', 'NULL', 'NULL', '<h1 style=\"text-align: center;\"><span style=\"color: #000000; font-family: verdana, geneva, sans-serif;\">TITULO 1</span></h1><p style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif; color: #000000;\">Contenido Teoria 1</span><br /><span style=\"font-family: verdana, geneva, sans-serif;\"><img style=\"display: block; margin-left: auto; margin-right: auto;\" title=\"AUNAR\" src=\"imagenesContenido/Aunar.png\" alt=\"\" width=\"200\" height=\"202\" /></span></p><h2> </h2><h2 style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif;\"><em>Subtitulo</em></span></h2><h1 style=\"text-align: center;\"><span style=\"font-family: verdana, geneva, sans-serif;\">TITULO 2</span></h1><p style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif;\">Contenido Teoria 2 </span></p><div> </div>', '', 0),
+(70, 1, 7, 'Planeacion Empresarial', 'Objetivos', 'INTRODUCCION', 'Bienvenid@', 'Objetivos', 'Objetivo 1</p>Objetivo 2</p>Objetivo 3</p>Objetivo 4</p>Objetivo 5</p>Fundamentos', '', 0),
+(71, 2, 7, 'Planeacion Empresarial', 'Equipo', 'INTRODUCCION', 'Bienvenid@', 'Conoce a tu docente', 'Docente Prueba 1</p>Bienvenida', '', 0),
+(72, 3, 7, 'Planeacion Empresarial', 'Horario', 'INTRODUCCION', 'Bienvenid@', 'Horario y Cronograma', 'Lunes</p>19:3</p>17:3', '', 0),
+(73, 1, 8, 'Derecho constitucional', 'Objetivos', 'INTRODUCCION', 'Bienvenid@', 'Objetivos', 'Objetivo mod</p>Objetivo 2</p>Objetivo 3</p>Objetivo 4</p>Fundamentos', '', 0),
+(74, 2, 8, 'Derecho constitucional', 'Equipo', 'INTRODUCCION', 'Bienvenid@', 'Conoce a tu docente', 'Docente Prueba 1</p>Palabras', '', 0),
+(75, 3, 8, 'Derecho constitucional', 'Horario', 'INTRODUCCION', 'Bienvenid@', 'Horario y Cronograma', 'Lunes</p>17:15</p>20:15', '', 0),
+(76, 1, 9, 'Macroeconomia', 'Objetivos', 'INTRODUCCION', 'Bienvenid@', 'Objetivos', 'Objetivo 1</p>Objetivo 2</p>Objetivo 3</p>Objetivo 4</p>Objetivo 5</p>Fundamentos', '', 0),
+(77, 2, 9, 'Macroeconomia', 'Equipo', 'INTRODUCCION', 'Bienvenid@', 'Conoce a tu docente', 'Docente Prueba 1</p>Bienvenida', '', 0),
+(78, 3, 9, 'Macroeconomia', 'Horario', 'INTRODUCCION', 'Bienvenid@', 'Horario y Cronograma', 'Lunes</p>17:24</p>19:24', '', 0),
+(82, 7, 4, 'Fundamentos de Matemáticas', 'Teoria', 'NULL', 'NULL', 'Teoria 2', '<h1 style=\"text-align: center;\"><span style=\"color: #000000; font-family: verdana, geneva, sans-serif;\">TITULO 1</span></h1><p style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif; color: #000000;\">Contenido Teoria 1</span><br /><span style=\"font-family: verdana, geneva, sans-serif;\"><img style=\"display: block; margin-left: auto; margin-right: auto;\" title=\"AUNAR\" src=\"imagenesContenido/Aunar.png\" alt=\"\" width=\"200\" height=\"202\" /></span></p><h2> </h2><h2 style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif;\"><em>Subtitulo</em></span></h2><h1 style=\"text-align: center;\"><span style=\"font-family: verdana, geneva, sans-serif;\">TITULO 2</span></h1><p style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif;\">Contenido Teoria 2 </span></p><div> </div>', '', 0),
+(83, 8, 4, 'Fundamentos de Matemáticas', 'Teoria', 'Modulo 3', 'Leccion 3', 'Teoría 3', '<h1 style=\"text-align: center;\"><span style=\"color: #000000; font-family: verdana, geneva, sans-serif;\">TITULO 1</span></h1><p style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif; color: #000000;\">Contenido Teoria 1</span><br /><span style=\"font-family: verdana, geneva, sans-serif;\"><img style=\"display: block; margin-left: auto; margin-right: auto;\" title=\"AUNAR\" src=\"imagenesContenido/Aunar.png\" alt=\"\" width=\"200\" height=\"202\" /></span></p><h2> </h2><h2 style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif;\"><em>Subtitulo</em></span></h2><h1 style=\"text-align: center;\"><span style=\"font-family: verdana, geneva, sans-serif;\">TITULO 2</span></h1><p style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif;\">Contenido Teoria 2 </span></p><div> </div>', '', 0),
+(84, 9, 4, 'Fundamentos de Matemáticas', 'Video', 'Modulo 3', 'Leccion 3A', 'Video 3', 'Titulo del video</p>https://www.youtube.com/watch?v=MdNXu8gjFDQ&ab_channel=ComunicacionesAUNAR', '', 0),
+(85, 5, 4, 'Fundamentos de Matemáticas', 'Video', 'NULL', 'NULL', 'Video 1', 'Titulo del video</p>https://www.youtube.com/watch?v=MdNXu8gjFDQ&ab_channel=ComunicacionesAUNAR', '', 0),
+(86, 6, 4, 'Fundamentos de Matemáticas', 'Video', 'NULL', 'Leccion 1A', 'Video 1A', 'Titulo del video</p>https://www.youtube.com/watch?v=MdNXu8gjFDQ&ab_channel=ComunicacionesAUNAR', '', 0),
+(93, 4, 8, 'Derecho constitucional', 'Teoría', 'NULL', 'NULL', 'NULL', 'NULL', '', 0),
+(101, 7, 5, 'Calculo integral', 'PruebaAsoc', 'NULL', 'NULL', 'Prueba', 'Concepto 1</p>Concepto 2</p>Concepto 3</p>Concepto 4</p>Opción 1</p>Opción 2</p>Opción 3</p>Opción 4', '', 0),
+(107, 1, 14, 'Materia Prueba', 'Objetivos', 'INTRODUCCION', 'Bienvenid@', 'Objetivos', '1</p>2</p>3</p>4</p>5</p>6</p>Fundamentos', '', 0),
+(108, 2, 14, 'Materia Prueba', 'Equipo', 'INTRODUCCION', 'Bienvenid@', 'Conoce a tu docente', 'Docente Prueba 1</p>Palabras', '', 0),
+(109, 3, 14, 'Materia Prueba', 'Horario', 'INTRODUCCION', 'Bienvenid@', 'Horario y Cronograma', 'Lunes</p>16:4</p>17:4</p>Martes</p>18:4</p>20:4', '', 0),
+(110, 4, 14, 'Materia Prueba', 'Taller', 'Modulo 1A', 'Taller - Modulo 1A', 'Taller', '<h1 style=\"text-align: center;\">Titulo Taller</h1>\n<p style=\"text-align: justify;\">Enunciado</p>', '', 0),
+(111, 5, 14, 'Materia Prueba', 'Teoría', 'Modulo 1A', 'NULL', 'NULL', 'NULL', '', 0),
+(112, 6, 14, 'Materia Prueba', 'Teoria', 'Modulo 1A', 'NULL', 'NULL', '<h1 style=\"text-align: center;\"><span style=\"color: #000000; font-family: verdana, geneva, sans-serif;\">TITULO 1 modificado</span></h1>\n<p style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif; color: #000000;\">Contenido Teoria 1</span><br /><span style=\"font-family: verdana, geneva, sans-serif;\"><img style=\"display: block; margin-left: auto; margin-right: auto;\" title=\"AUNAR\" src=\"imagenesContenido/Aunar.png\" alt=\"\" width=\"200\" height=\"202\" /></span></p>\n<h2> </h2>\n<h2 style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif; color: #e67e23;\"><em>Subtitulo</em></span></h2>\n<h1 style=\"text-align: center;\"><span style=\"font-family: verdana, geneva, sans-serif;\">TITULO 2</span></h1>\n<p style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif;\">Contenido Teoria 2 </span></p>\n<div> </div>', '', 0),
+(113, 7, 14, 'Materia Prueba', 'Video', 'Modulo 1A', 'NULL', 'Video 1', 'Titulo del video</p>https://www.youtube.com/watch?v=MdNXu8gjFDQ&ab_channel=ComunicacionesAUNAR', '', 0),
+(116, 9, 14, 'Materia Prueba', 'CalificacionT', 'Modulo 1A', 'Taller - Modulo 1A', 'Calificacion', 'Calificacion</p>./curso_ejemplo/1 Módulo 1 - Nombre del módulo/1 Trabajo - Taller 1/Solución Ejemplo T-T 1.pdf</p>./curso_ejemplo/1 Módulo 1 - Nombre del módulo/4 Trabajo - Taller 1/Solución Ejemplo T-T 1.mp4', '', 0),
+(117, 10, 14, 'Materia Prueba', 'Teoría', 'NULL', 'NULL', 'NULL', 'NULL', '', 0),
+(175, 17, 1, 'EvaluacionMicroeconomía', 'Evaluacion', 'Evaluacion 1', 'Evaluacion', 'Examen', 'Estadística Mod:Lección 1', '', 0),
+(176, 18, 1, 'EvaluacionMicroeconomía', 'CalificacionE', 'Evaluacion 1', 'Evaluacion', 'Calificacion Examen', 'Mensaje Despedida</p>B:Explicacion</p>C:Explicacion</p>D:Explicacion</p>B:Explicacion</p>A:Explicacion</p>B:Explicacion</p>D:Explicacion', '', 0),
+(177, 6, 1, 'Microeconomía', 'Video', 'Modulo1', 'Lección 1', 'Video 1', 'Titulo del video</p>https://www.youtube.com/watch?v=MdNXu8gjFDQ&ab_channel=ComunicacionesAUNAR', '', 0),
+(224, 1, 31, 'Materia Doc', 'Objetivos', 'INTRODUCCION', 'Bienvenid@', 'Objetivos', '1</p>2</p>3</p>4</p>hgfd', 'Admin', 12),
+(225, 2, 31, 'Materia Doc', 'Equipo', 'INTRODUCCION', 'Bienvenid@', 'Conoce a tu docente', 'Docente Prueba 2</p>sdgdsfgdfg', 'Admin', 12),
+(226, 3, 31, 'Materia Doc', 'Horario', 'INTRODUCCION', 'Bienvenid@', 'Horario y Cronograma', 'Lunes</p>3:19</p>5:19', 'Admin', 12),
+(227, 4, 3, 'Introducción a la economía', 'Teoria', 'Modulo 1', 'Leccion 1', 'Teoria', '<h1 style=\"text-align: center;\"><span style=\"color: #000000; font-family: verdana, geneva, sans-serif;\">TITULO 1</span></h1>\n<p style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif; color: #000000;\">Contenido Teoria 1</span><br /><span style=\"font-family: verdana, geneva, sans-serif;\"><img style=\"display: block; margin-left: auto; margin-right: auto;\" title=\"AUNAR\" src=\"imagenesContenido/Aunar.png\" alt=\"\" width=\"200\" height=\"202\" /></span></p>\n<h2> </h2>\n<h2 style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif;\"><em>Subtitulo</em></span></h2>\n<h1 style=\"text-align: center;\"><span style=\"font-family: verdana, geneva, sans-serif;\">TITULO 2</span></h1>\n<p style=\"text-align: left;\"><span style=\"font-family: verdana, geneva, sans-serif;\">Contenido Teoria 2 </span></p>\n<div> </div>', 'Admin', 0),
+(228, 5, 3, 'Introducción a la economía', 'PruebaRespUnica', 'Modulo 1', 'Leccion 1', 'Prueba1', 'Opción 1</p>Opción 2</p>Opción 3</p>Opción 4</p>Enunciado</p>Opción 3', 'Admin', 0),
+(229, 6, 3, 'Introducción a la economía', 'Teoría', 'Modulo 1', 'Leccion 2', 'NULL', 'NULL', 'Admin', 0);
+
+--
+-- Disparadores `temas_materias`
+--
+DELIMITER $$
+CREATE TRIGGER `Numero de modulos delete` AFTER DELETE ON `temas_materias` FOR EACH ROW UPDATE materias SET Modulos =
+(SELECT COUNT(DISTINCT temas_materias.NombModulo) FROM temas_materias WHERE CodiMate=materias.Codigo)
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `Numero de modulos insert` AFTER INSERT ON `temas_materias` FOR EACH ROW UPDATE materias SET Modulos =
+(SELECT COUNT(DISTINCT temas_materias.NombModulo) FROM temas_materias WHERE CodiMate=materias.Codigo)
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -1882,30 +2393,54 @@ CREATE TABLE `usuarios` (
   `Password` varchar(250) COLLATE utf8_bin NOT NULL,
   `GeneUsua` varchar(5) COLLATE utf8_bin NOT NULL,
   `EdadUsua` int(11) NOT NULL,
-  `FechDigi` date NOT NULL
+  `Profesion` varchar(200) COLLATE utf8_bin NOT NULL,
+  `Especializacion` varchar(200) COLLATE utf8_bin NOT NULL,
+  `Maestria` varchar(200) COLLATE utf8_bin NOT NULL,
+  `Doctorado` varchar(200) COLLATE utf8_bin NOT NULL,
+  `Perfil` varchar(2000) COLLATE utf8_bin NOT NULL,
+  `Sede` varchar(200) COLLATE utf8_bin NOT NULL,
+  `FechDigi` date NOT NULL,
+  `Semestre` int(20) NOT NULL DEFAULT 0,
+  `Programa` varchar(100) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`CodiUsua`, `TipoDocu`, `NumeDocu`, `Nom1Usua`, `DireUsua`, `Pais`, `Departamento`, `Municipio`, `TeleUsua`, `EmaiUsua`, `FotoUsua`, `TipoUsua`, `Password`, `GeneUsua`, `EdadUsua`, `FechDigi`) VALUES
-(1, '1', 1085935883, 'JUAN DAVID PABON ROSERO', 'CRA 9', 'CO', '22', '756', 3167351117, 'juand8756@gmail.com', 'sss', 1, '202cb962ac59075b964b07152d234b70', '1', 21, '2020-11-01'),
-(4, '1', 87215, 'Carlos Rubio', 'Cra 1', 'CO', '22', '744', 316841251, 'carlos@gmail.com', '1', 2, '202cb962ac59075b964b07152d234b70', '0', 37, '2020-12-09'),
-(5, '1', 123456789, 'Prueba', 'Prueba', 'CO', '22', '744', 3168759528, 'prueba@gmail.com', '1', 2, '202cb962ac59075b964b07152d234b70', '0', 39, '2020-12-12'),
-(41, '1', 1085322519, 'Cristian Enriquez', 'Calle 17 A # 8-E 21', 'CO', '22', '717', 3163228112, 'cristianenterprise04@gmail.com', '1', 1, '10eaa2f227f8ef249c742bc00d6624b0', '0', 25, '2021-01-07'),
-(42, '1', 1097899566, 'Jazmin Benavides', 'Calle 56 no 12', 'CO', '22', '717', 3456778956, 'jazmin_benavides@gmail.com', '1', 2, '10eaa2f227f8ef249c742bc00d6624b0', '0', 23, '2021-01-22'),
-(43, '1', 2141601112, 'Maria Martinez', 'Calle 20 20', 'CO', '22', '717', 320445566, 'maria_martinez@gmail.com', '1', 2, '10eaa2f227f8ef249c742bc00d6624b0', '0', 34, '2021-01-25');
+INSERT INTO `usuarios` (`CodiUsua`, `TipoDocu`, `NumeDocu`, `Nom1Usua`, `DireUsua`, `Pais`, `Departamento`, `Municipio`, `TeleUsua`, `EmaiUsua`, `FotoUsua`, `TipoUsua`, `Password`, `GeneUsua`, `EdadUsua`, `Profesion`, `Especializacion`, `Maestria`, `Doctorado`, `Perfil`, `Sede`, `FechDigi`, `Semestre`, `Programa`) VALUES
+(1, '1', 1085935883, 'JUAN DAVID PABON ROSERO', 'CRA 9', 'CO', '22', '756', 3167351117, 'juand8756@gmail.com', 'sss', 1, '202cb962ac59075b964b07152d234b70', '1', 21, '', '', '', '', '', '', '2020-11-01', 0, ''),
+(2, '1', 87215, 'Carlos Rubio', 'Cra 1', 'CO', '22', '744', 316841251, 'carlos@gmail.com', '1', 2, '202cb962ac59075b964b07152d234b70', '0', 37, '', '', '', '', '', '', '2020-12-09', 0, ''),
+(3, '1', 123456789, 'Prueba', 'Prueba', 'CO', '22', '744', 3168759528, 'prueba@gmail.com', '1', 2, '202cb962ac59075b964b07152d234b70', '0', 39, '', '', '', '', '', '', '2020-12-12', 0, ''),
+(4, '1', 1085322519, 'Cristian Enriquez', 'Calle 17 A # 8-E 21', 'CO', '22', '717', 3163228112, 'cristianenterprise04@gmail.com', '1', 2, '10eaa2f227f8ef249c742bc00d6624b0', '0', 25, '', '', '', '', '', '', '2021-01-07', 0, ''),
+(5, '1', 1097899566, 'Jazmin Benavides', 'Calle 56 no 12', 'CO', '22', '717', 3456778956, 'jazmin_benavides@gmail.com', '1', 2, '10eaa2f227f8ef249c742bc00d6624b0', '0', 23, '', '', '', '', '', '', '2021-01-22', 0, ''),
+(6, '1', 2141601112, 'Maria Martinez', 'Calle 20 20', 'CO', '22', '717', 320445566, 'maria_martinez@gmail.com', '1', 2, '10eaa2f227f8ef249c742bc00d6624b0', '0', 34, '', '', '', '', '', '', '2021-01-25', 0, ''),
+(9, '1', 123145646, 'Docente Prueba 1', '', NULL, NULL, NULL, 3255689454, 'docPrueba@aunaredu.co', 'Fotografía docente ejemplo.png', 3, '10eaa2f227f8ef249c742bc00d6624b0', '0', 35, 'Administrador de Empresas', 'Gerencia', 'Proyectos', 'Administración', 'Perfil Administrador de Empresas', 'Ipiales', '2021-06-29', 0, ''),
+(10, '1', 1234567, 'Docente Prueba 2', '', NULL, NULL, NULL, 31632589996, 'docPrueba2@aunaredu.co', 'Docentefoto.png', 3, '10eaa2f227f8ef249c742bc00d6624b0', '0', 30, 'Ingeniero de Sistemas', 'Machine Learning</p>Big Data', 'Inteligencia Artificial', 'Data Science', 'El ingeniero de sistemas, como ciudadano ético, brinda soluciones pertinentes a problemas en el contexto social con base en sus sólidos conocimientos en arquitectura y desarrollo de software y bases de datos.', 'Ipiales', '2021-06-24', 0, ''),
+(12, '1', 1085322516, 'Cristian  David Enriquez Acosta', 'Calle 17 A # 8-E 21', 'CO', '22', '717', 3163228112, 'cristianenterprise04@gmail.com', '1', 1, '10eaa2f227f8ef249c742bc00d6624b0', '0', 25, '', '', '', '', '', '', '2021-01-07', 2, 'Contaduría pública'),
+(16, '1', 1085322517, 'Cristian  David Enriquez Acosta', 'Calle 17 A # 8-E 21', 'CO', '22', '717', 3163228112, 'cristianenterprise04@gmail.com', '1', 3, '10eaa2f227f8ef249c742bc00d6624b0', '0', 25, '', '', '', '', '', '', '2021-01-07', 2, 'Contaduría pública');
 
 --
 -- Índices para tablas volcadas
 --
 
 --
+-- Indices de la tabla `banco_preguntas`
+--
+ALTER TABLE `banco_preguntas`
+  ADD PRIMARY KEY (`CodBanc`);
+
+--
 -- Indices de la tabla `carreras`
 --
 ALTER TABLE `carreras`
   ADD PRIMARY KEY (`CodiCarr`);
+
+--
+-- Indices de la tabla `categorias`
+--
+ALTER TABLE `categorias`
+  ADD PRIMARY KEY (`Codigo`);
 
 --
 -- Indices de la tabla `cursos`
@@ -1932,6 +2467,12 @@ ALTER TABLE `insccurs`
   ADD PRIMARY KEY (`CodiInsc`);
 
 --
+-- Indices de la tabla `inscmat`
+--
+ALTER TABLE `inscmat`
+  ADD PRIMARY KEY (`CodiInsc`);
+
+--
 -- Indices de la tabla `materias`
 --
 ALTER TABLE `materias`
@@ -1950,10 +2491,142 @@ ALTER TABLE `municipios`
   ADD PRIMARY KEY (`cod_mun`);
 
 --
+-- Indices de la tabla `nivelacion`
+--
+ALTER TABLE `nivelacion`
+  ADD PRIMARY KEY (`codigo`);
+
+--
 -- Indices de la tabla `pais`
 --
 ALTER TABLE `pais`
   ADD PRIMARY KEY (`cod_pai`);
+
+--
+-- Indices de la tabla `pma__bookmark`
+--
+ALTER TABLE `pma__bookmark`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `pma__central_columns`
+--
+ALTER TABLE `pma__central_columns`
+  ADD PRIMARY KEY (`db_name`,`col_name`);
+
+--
+-- Indices de la tabla `pma__column_info`
+--
+ALTER TABLE `pma__column_info`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `db_name` (`db_name`,`table_name`,`column_name`);
+
+--
+-- Indices de la tabla `pma__designer_settings`
+--
+ALTER TABLE `pma__designer_settings`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indices de la tabla `pma__export_templates`
+--
+ALTER TABLE `pma__export_templates`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `u_user_type_template` (`username`,`export_type`,`template_name`);
+
+--
+-- Indices de la tabla `pma__favorite`
+--
+ALTER TABLE `pma__favorite`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indices de la tabla `pma__history`
+--
+ALTER TABLE `pma__history`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `username` (`username`,`db`,`table`,`timevalue`);
+
+--
+-- Indices de la tabla `pma__navigationhiding`
+--
+ALTER TABLE `pma__navigationhiding`
+  ADD PRIMARY KEY (`username`,`item_name`,`item_type`,`db_name`,`table_name`);
+
+--
+-- Indices de la tabla `pma__pdf_pages`
+--
+ALTER TABLE `pma__pdf_pages`
+  ADD PRIMARY KEY (`page_nr`),
+  ADD KEY `db_name` (`db_name`);
+
+--
+-- Indices de la tabla `pma__recent`
+--
+ALTER TABLE `pma__recent`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indices de la tabla `pma__relation`
+--
+ALTER TABLE `pma__relation`
+  ADD PRIMARY KEY (`master_db`,`master_table`,`master_field`),
+  ADD KEY `foreign_field` (`foreign_db`,`foreign_table`);
+
+--
+-- Indices de la tabla `pma__savedsearches`
+--
+ALTER TABLE `pma__savedsearches`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `u_savedsearches_username_dbname` (`username`,`db_name`,`search_name`);
+
+--
+-- Indices de la tabla `pma__table_coords`
+--
+ALTER TABLE `pma__table_coords`
+  ADD PRIMARY KEY (`db_name`,`table_name`,`pdf_page_number`);
+
+--
+-- Indices de la tabla `pma__table_info`
+--
+ALTER TABLE `pma__table_info`
+  ADD PRIMARY KEY (`db_name`,`table_name`);
+
+--
+-- Indices de la tabla `pma__table_uiprefs`
+--
+ALTER TABLE `pma__table_uiprefs`
+  ADD PRIMARY KEY (`username`,`db_name`,`table_name`);
+
+--
+-- Indices de la tabla `pma__tracking`
+--
+ALTER TABLE `pma__tracking`
+  ADD PRIMARY KEY (`db_name`,`table_name`,`version`);
+
+--
+-- Indices de la tabla `pma__userconfig`
+--
+ALTER TABLE `pma__userconfig`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indices de la tabla `pma__usergroups`
+--
+ALTER TABLE `pma__usergroups`
+  ADD PRIMARY KEY (`usergroup`,`tab`,`allowed`);
+
+--
+-- Indices de la tabla `pma__users`
+--
+ALTER TABLE `pma__users`
+  ADD PRIMARY KEY (`username`,`usergroup`);
+
+--
+-- Indices de la tabla `programas`
+--
+ALTER TABLE `programas`
+  ADD PRIMARY KEY (`Codigo`);
 
 --
 -- Indices de la tabla `sub_conte`
@@ -1965,6 +2638,12 @@ ALTER TABLE `sub_conte`
 -- Indices de la tabla `temas_cursos`
 --
 ALTER TABLE `temas_cursos`
+  ADD PRIMARY KEY (`Orden`);
+
+--
+-- Indices de la tabla `temas_materias`
+--
+ALTER TABLE `temas_materias`
   ADD PRIMARY KEY (`Orden`);
 
 --
@@ -2003,16 +2682,28 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `banco_preguntas`
+--
+ALTER TABLE `banco_preguntas`
+  MODIFY `CodBanc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
 -- AUTO_INCREMENT de la tabla `carreras`
 --
 ALTER TABLE `carreras`
   MODIFY `CodiCarr` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `categorias`
+--
+ALTER TABLE `categorias`
+  MODIFY `Codigo` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT de la tabla `cursos`
 --
 ALTER TABLE `cursos`
-  MODIFY `CodiCurs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `CodiCurs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `departamento`
@@ -2030,13 +2721,19 @@ ALTER TABLE `insccarr`
 -- AUTO_INCREMENT de la tabla `insccurs`
 --
 ALTER TABLE `insccurs`
-  MODIFY `CodiInsc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `CodiInsc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT de la tabla `inscmat`
+--
+ALTER TABLE `inscmat`
+  MODIFY `CodiInsc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `materias`
 --
 ALTER TABLE `materias`
-  MODIFY `Codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `Codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `matricula`
@@ -2051,10 +2748,58 @@ ALTER TABLE `municipios`
   MODIFY `cod_mun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1124;
 
 --
+-- AUTO_INCREMENT de la tabla `nivelacion`
+--
+ALTER TABLE `nivelacion`
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
 -- AUTO_INCREMENT de la tabla `pais`
 --
 ALTER TABLE `pais`
   MODIFY `cod_pai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=237;
+
+--
+-- AUTO_INCREMENT de la tabla `pma__bookmark`
+--
+ALTER TABLE `pma__bookmark`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `pma__column_info`
+--
+ALTER TABLE `pma__column_info`
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `pma__export_templates`
+--
+ALTER TABLE `pma__export_templates`
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `pma__history`
+--
+ALTER TABLE `pma__history`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `pma__pdf_pages`
+--
+ALTER TABLE `pma__pdf_pages`
+  MODIFY `page_nr` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `pma__savedsearches`
+--
+ALTER TABLE `pma__savedsearches`
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `programas`
+--
+ALTER TABLE `programas`
+  MODIFY `Codigo` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `sub_conte`
@@ -2066,7 +2811,13 @@ ALTER TABLE `sub_conte`
 -- AUTO_INCREMENT de la tabla `temas_cursos`
 --
 ALTER TABLE `temas_cursos`
-  MODIFY `Orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `Orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+
+--
+-- AUTO_INCREMENT de la tabla `temas_materias`
+--
+ALTER TABLE `temas_materias`
+  MODIFY `Orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=230;
 
 --
 -- AUTO_INCREMENT de la tabla `tienda`
@@ -2096,7 +2847,7 @@ ALTER TABLE `unidades`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `CodiUsua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `CodiUsua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
