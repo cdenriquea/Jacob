@@ -1,156 +1,99 @@
-
-            <!-- -------------------Area Clase-------------------- -->
-            <div ng-show = "content" class="col p-3 area">
-                <div class="col-12 p-0 text-center"><img class="py-4 iconos" src="./imagenes/PRUEBA DE CONOCIMIENTO.png"></div>
-                <div ng-if = "usuario == 1" class="col">
-                    <a class="nav-link p-0" ng-click="edicion()">
-                        <button type="button" class="my-auto px-4 py-2 boton-editar" id="editarAsociacion">
+<!-- -------------------Area Clase-------------------- -->
+<div ng-show="content" class="col p-3 area">
+    <div class="col-12 p-0 text-center"><img class="py-4 iconos" src="./imagenes/PRUEBA DE CONOCIMIENTO.png"></div>
+    <div ng-if="usuario == 1 && showEdit == true" class="col">
+        <a class="nav-link p-0" ng-click="edicion()">
+            <button type="button" class="my-auto px-4 py-2 boton-editar" id="editarAsociacion">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                             </svg>
                         </button>
-                    </a>
-                </div>    
-                <div class="col-12 text-center">
-                        <h1 class="titulos-clase">Analiza y Relaciona</h1>
-                        <hr>
-                        <p class="text-justify">Prueba de conocimiento asociativa, relaciona los conceptos con la explicación correcta</p>
-                        <br>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-6 p-0 text-center order-2">
-                            <div ng-repeat="Objetos in objetosResp">
-                                <a class="nav-link p-2" ><button ng-style="colores[$index]" ng-drop="true" ng-drop-success="objetosMov[$index]($data,$event)" type="button" class="boton-amarillo-block"  >{{listAns[$index].title}} {{Objetos[Objetos.length-1].item}}</button></a>
-                            </div>
-                        </div>
-                    
-                    <div class="col-6 p-0 text-center order-1">
-                        <div ng-repeat="obj in listItems">
-                            <a class="nav-link p-2" ><button ng-drop="true" ng-drop-success="removerObjeto($data,$event)" ng-drag="true" ng-drag-data="obj" type="button" class="boton-azul-borde-block" >{{obj.title}}</button></a>
-                        </div>
-                    </div>  
-                    </div>
-                    <br>
-                    <div class="d-flex justify-content-center">
-                        <a class="nav-link p-2" > <button  ng-click="confirmarAsoc()" type="button" class="boton-amarillo" data-toggle="modal" >Confirmar</button></a>
-                    </div>
+        </a>
+    </div>
+    <div class="col-12 text-center">
+        <h1 class="titulos-clase">Analiza y Relaciona</h1>
+        <hr>
+        <p class="text-justify">Prueba de conocimiento asociativa, relaciona los conceptos con la explicación correcta</p>
+        <br>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-6 p-0 text-center order-2">
+            <div ng-repeat="Objetos in objetosResp">
+                <a class="nav-link p-2"><button ng-style="colores[$index]" ng-drop="true" ng-drop-success="objetosMov[$index]($data,$event)" type="button" class="boton-amarillo-block"  >{{listAns[$index].title}} {{Objetos[Objetos.length-1].item}}</button></a>
             </div>
-        
-            <!-- -------------------Fin Area Clase-------------------- -->
+        </div>
 
-            <!-- -------------------Area Edición-------------------- -->
-            <div ng-show ="edit" class="col p-3 area">
-                <form >
-                <div class="col-12 p-0 text-center"><img class="py-4 iconos" src="./imagenes/PRUEBA DE CONOCIMIENTO.png"></div>
-                <div class="col">
-                    <a class="nav-link p-0" ng-click="contenido()">
-                        <button type="button" class="my-auto px-4 py-2 boton-editar" id="editarAsociacion">
+        <div class="col-6 p-0 text-center order-1">
+            <div ng-repeat="obj in listItems">
+                <a class="nav-link p-2"><button ng-drop="true" ng-drop-success="removerObjeto($data,$event)" ng-drag="true" ng-drag-data="obj" type="button" class="boton-azul-borde-block" >{{obj.title}}</button></a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center">
+        <a class="nav-link p-2"> <button ng-click="confirmarAsoc()" type="button" class="boton-amarillo" data-toggle="modal">Confirmar</button></a>
+    </div>
+</div>
+
+<!-- -------------------Fin Area Clase-------------------- -->
+
+<!-- -------------------Area Edición-------------------- -->
+<div ng-show="edit" class="col p-3 area">
+    <form>
+        <div class="col-12 p-0 text-center"><img class="py-4 iconos" src="./imagenes/PRUEBA DE CONOCIMIENTO.png"></div>
+        <div class="col">
+            <a class="nav-link p-0" ng-click="contenido()">
+                <button type="button" class="my-auto px-4 py-2 boton-editar" id="editarAsociacion">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                             </svg>
                         </button>
-                    </a>
+            </a>
+        </div>
+        <div class="col-12 text-center">
+            <h1 class="titulos-clase">Analiza y Relaciona</h1>
+            <hr>
+            <p class="text-justify">Prueba de conocimiento asociativa, relaciona los conceptos con la explicación correcta</p>
+            <br>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-6 text-center">
+                <div class="form-group borde-formulario">
+                    <input type="text" class="form-control" ng-model="PruebaAsoc[0]" id="concepto1" placeholder="Concepto" required>
                 </div>
-                    <div class="col-12 text-center">
-                        <h1 class="titulos-clase">Analiza y Relaciona</h1>
-                        <hr>
-                        <p class="text-justify">Prueba de conocimiento asociativa, relaciona los conceptos con la explicación correcta</p>
-                        <br>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-6 text-center">
-                            <div class="form-group borde-formulario">
-                                <input 
-                                type="text"
-                                class="form-control"
-                                ng-model = "PruebaAsoc[0]"
-                                id="concepto1"
-                                placeholder="Concepto"
-                                required
-                                >
-                            </div>
-                            <div class="form-group borde-formulario">
-                                <input 
-                                type="text"
-                                class="form-control"
-                                ng-model = "PruebaAsoc[1]"
-                                id="concepto2"
-                                placeholder="Concepto"
-                                required
-                                >
-                            </div>
-                            <div class="form-group borde-formulario">
-                                <input 
-                                type="text"
-                                class="form-control"
-                                ng-model = "PruebaAsoc[2]"
-                                id="concepto3"
-                                placeholder="Concepto"
-                                required
-                                >
-                            </div>
-                            <div class="form-group borde-formulario">
-                                <input 
-                                type="text"
-                                class="form-control"
-                                ng-model = "PruebaAsoc[3]"
-                                id="concepto4"
-                                placeholder="Concepto"
-                                required
-                                >
-                            </div>
-                        </div>
-                        <div class="col-6 text-center">
-                            <div class="form-group borde-formulario">
-                                <input 
-                                type="text"
-                                class="form-control"
-                                ng-model = "PruebaAsoc[4]"
-                                id="opcion1"
-                                placeholder="Opción"
-                                required
-                                >
-                            </div>
-                            <div class="form-group borde-formulario">
-                                <input 
-                                type="text"
-                                class="form-control"
-                                ng-model = "PruebaAsoc[5]"
-                                id="opcion2"
-                                placeholder="Opción"
-                                required
-                                >
-                            </div>
-                            <div class="form-group borde-formulario">
-                                <input 
-                                type="text"
-                                class="form-control"
-                                ng-model = "PruebaAsoc[6]"
-                                id="opcion3"
-                                placeholder="Opción"
-                                required
-                                >
-                            </div>
-                            <div class="form-group borde-formulario">
-                                <input 
-                                type="text"
-                                class="form-control"
-                                ng-model = "PruebaAsoc[7]"
-                                id="opcion4"
-                                placeholder="Opción"
-                                required
-                                >
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="col text-center">
-                        <button type="submit" class="my-auto mx-auto px-4 py-2 boton-azul" value="asociacion" ng-click = "modContenido('PruebaAsoc')">Guardar</button>
-                    </div>
-                    </form>    
+                <div class="form-group borde-formulario">
+                    <input type="text" class="form-control" ng-model="PruebaAsoc[1]" id="concepto2" placeholder="Concepto" required>
+                </div>
+                <div class="form-group borde-formulario">
+                    <input type="text" class="form-control" ng-model="PruebaAsoc[2]" id="concepto3" placeholder="Concepto" required>
+                </div>
+                <div class="form-group borde-formulario">
+                    <input type="text" class="form-control" ng-model="PruebaAsoc[3]" id="concepto4" placeholder="Concepto" required>
+                </div>
             </div>
-        <!-- -------------------Fin Area Edición-------------------- -->
+            <div class="col-6 text-center">
+                <div class="form-group borde-formulario">
+                    <input type="text" class="form-control" ng-model="PruebaAsoc[4]" id="opcion1" placeholder="Opción" required>
+                </div>
+                <div class="form-group borde-formulario">
+                    <input type="text" class="form-control" ng-model="PruebaAsoc[5]" id="opcion2" placeholder="Opción" required>
+                </div>
+                <div class="form-group borde-formulario">
+                    <input type="text" class="form-control" ng-model="PruebaAsoc[6]" id="opcion3" placeholder="Opción" required>
+                </div>
+                <div class="form-group borde-formulario">
+                    <input type="text" class="form-control" ng-model="PruebaAsoc[7]" id="opcion4" placeholder="Opción" required>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="col text-center">
+            <button type="submit" class="my-auto mx-auto px-4 py-2 boton-azul" value="asociacion" ng-click="modContenido('PruebaAsoc')">Guardar</button>
+        </div>
+    </form>
+</div>
+<!-- -------------------Fin Area Edición-------------------- -->

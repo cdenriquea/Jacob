@@ -13,8 +13,8 @@ if ($numRows == 0) {
     if ($_POST['Tipo'] == 'edit') {
         $sqlInsert = "UPDATE " . $_POST['Categoria'] . " SET NombModulo='" . $_POST['Modulo'] . "' WHERE NombModulo='" . $_POST['modAux'] . "' AND CodiMate = " . $_POST['Codigo'] . ";";
     } else {
-        $sqlInsert = "INSERT INTO " . $_POST['Categoria'] . " (Puesto,CodiMate,Materia,Seccion,NombModulo,NombLeccion,NombSeccion,Contenido) VALUES ('" . $_POST['Puesto'] . "','" . $_POST['Codigo'] . "','" . $_POST['Nombre'] . "','Evaluacion','" . $_POST['Modulo'] . "','Evaluacion','Examen','');";
-        $sqlInsert2 = "INSERT INTO " . $_POST['Categoria'] . " (Puesto,CodiMate,Materia,Seccion,NombModulo,NombLeccion,NombSeccion,Contenido) VALUES ('" . $_POST['Puesto2'] . "','" . $_POST['Codigo'] . "','" . $_POST['Nombre'] . "','CalificacionE','" . $_POST['Modulo'] . "','Evaluacion', 'Calificacion Examen','Mensaje Despedida</p>B:Explicacion</p>C:Explicacion</p>D:Explicacion</p>B:Explicacion</p>A:Explicacion</p>B:Explicacion</p>D:Explicacion');";
+        $sqlInsert = "INSERT INTO " . $_POST['Categoria'] . " (Puesto,CodiMate,Materia,Seccion,NombModulo,NombLeccion,NombSeccion,Contenido,Creador,idCreador) VALUES ('" . $_POST['Puesto'] . "','" . $_POST['Codigo'] . "','" . $_POST['Nombre'] . "','Evaluacion','" . $_POST['Modulo'] . "','Evaluacion','Examen','','" . $_POST['tipoCreador'] . "','" . $_POST['idCreador'] . "');";
+        $sqlInsert2 = "INSERT INTO " . $_POST['Categoria'] . " (Puesto,CodiMate,Materia,Seccion,NombModulo,NombLeccion,NombSeccion,Contenido,Creador,idCreador) VALUES ('" . $_POST['Puesto2'] . "','" . $_POST['Codigo'] . "','" . $_POST['Nombre'] . "','CalificacionE','" . $_POST['Modulo'] . "','Evaluacion', 'Calificacion Examen','Mensaje Despedida</p>B:Explicacion</p>C:Explicacion</p>D:Explicacion</p>B:Explicacion</p>A:Explicacion</p>B:Explicacion</p>D:Explicacion','" . $_POST['tipoCreador'] . "','" . $_POST['idCreador'] . "');";
     }
 
 

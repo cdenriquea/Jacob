@@ -19,6 +19,21 @@ Jacob_App.config(function ($stateProvider, $urlRouterProvider) {
       templateUrl: "reportes_docente.html",
       controller: "docenteController",
     })
+    .state("actividades", {
+      url: "/actividades",
+      templateUrl: "actividades.html",
+      controller: "actividades",
+    })
+    .state("crear_examen", {
+      url: "/crear_examen",
+      templateUrl: "crear_examen.html",
+      controller: "crear_examen",
+    })
+    .state("inscritos_materias", {
+      url: "/inscritos_materias",
+      templateUrl: "inscritos_materias.html",
+      controller: "inscritos_materias",
+    })
     .state("materias", {
       url: "/materias",
       templateUrl: "materias.html",
@@ -450,6 +465,10 @@ Jacob_App.controller("inscripciones", function ($scope, $state, $timeout, $rootS
 });
 
 Jacob_App.controller("materias", function ($scope, $timeout, $sessionStorage, $state, $rootScope) {
+  $scope.tipoUsua = $sessionStorage.usu_tipo;
+  $scope.datosModal = function (nombreMateria) {
+    $scope.nombreMateriamodal = nombreMateria;
+  };
   $scope.mensaje = "Hola";
   $.post("php/listar_materias.php", { valorBusqueda: $sessionStorage.idGlobal }, function (mensaje) {
     var array = JSON.parse(mensaje);
@@ -1147,33 +1166,55 @@ Jacob_App.controller("barra_navegacion", function ($scope, $timeout, $sessionSto
   $scope.navLink = $sessionStorage.navLink;
   $scope.prevSec = $sessionStorage.prevSec;
   $scope.nextSec = $sessionStorage.nextSec;
+  $scope.prevShowEdit = false;
+  $scope.tipoUsua = $sessionStorage.usu_tipo;
+  $scope.IdUsua = $sessionStorage.idGlobal;
+
+  if ($sessionStorage.usu_tipo == 2) {
+    $scope.nextShowEdit = true;
+  } else {
+    $scope.nextShowEdit = false;
+  }
 
   // Calcular numero de Modulos y Lecciones para listar //
 
   var Modulos = [];
   var Lecciones = [];
   var Secciones = [];
+  var show = [];
 
   for (var i = 0; i < $sessionStorage.tema.length; i++) {
+    if ($sessionStorage.usu_tipo == 2) {
+      show[i] = true;
+    } else {
+      if ($sessionStorage.tema[i].idCreador == $sessionStorage.idGlobal && $sessionStorage.tema[i].Creador == $sessionStorage.usu_tipo) {
+        show[i] = true;
+      } else {
+        show[i] = false;
+      }
+    }
+
     Secciones[i] = {
       name: $sessionStorage.tema[i].NombSeccion,
       Modulo: $sessionStorage.tema[i].NombModulo,
       Leccion: $sessionStorage.tema[i].NombLeccion,
       Orden: $sessionStorage.tema[i].Orden,
-      idCreador: $sessionStorage.tema[i].idCreador,
+      mostrar: show[i],
     };
     Lecciones[i] = {
       name: $sessionStorage.tema[i].NombLeccion,
       tipo: $sessionStorage.tema[i].Seccion,
       Modulo: $sessionStorage.tema[i].NombModulo,
-      idCreador: $sessionStorage.tema[i].idCreador,
+      mostrar: show[i],
     };
     Modulos[i] = {
       name: $sessionStorage.NombModulo[i],
       tipo: $sessionStorage.tema[i].Seccion,
-      idCreador: $sessionStorage.tema[i].idCreador,
+      mostrar: show[i],
     };
   }
+
+  $scope.showEdit = Secciones[0].mostrar;
 
   //Filtrar objetos//
   const unique = (arr, props = []) => [...new Map(arr.map((entry) => [props.map((k) => entry[k]).join("|"), entry])).values()];
@@ -1260,7 +1301,14 @@ Jacob_App.controller("barra_navegacion", function ($scope, $timeout, $sessionSto
 
   /*------------------------------- - Contenido de seccion escogida ---------------------------------------*/
 
-  $scope.n_seccion = function (seccion) {
+  $scope.n_seccion = function (seccion, showEdit) {
+    console.log(showEdit);
+    if (showEdit == undefined) {
+      $scope.showEdit = true;
+    } else {
+      $scope.showEdit = showEdit;
+    }
+
     $scope.NombSeccionAc = [];
     $scope.SeccionId = [];
     var prueba = 0;
@@ -1285,6 +1333,7 @@ Jacob_App.controller("barra_navegacion", function ($scope, $timeout, $sessionSto
             for (var t = i - 1; t >= 0; t--) {
               if ($sessionStorage.tema[t].NombSeccion != "NULL") {
                 $sessionStorage.prevSec = $sessionStorage.tema[t].Orden;
+                $scope.prevShowEdit = $scope.Secciones[t].mostrar;
                 break;
               } else {
                 continue;
@@ -1292,9 +1341,11 @@ Jacob_App.controller("barra_navegacion", function ($scope, $timeout, $sessionSto
             }
           } else {
             $sessionStorage.prevSec = $sessionStorage.tema[i - 1].Orden;
+            $scope.prevShowEdit = $scope.Secciones[i - 1].mostrar;
           }
         } catch (e) {
           $sessionStorage.prevSec = $sessionStorage.tema[i].Orden;
+          $scope.prevShowEdit = $scope.Secciones[i].mostrar;
         }
 
         try {
@@ -1302,6 +1353,7 @@ Jacob_App.controller("barra_navegacion", function ($scope, $timeout, $sessionSto
             for (var u = i + 1; u < $sessionStorage.tema.length; u++) {
               if ($sessionStorage.tema[u].NombSeccion != "NULL") {
                 $sessionStorage.nextSec = $sessionStorage.tema[u].Orden;
+                $scope.prevShowEdit = $scope.Secciones[u].mostrar;
                 break;
               } else {
                 continue;
@@ -1309,9 +1361,11 @@ Jacob_App.controller("barra_navegacion", function ($scope, $timeout, $sessionSto
             }
           } else {
             $sessionStorage.nextSec = $sessionStorage.tema[i + 1].Orden;
+            $scope.prevShowEdit = $scope.Secciones[i + 1].mostrar;
           }
         } catch (e) {
           $sessionStorage.nextSec = $sessionStorage.tema[i].Orden;
+          $scope.prevShowEdit = $scope.Secciones[i].mostrar;
         }
         $sessionStorage.actualNombSec = $sessionStorage.tema[i].NombSeccion;
         $sessionStorage.actualSec = $scope.SeccionAc;
@@ -1419,25 +1473,35 @@ Jacob_App.controller("barra_navegacion", function ($scope, $timeout, $sessionSto
     var Modulos = [];
     var Lecciones = [];
     var Secciones = [];
+    var show = [];
 
     for (var i = 0; i < $sessionStorage.tema.length; i++) {
+      if ($sessionStorage.usu_tipo == 2) {
+        show[i] = true;
+      } else {
+        if ($sessionStorage.tema[i].idCreador == $sessionStorage.idGlobal && $sessionStorage.tema[i].Creador == $sessionStorage.usu_tipo) {
+          show[i] = true;
+        } else {
+          show[i] = false;
+        }
+      }
       Secciones[i] = {
         name: $sessionStorage.tema[i].NombSeccion,
         Modulo: $sessionStorage.tema[i].NombModulo,
         Leccion: $sessionStorage.tema[i].NombLeccion,
         Orden: $sessionStorage.tema[i].Orden,
-        idCreador: $sessionStorage.tema[i].idCreador,
+        mostrar: show[i],
       };
       Lecciones[i] = {
         name: $sessionStorage.tema[i].NombLeccion,
         tipo: $sessionStorage.tema[i].Seccion,
         Modulo: $sessionStorage.tema[i].NombModulo,
-        idCreador: $sessionStorage.tema[i].idCreador,
+        mostrar: show[i],
       };
       Modulos[i] = {
-        name: $sessionStorage.tema[i].NombModulo,
+        name: $sessionStorage.NombModulo[i],
         tipo: $sessionStorage.tema[i].Seccion,
-        idCreador: $sessionStorage.tema[i].idCreador,
+        mostrar: show[i],
       };
     }
 
@@ -1451,8 +1515,6 @@ Jacob_App.controller("barra_navegacion", function ($scope, $timeout, $sessionSto
     $scope.Secciones = Secciones;
     $scope.temas = Modulos;
     $scope.subtemas = Lecciones;
-
-    console.log($scope.temas);
 
     // Listar
     for (var i = 0; i < $scope.Secciones.length; i++) {
@@ -1751,6 +1813,8 @@ Jacob_App.controller("barra_navegacion", function ($scope, $timeout, $sessionSto
         Nombre: $sessionStorage.nombreCurso,
         Modulo: $scope.nombreModulo,
         Categoria: $sessionStorage.Tipo,
+        idCreador: $sessionStorage.idGlobal,
+        tipoCreador: $sessionStorage.usu_tipo,
       },
       function (mensaje) {
         $timeout(function () {
@@ -1869,6 +1933,8 @@ Jacob_App.controller("barra_navegacion", function ($scope, $timeout, $sessionSto
         Leccion: $scope.nombreLeccion,
         Modulo: $sessionStorage.LecMod,
         Categoria: $sessionStorage.Tipo,
+        idCreador: $sessionStorage.idGlobal,
+        tipoCreador: $sessionStorage.usu_tipo,
       },
       function (mensaje) {
         $timeout(function () {
@@ -1968,6 +2034,9 @@ Jacob_App.controller("barra_navegacion", function ($scope, $timeout, $sessionSto
       case "Mantener":
         $scope.defaultContent = "Mantener";
         break;
+      case "Objetivos":
+        $scope.defaultContent = "Objetivo 1</p>Objetivo 2</p>Objetivo 3</p>Objetivo 4</p>Objetivo 5</p>Objetivo 6</p>Fundamentos";
+        break;
       case "Teoria":
         $scope.defaultContent =
           '<h1 style="text-align: center;"><span style="color: #000000; font-family: verdana, geneva, sans-serif;">TITULO 1</span></h1>' +
@@ -2002,6 +2071,8 @@ Jacob_App.controller("barra_navegacion", function ($scope, $timeout, $sessionSto
         break;
     }
 
+    console.log($sessionStorage.usu_tipo);
+
     $.post(
       "php/crear_seccion.php",
       {
@@ -2017,6 +2088,8 @@ Jacob_App.controller("barra_navegacion", function ($scope, $timeout, $sessionSto
         TSeccion: $scope.tipoContenido,
         Default: $scope.defaultContent,
         Categoria: $sessionStorage.Tipo,
+        idCreador: $sessionStorage.idGlobal,
+        tipoCreador: $sessionStorage.usu_tipo,
       },
       function (mensaje) {
         $timeout(function () {
@@ -2150,6 +2223,8 @@ Jacob_App.controller("barra_navegacion", function ($scope, $timeout, $sessionSto
         Leccion: "Taller - " + $sessionStorage.LecMod,
         Modulo: $sessionStorage.LecMod,
         Categoria: $sessionStorage.Tipo,
+        idCreador: $sessionStorage.idGlobal,
+        tipoCreador: $sessionStorage.usu_tipo,
       },
       function (mensaje) {
         $timeout(function () {
@@ -2170,6 +2245,8 @@ Jacob_App.controller("barra_navegacion", function ($scope, $timeout, $sessionSto
                 Seccion: "Taller",
                 TSeccion: "Taller",
                 Default: tinyMCE.get("contenidoTaller").getContent(),
+                idCreador: $sessionStorage.idGlobal,
+                tipoCreador: $sessionStorage.usu_tipo,
               },
               function (mensaje) {
                 $.post(
@@ -2187,6 +2264,8 @@ Jacob_App.controller("barra_navegacion", function ($scope, $timeout, $sessionSto
                     TSeccion: "CalificacionT",
                     Default:
                       "Calificacion</p>./curso_ejemplo/1 Módulo 1 - Nombre del módulo/1 Trabajo - Taller 1/Solución Ejemplo T-T 1.pdf</p>./curso_ejemplo/1 Módulo 1 - Nombre del módulo/4 Trabajo - Taller 1/Solución Ejemplo T-T 1.mp4",
+                    idCreador: $sessionStorage.idGlobal,
+                    tipoCreador: $sessionStorage.usu_tipo,
                   },
                   function (mensaje) {
                     $timeout(function () {
@@ -2294,6 +2373,8 @@ Jacob_App.controller("barra_navegacion", function ($scope, $timeout, $sessionSto
         Categoria: $sessionStorage.Tipo,
         Puesto: nuevoPuesto,
         Puesto2: nuevoPuestoAux,
+        idCreador: $sessionStorage.idGlobal,
+        tipoCreador: $sessionStorage.usu_tipo,
       },
       function (mensaje) {
         $timeout(function () {

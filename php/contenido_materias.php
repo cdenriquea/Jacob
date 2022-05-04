@@ -3,7 +3,7 @@
 include 'conectar.php';
 
 //generamos la consulta
-$sql = "SELECT m.Orden,m.Puesto,m.Seccion,m.NombModulo,m.NombLeccion,m.NombSeccion,m.Contenido,idCreador FROM " . $_POST['Tipo'] . " AS m WHERE m.CodiMate = " . $_POST['idCurso'] . ";";
+$sql = "SELECT m.Orden,m.Puesto,m.Seccion,m.NombModulo,m.NombLeccion,m.NombSeccion,m.Contenido,idCreador,Creador FROM " . $_POST['Tipo'] . " AS m WHERE m.CodiMate = " . $_POST['idCurso'] . ";";
 mysqli_set_charset($conn, "utf8");
 
 if (!$result = mysqli_query($conn, $sql)) die();
@@ -25,9 +25,10 @@ if ($numRows == 0) {
 		$NombSeccion = $row['NombSeccion'];
 		$Contenido = $row['Contenido'];
 		$idCreador = $row['idCreador'];
+		$Creador = $row['Creador'];
 
 
-		$paises[] = array('Orden' => $Orden, 'Puesto' => $Puesto, 'Seccion' => $Seccion, 'NombModulo' => $NombModulo, 'NombLeccion' => $NombLeccion, 'NombSeccion' => $NombSeccion, 'Contenido' => $Contenido, 'idCreador' => $idCreador);
+		$paises[] = array('Orden' => $Orden, 'Puesto' => $Puesto, 'Seccion' => $Seccion, 'NombModulo' => $NombModulo, 'NombLeccion' => $NombLeccion, 'NombSeccion' => $NombSeccion, 'Contenido' => $Contenido, 'idCreador' => $idCreador, 'Creador' => $Creador);
 	}
 
 	$close = mysqli_close($conn)

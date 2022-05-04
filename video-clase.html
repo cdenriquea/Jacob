@@ -1,7 +1,7 @@
 <!-- -------------------Area Clase-------------------- -->
 <div ng-show="content" class="col p-3 area">
     <div class="col-12 p-0 text-center"><img class="py-4 iconos" src="./imagenes/VIDEO.png"></div>
-    <div ng-if="usuario == 1" class="col">
+    <div ng-if="usuario == 1 && showEdit == true" class="col">
         <a class="nav-link p-0" ng-click="edicion()">
             <button type="button" class="my-auto px-4 py-2 boton-editar" id="editarVideo">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -20,9 +20,7 @@
     </div>
 
     <div class="col px-1 px-md-2 iframe-container">
-        <p align="center"><iframe width="900" height="600" ng-src="{{URL}}" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe></p>
+        <p align="center"><iframe width="900" height="600" ng-src="{{URL}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
     </div>
 
 
@@ -52,25 +50,21 @@
         <div class="col-12 text-center">
             <hr>
             <div class="form-group borde-formulario">
-                <input type="text" class="form-control" ng-model="Video[0]" id="nombreVideo"
-                    placeholder="Titulo del Video">
+                <input type="text" class="form-control" ng-model="Video[0]" id="nombreVideo" placeholder="Titulo del Video">
             </div>
             <div class="form-group borde-formulario">
-                <input type="text" class="form-control" ng-model="Video[1]" id="linkVideo"
-                    placeholder="Link del Video (Youtube)">
+                <input type="text" class="form-control" ng-model="Video[1]" id="linkVideo" placeholder="Link del Video (Youtube)">
             </div>
             <div class="form-group borde-formulario">
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="subirVideo">
-                    <label class="custom-file-label text-justify" for="customFileLangHTML"
-                        data-browse="Elegir">Video</label>
+                    <label class="custom-file-label text-justify" for="customFileLangHTML" data-browse="Elegir">Video</label>
                 </div>
             </div>
         </div>
         <br>
         <div class="col text-center">
-            <button type="submit" class="my-auto mx-auto px-4 py-2 boton-azul" ng-click="modContenido('Video')"
-                value="video">Guardar</button>
+            <button type="submit" class="my-auto mx-auto px-4 py-2 boton-azul" ng-click="modContenido('Video')" value="video">Guardar</button>
         </div>
     </form>
 </div>

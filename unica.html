@@ -1,7 +1,7 @@
 <!-- -------------------Area Clase-------------------- -->
 <div ng-show="content" class="col p-3 area">
     <div class="col-12 p-0 text-center"><img class="py-4 iconos" src="./imagenes/PRUEBA DE CONOCIMIENTO.png"></div>
-    <div ng-if="usuario == 1" class="col">
+    <div ng-if="usuario == 1 && showEdit == true" class="col">
         <a class="nav-link p-0" ng-click="edicion()">
             <button type="button" class="my-auto px-4 py-2 boton-editar" id="editarUnica">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -23,13 +23,10 @@
     <br>
     <div class="row">
         <div class="col-12 col-md-8 mx-auto text-center">
-            <a class="nav-link" ng-repeat="opciones in opcionesUnicRand"> <button ng-style="color[$index]"
-                    ng-click="comprobar(opciones,$index)" type="button"
-                    class="boton-azul-borde-block">{{opciones}}</button></a>
+            <a class="nav-link" ng-repeat="opciones in opcionesUnicRand"> <button ng-style="color[$index]" ng-click="comprobar(opciones,$index)" type="button" class="boton-azul-borde-block">{{opciones}}</button></a>
         </div>
     </div>
-    <a class="nav-link"> <button ng-click="confirmarRespuesta()" type="button"
-            class="boton-amarillo">Confirmar</button></a>
+    <a class="nav-link"> <button ng-click="confirmarRespuesta()" type="button" class="boton-amarillo">Confirmar</button></a>
 </div>
 </div>
 
@@ -60,17 +57,14 @@
         <div class="row">
             <div class="col-12 mx-auto text-center">
                 <div class="form-group borde-formulario">
-                    <textarea class="form-control" ng-model="enunciado" id="enunciado" placeholder="Enunciado" required
-                        rows="5"></textarea>
+                    <textarea class="form-control" ng-model="enunciado" id="enunciado" placeholder="Enunciado" required rows="5"></textarea>
                 </div>
                 <div ng-repeat="Opciones in opcionesUnic track by $index" class="form-group borde-formulario">
-                    <input type="text" class="form-control" ng-model="opcionesUnic[$index]"
-                        id="{{opcionesUnic[$index]}}" placeholder="Opción">
+                    <input type="text" class="form-control" ng-model="opcionesUnic[$index]" id="{{opcionesUnic[$index]}}" placeholder="Opción">
                 </div>
                 <label for="respuestas">Respuesta: </label>
                 <div id="respuestas" ng-repeat="Opciones in opcionesUnic" class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" ng-model="model.respuestas" name="Opciones"
-                        id="Opciones" value="{{Opciones}}">
+                    <input class="form-check-input" type="radio" ng-model="model.respuestas" name="Opciones" id="Opciones" value="{{Opciones}}">
                     <label class="form-check-label" for="Opciones">{{$index+1}}</label>
 
                 </div>
@@ -78,17 +72,14 @@
 
 
                 <div class="col text-right">
-                    <a class="nav-link"> <button type="button" ng-click="nuevaOpcion()"
-                            class="boton-azul">Agregar</button></a>
-                    <a class="nav-link"> <button type="button" ng-show="botonEliminar()" ng-click="eliminarOpcion()"
-                            class="boton-azul">Eliminar</button></a>
+                    <a class="nav-link"> <button type="button" ng-click="nuevaOpcion()" class="boton-azul">Agregar</button></a>
+                    <a class="nav-link"> <button type="button" ng-show="botonEliminar()" ng-click="eliminarOpcion()" class="boton-azul">Eliminar</button></a>
                 </div>
 
             </div>
         </div>
         <div class="col text-center">
-            <button type="submit" class="my-auto mx-auto px-4 py-2 boton-azul"
-                ng-click="modContenido('PruebaRespUnica')">Guardar</button>
+            <button type="submit" class="my-auto mx-auto px-4 py-2 boton-azul" ng-click="modContenido('PruebaRespUnica')">Guardar</button>
         </div>
     </form>
 </div>

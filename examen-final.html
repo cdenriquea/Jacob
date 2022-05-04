@@ -1,7 +1,7 @@
 <!-- -------------------Area Clase-------------------- -->
 <div ng-show="content" class="col p-3 area">
     <div class="col-12 p-0 text-center"><img class="py-4 iconos" src="./imagenes/EVALUACIÓN.png"></div>
-    <div ng-if="usuario == 1" class="col">
+    <div ng-if="usuario == 1 && showEdit == true" class="col">
         <a class="nav-link p-0" ng-click="edicion()">
             <button type="button" class="my-auto px-4 py-2 boton-editar" id="editarExamen">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"

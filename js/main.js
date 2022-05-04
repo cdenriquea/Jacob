@@ -2547,7 +2547,6 @@ Jacob_App.controller("repositorio", function ($scope, $state, $timeout, $session
       var array = JSON.parse(mensaje);
       $sessionStorage.listCategorias = array;
       $scope.lista = $sessionStorage.listCategorias;
-      console.log($scope.lista);
     }, 50);
   });
 
@@ -2559,7 +2558,6 @@ Jacob_App.controller("repositorio", function ($scope, $state, $timeout, $session
     $timeout(function () {
       var array = JSON.parse(mensaje);
       $sessionStorage.archivos = array;
-      console.log($sessionStorage.archivos);
     }, 50);
   });
 });

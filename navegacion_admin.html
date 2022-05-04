@@ -44,7 +44,7 @@
                                             <h4>{{Modulo.name}}</h4>
                                         </a>
                                     </div>
-                                    <div ng-if="Modulo.name != 'INTRODUCCION'" class="col-3 pl-auto">
+                                    <div ng-if="Modulo.name != 'INTRODUCCION' && Modulo.mostrar == true " class="col-3 pl-auto">
                                         <a class="nav-link p-0">
                                             <button ng-click="modData('edit',Modulo.name)" type="button" class="my-auto px-4 py-2 boton-editar-barra" data-toggle="modal" data-target="#modalModulo">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -70,7 +70,7 @@
                                                         <h4><img src="./imagenes/icono leccion.png" width="20%">{{Leccion.name}}</h4>
                                                     </a>
                                                 </div>
-                                                <div ng-if="Leccion.name != 'Bienvenid@' && Leccion.name != 'Evaluacion'" class="col">
+                                                <div ng-if="Leccion.name != 'Bienvenid@' && Leccion.name != 'Evaluacion' && Leccion.mostrar == true" class="col">
                                                     <a class="nav-link p-0 text-right">
                                                         <button ng-click="lecData(Modulo.name,'edit',Leccion.name)" type="button" class="my-auto px-4 py-2 boton-editar-barra" data-toggle="modal" data-target="#modalLeccion">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="17"
@@ -92,11 +92,11 @@
                                                     <li class="list-group-item p-0" id="{{Secciones[$index].Orden}}" ng-repeat="Seccion in Secciones " ng-if="Seccion.Leccion == Leccion.name && Seccion.Modulo == Modulo.name && Seccion.name != 'NULL'">
                                                         <div class="row">
                                                             <div class="col-7">
-                                                                <a ng-click="n_seccion(Secciones[$index].Orden)" ui-sref="{{Links[$index]}}" class="{{navLink[$index]}}">
+                                                                <a ng-click="n_seccion(Secciones[$index].Orden,Seccion.mostrar)" ui-sref="{{Links[$index]}}" class="{{navLink[$index]}}">
                                                                     <h5><img class="mx-1" ng-src="./imagenes/{{Iconos[$index]}}" width="15%">{{Seccion.name}} </h5>
                                                                 </a>
                                                             </div>
-                                                            <div ng-if="Seccion.Modulo != 'INTRODUCCION' && Seccion.name != 'Taller' && Seccion.name != 'Calificación Taller' && Seccion.name != 'Examen' && Seccion.name != 'Calificacion Examen' " class="col">
+                                                            <div ng-if="Seccion.Modulo != 'INTRODUCCION' && Seccion.name != 'Taller' && Seccion.name != 'Calificación Taller' && Seccion.name != 'Examen' && Seccion.name != 'Calificacion Examen' && Seccion.mostrar == true " class="col">
                                                                 <a class="nav-link p-0 text-right">
                                                                     <button ng-click="secData(Leccion.name, Modulo.name, 'edit',Seccion.name,Seccion.Orden)" type="button" class="my-auto px-4 py-2 boton-editar-barra" data-toggle="modal" data-target="#modalContenido">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -209,7 +209,7 @@
                     <h5>{{SecLecMod.Modulo}} > {{SecLecMod.Leccion}} > {{SecLecMod.name}}</h5>
                 </div>
                 <div class="col-6 col-md-2 text-right">
-                    <a class="nav-link px-1"><button ng-click="n_seccion(prevSec)" type="button"
+                    <a class="nav-link px-1"><button ng-click="n_seccion(prevSec,prevShowEdit)" type="button"
                             class="my-auto px-5 py-2 boton-amarillo text-white"><svg xmlns="http://www.w3.org/2000/svg"
                                 width="35" height="35" fill="currentColor" class="bi bi-caret-left-fill"
                                 viewBox="0 0 16 16">
@@ -218,7 +218,7 @@
                             </svg></button></a>
                 </div>
                 <div class="col-6 col-md-2 text-right">
-                    <a class="nav-link px-1"><button ng-click="n_seccion(nextSec)" type="button"
+                    <a class="nav-link px-1"><button ng-click="n_seccion(nextSec,nextShowEdit)" type="button"
                             class="my-auto px-5 py-2 boton-amarillo text-white"><svg xmlns="http://www.w3.org/2000/svg"
                                 width="35" height="35" fill="currentColor" class="bi bi-caret-right-fill"
                                 viewBox="0 0 16 16">
@@ -485,7 +485,7 @@
                                     <select class="custom-select" ng-model="tipoContenido" id="tipoContenido">
                                         <option value="">Tipo de Contenido</option>
                                         <option ng-if="tipo == 'edit'" value="Mantener">Mantener</option>
-                                        <option value="Teoria">Objetivos</option>
+                                        <option value="Objetivos">Objetivos</option>
                                         <option value="Teoria">Teoría</option>
                                         <option value="Video">Video</option>
                                         <option value="PruebaAsoc">Prueba Asociación</option>

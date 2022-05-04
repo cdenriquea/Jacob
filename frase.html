@@ -1,7 +1,7 @@
 <!-- -------------------Area Clase-------------------- -->
 <div ng-show="content" class="col p-3 area">
     <div class="col-12 p-0 text-center"><img class="py-4 iconos" src="./imagenes/PRUEBA DE CONOCIMIENTO.png"></div>
-    <div ng-if="usuario == 1" class="col">
+    <div ng-if="usuario == 1 && showEdit == true" class="col">
         <a class="nav-link p-0" ng-click="edicion()">
             <button type="button" class="my-auto px-4 py-2 boton-editar" id="editarFrase">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -27,19 +27,16 @@
         </span>
     </div>
     <br>
-    
+
 
     <div class="row">
         <div class="col-12 col-md-8 mx-auto text-center">
-            <a ng-repeat="obj in listItems" class="nav-link" href="#"> <button ng-drop="true"
-                    ng-drop-success="onDropCompleteRemove($data,$event)" ng-drag="true" ng-drag-data="obj" type="button"
-                    class="boton-amarillo-block">{{obj.title}}</button></a>
+            <a ng-repeat="obj in listItems" class="nav-link" href="#"> <button ng-drop="true" ng-drop-success="onDropCompleteRemove($data,$event)" ng-drag="true" ng-drag-data="obj" type="button" class="boton-amarillo-block">{{obj.title}}</button></a>
         </div>
     </div>
     <br>
     <div class="d-flex justify-content-center">
-        <a class="nav-link p-2"> <button ng-click="confirmarAsoc()" type="button" class="boton-amarillo"
-                data-toggle="modal">Confirmar</button></a>
+        <a class="nav-link p-2"> <button ng-click="confirmarAsoc()" type="button" class="boton-amarillo" data-toggle="modal">Confirmar</button></a>
     </div>
 
 </div>
@@ -69,47 +66,37 @@
         <div class="row">
             <div class="col-12 mx-auto text-justify">
                 <div class="form-group borde-formulario">
-                    <textarea class="form-control" ng-model="PruebaAsoc[4]" id="PruebaAsoc[4]" placeholder="Texto"
-                        rows="3"></textarea>
+                    <textarea class="form-control" ng-model="PruebaAsoc[4]" id="PruebaAsoc[4]" placeholder="Texto" rows="3"></textarea>
                 </div>
                 <div class="form-group borde-formulario">
-                    <input type="text" class="form-control" ng-model="PruebaAsoc[0]" id="PruebaAsoc[0]"
-                        placeholder="Palabra 1">
+                    <input type="text" class="form-control" ng-model="PruebaAsoc[0]" id="PruebaAsoc[0]" placeholder="Palabra 1">
                 </div>
                 <div class="form-group borde-formulario">
-                    <textarea class="form-control" ng-model="PruebaAsoc[5]" id="PruebaAsoc[5]"
-                        placeholder="Continuación texto" rows="3"></textarea>
+                    <textarea class="form-control" ng-model="PruebaAsoc[5]" id="PruebaAsoc[5]" placeholder="Continuación texto" rows="3"></textarea>
                 </div>
                 <div class="form-group borde-formulario">
-                    <input type="text" class="form-control" ng-model="PruebaAsoc[1]" id="PruebaAsoc[1]"
-                        placeholder="Palabra 2">
+                    <input type="text" class="form-control" ng-model="PruebaAsoc[1]" id="PruebaAsoc[1]" placeholder="Palabra 2">
                 </div>
                 <div class="form-group borde-formulario">
-                    <textarea class="form-control" ng-model="PruebaAsoc[6]" id="PruebaAsoc[6]"
-                        placeholder="Continuación texto" rows="3"></textarea>
+                    <textarea class="form-control" ng-model="PruebaAsoc[6]" id="PruebaAsoc[6]" placeholder="Continuación texto" rows="3"></textarea>
                 </div>
                 <div class="form-group borde-formulario">
-                    <input type="text" class="form-control" ng-model="PruebaAsoc[2]" id="PruebaAsoc[2]"
-                        placeholder="Palabra 3">
+                    <input type="text" class="form-control" ng-model="PruebaAsoc[2]" id="PruebaAsoc[2]" placeholder="Palabra 3">
                 </div>
                 <div class="form-group borde-formulario">
-                    <textarea class="form-control" ng-model="PruebaAsoc[7]" id="PruebaAsoc[7]"
-                        placeholder="Continuación texto" rows="3"></textarea>
+                    <textarea class="form-control" ng-model="PruebaAsoc[7]" id="PruebaAsoc[7]" placeholder="Continuación texto" rows="3"></textarea>
                 </div>
                 <div class="form-group borde-formulario">
-                    <input type="text" class="form-control" ng-model="PruebaAsoc[3]" id="PruebaAsoc[3]"
-                        placeholder="Palabra 4">
+                    <input type="text" class="form-control" ng-model="PruebaAsoc[3]" id="PruebaAsoc[3]" placeholder="Palabra 4">
                 </div>
                 <div class="form-group borde-formulario">
-                    <textarea class="form-control" ng-model="PruebaAsoc[8]" id="PruebaAsoc[8]"
-                        placeholder="Continuación texto" rows="3"></textarea>
+                    <textarea class="form-control" ng-model="PruebaAsoc[8]" id="PruebaAsoc[8]" placeholder="Continuación texto" rows="3"></textarea>
                 </div>
             </div>
         </div>
         <br>
         <div class="col text-center">
-            <button type="submit" class="my-auto mx-auto px-4 py-2 boton-azul" ng-click="modContenido('PruebaFrase')"
-                value="frase">Guardar</button>
+            <button type="submit" class="my-auto mx-auto px-4 py-2 boton-azul" ng-click="modContenido('PruebaFrase')" value="frase">Guardar</button>
         </div>
     </form>
 

@@ -25,7 +25,7 @@ if ($numRows == 0) {
             $sqlUpdate = "UPDATE " . $_POST['Categoria'] . " SET Puesto = Puesto + 1 WHERE Puesto >= '" . $_POST['Puesto'] . "' AND CodiMate = " . $_POST['Codigo'] . ";";
             mysqli_query($conn, $sqlUpdate);
 
-            $sqlInsert = "INSERT INTO " . $_POST['Categoria'] . " (Puesto,CodiMate,Materia,Seccion,NombModulo,NombLeccion,NombSeccion,Contenido) VALUES ('" . $_POST['Puesto'] . "','" . $_POST['Codigo'] . "','" . $_POST['Nombre'] . "','Teoría','" . $_POST['Modulo'] . "','" . $_POST['Leccion'] . "','NULL','NULL');";
+            $sqlInsert = "INSERT INTO " . $_POST['Categoria'] . " (Puesto,CodiMate,Materia,Seccion,NombModulo,NombLeccion,NombSeccion,Contenido,Creador,idCreador) VALUES ('" . $_POST['Puesto'] . "','" . $_POST['Codigo'] . "','" . $_POST['Nombre'] . "','Teoría','" . $_POST['Modulo'] . "','" . $_POST['Leccion'] . "','NULL','NULL','" . $_POST['tipoCreador'] . "','" . $_POST['idCreador'] . "');";
         }
     } else {
         $sqlInsert = "UPDATE " . $_POST['Categoria'] . " SET NombLeccion='" . $_POST['Leccion'] . "' WHERE NombLeccion='" . $_POST['Lecaux'] . "' AND CodiMate = " . $_POST['Codigo'] . ";";

@@ -1,7 +1,7 @@
 <!-- -------------------Area Clase-------------------- -->
 <div ng-show="content" class="col p-3 area">
     <div class="col-12 p-0 text-center"><img class="py-4 iconos" src="./imagenes/CONOCE A TU DOCENTE.png"></div>
-    <div ng-if="usuario == 1" class="col">
+    <div ng-if="usuario == 1 && showEdit == true" class="col">
         <a class="nav-link p-0" ng-click="edicion()">
             <button type="button" class="my-auto px-4 py-2 boton-editar" id="editarDocente">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -70,15 +70,13 @@
 
             <div class="col-12 col-lg-6">
                 <div class="form-group borde-formulario">
-                    <textarea class="form-control" id="fundamentosMateria" ng-model="Equipo[1]"
-                        placeholder="Palabras de Bienvenida Docente" required rows="3"></textarea>
+                    <textarea class="form-control" id="fundamentosMateria" ng-model="Equipo[1]" placeholder="Palabras de Bienvenida Docente" required rows="3"></textarea>
                 </div>
             </div>
         </div>
         <br>
         <div class="col text-center">
-            <button type="submit" class="my-auto mx-auto px-4 py-2 boton-azul" ng-click="modContenido('Equipo')"
-                value="docente">Guardar</button>
+            <button type="submit" class="my-auto mx-auto px-4 py-2 boton-azul" ng-click="modContenido('Equipo')" value="docente">Guardar</button>
         </div>
     </form>
 </div>
